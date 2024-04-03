@@ -6,23 +6,31 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:04:39 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/01 16:53:51 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/03 19:48:35 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 
+void ft_welcome()
+{
+	std::cout<<"Welcome to the phonebook"<<std::endl;
+	std::cout<<"You can ADD a contact, SEARCH for a contact, PRINT a contact or EXIT"<<std::endl;
+}
+
 int main()
 {
 	Phonebook phonebook;
 	std::string command;
-	while (1)
+
+	ft_welcome();
+	while (command != "EXIT")
 	{
 		std::cout<<"Enter a command "<<std::endl;
 		std::cin>>command;
 		if (command == "ADD")
-			//phonebook.add_contact();
-			std::cout<<"ADD"<<std::endl;
+			phonebook.add_contact(&phonebook);
+		//	std::cout<<"ADD"<<std::endl;
 		else if (command == "SEARCH")
 			//phonebook.search_contact();
 			std::cout<<"SEARCH"<<std::endl;

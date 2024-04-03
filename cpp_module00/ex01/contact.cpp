@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:04:33 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/01 15:20:32 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/03 20:25:33 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,20 @@ void Contact::set_darkest_secret(std::string new_darkest_secret)
 {
 	darkest_secret = new_darkest_secret;
 
+}
+/********************[ft_new_contact]**************************/
+void Contact::ft_new_contact()
+{
+	std::cout<<"Enter the name of the contact"<<std::endl;
+	std::cin>>name;
+	std::cout<<"Enter the last name of the contact"<<std::endl;
+	std::cin>>last_name;
+	std::cout<<"Enter the nickname of the contact"<<std::endl;
+	std::cin>>nickname;
+	std::cout<<"Enter the phone number of the contact"<<std::endl;
+	std::cin>>phone_number;
+	std::cout<<"Enter the darkest secret of the contact"<<std::endl;
+	std::cin>>darkest_secret;
 }
 /********************[get]**********************************/
 std::string Contact::get_name()

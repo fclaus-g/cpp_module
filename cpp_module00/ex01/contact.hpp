@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:04:36 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/01 15:20:01 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/03 20:24:39 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ public:
 	void set_nickname(std::string new_nickname);
 	void set_phone_number(std::string new_phone_number);
 	void set_darkest_secret(std::string new_darkest_secret);
+	void ft_new_contact();
 	std::string get_name();
 	std::string get_last_name();
 	std::string get_nickname();
