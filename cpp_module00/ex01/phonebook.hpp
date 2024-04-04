@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:51:56 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/03 20:23:54 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:55:35 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ public:
 	void print_contact(Phonebook *phonebook,int index);
 	int get_num_contacts();
 	int get_index();
+	//~Phonebook();
 };
 

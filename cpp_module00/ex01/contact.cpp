@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:04:33 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/03 20:25:33 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:54:40 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,19 @@ void Contact::ft_new_contact()
 	std::cin>>phone_number;
 	std::cout<<"Enter the darkest secret of the contact"<<std::endl;
 	std::cin>>darkest_secret;
+}
+/********************[print_contact]************************/
+
+void Contact::print_contact()
+{
+	std::cout<<std::setw(10)<<std::right<<"index"<<"|";
+	std::cout<<std::setw(10)<<std::right<<"name"<<"|";
+	std::cout<<std::setw(10)<<std::right<<"last_name"<<"|";
+	std::cout<<std::setw(10)<<std::right<<"nickname"<<"|"<<std::endl;
+	//std::cout<<std::setw(10)<<std::right<<index<<"|";//tengo que añadir index en la clase contact
+	std::cout<<std::setw(10)<<std::right<<get_name()<<"|";
+	std::cout<<std::setw(10)<<std::right<<get_last_name()<<"|";
+	std::cout<<std::setw(10)<<std::right<<get_nickname()<<"|"<<std::endl;
 }
 /********************[get]**********************************/
 std::string Contact::get_name()
