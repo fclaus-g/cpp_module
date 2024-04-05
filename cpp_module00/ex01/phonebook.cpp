@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:51:43 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/03 20:33:47 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:08:45 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,15 @@ void Phonebook::add_contact(Phonebook *phonebook)
 		return;
 	}
 	else
-		phonebook->contact[index].ft_new_contact();
-	num_contacts++;
-	index++;
+	{
+		phonebook->contact[index].ft_new_contact(index);
+		std::cout<<"Contact "<<index<<" added"<<std::endl;
+		num_contacts++;
+		index++;
+	}	
+	phonebook->contact->print_contact();
 }
 
 /********************[search_contact]***********************/
 
 
-/********************[print_contact]************************/
-
-void Phonebook::print_contact(Phonebook *phonebook, int index)
-{
-	std::cout<<std::setw(10)<<std::right<<"index"<<"|";
-	std::cout<<std::setw(10)<<std::right<<"name"<<"|";
-	std::cout<<std::setw(10)<<std::right<<"last_name"<<"|";
-	std::cout<<std::setw(10)<<std::right<<"nickname"<<"|"<<std::endl;
-	std::cout<<std::setw(10)<<std::right<<index<<"|";
-	std::cout<<std::setw(10)<<std::right<<contact[index].get_name()<<"|";
-	std::cout<<std::setw(10)<<std::right<<contact[index].get_last_name()<<"|";
-	std::cout<<std::setw(10)<<std::right<<contact[index].get_nickname()<<"|"<<std::endl;
-}

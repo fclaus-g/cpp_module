@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:51:56 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/03 20:23:54 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:29:16 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ public:
 	void add_contact(Phonebook *phonebook);
 	//void search_contact(Phonebook *phonebook);
 	void set_index(int index);
-	void print_contact(Phonebook *phonebook,int index);
 	int get_num_contacts();
 	int get_index();
+	//~Phonebook();
 };
 
