@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 17:17:09 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/10 12:53:11 by fclaus-g         ###   ########.fr       */
+/*   Created: 2024/04/10 12:27:12 by fclaus-g          #+#    #+#             */
+/*   Updated: 2024/04/10 13:30:19 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
-
-#include <iostream>
-#include <string>
-/*Creamos la clase Zombie que incluirá la string name en private el constructor
-destructor y la función que hace el anuncio. */
-class Zombie 
+#include "Zombie.hpp"
+/**
+ * @brief El main va a crear un array de 5 zombies almacenados en el heap
+ * 
+ * 
+ * @return int 
+ */
+int main(void)
 {
-	private:
-		std::string _name;
-	public:
-		Zombie(std::string name);
-		~Zombie(void);
-		void announce(void);
-};
-
-#endif
+	int i = 0;
+	Zombie *horde = zombieHorde(5, "Zombie_");
+	while (i < 5)
+	{
+		horde[i].announce();
+		i++;
+	}
+	delete [] horde;
+	return (0);
+}

@@ -2,16 +2,17 @@
 
 ## Ex01 -> Zombie!
 
+### Objetivo
 El objetivo de este ejercicio es practicar el uso de clases, la creación de nuevos objetos y la asignación de memoria.
 Conceptos a tener en cuenta:
-* **operador new->** Asigna dinámicamente memoria en el heap, creando un nuevo objeto en
-heap y devuelve un puntero a él.
+* **operador new->** Asigna dinámicamente memoria en el heap, creando un nuevo objeto en heap y devuelve un puntero a él.
+* **operador delete**-> Libera la memoria alojada en el heap con el operador **new**.
 * **heap->** Es una región de memoria del sistema que se utiliza para la asignación de memoria dinámica de memoria. A diferencia de la pila(donde se almacenan las variables locales) el heap no tiene un orden de asignación y liberación de memoria específicopor lo que hay que liberar la memoria despues de su uso con el operador delete y establecer el puntero a nullptr.
-
+* **pila**-> (**stack**) región de memoria del sistema que se utiliza para las funciones. Tiene un orden específico de asignación y liberación de memoria (LIFO, Last In First Out). 
 
 ### ¿Porqué crear objetos en la pila o en el heap?
 
-Depende de las necesidades quie tengamos, aqui tenemos unas consideraciones específicas:
+Depende de las necesidades que tengamos, aqui tenemos unas consideraciones específicas:
 
 1. **Tiempo de vida**-> Los objetos creados en la pila se destruyen automáticamente cuando salen de su ámbito. Si necesitamos que un objeto sobreviva más alla del ámbito de la función deberíamos crearlos en el heap.
 2. **Tamaño**-> La pila tiene un tamaño limitado (menor que el del heap). Si necesitamos crear un objeto grande o muchos objetos sería conveniente crearlos en el heap.
