@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:51:43 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/05 12:08:45 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:21:08 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,55 +15,45 @@
 /********************[constructor]**************************/
 Phonebook::Phonebook()
 {
-	num_contacts = 0;
-	index = 0;
+	index_c = 0;
 }
 
 /********************[set]**********************************/
-void Phonebook::set_index(int new_index)
+void Phonebook::set_index_c(int new_index)
 {
-	index = new_index;
+	index_c = new_index;
 }
 
 /********************[get]**********************************/
-int Phonebook::get_num_contacts()
-{
-	return num_contacts;
-}
 
-int Phonebook::get_index()
+int Phonebook::get_index_c()
 {
-	return index;
+	return index_c;
 }
 
 /********************[add_contact]**************************/
 
 void Phonebook::add_contact(Phonebook *phonebook)
 {
-	if (num_contacts > 7)
+	if (index_c > 7)
 	{
 		std::cout<<"The phonebook is full"<<std::endl;
 		std::cout<<"Do you want to overwrite a contact? (yes/no)"<<std::endl;
 		std::string answer;
 		std::cin>>answer;
 		if (answer == "y" || answer == "yes")
-			index = 0;
+			index_c = 0;
 		else
 			return;
 	}
-	else if (num_contacts < 0)
+	if (index_c < 8)
 	{
-		std::cout<<"Invalid number of contacts"<<std::endl;
-		return;
-	}
-	else
-	{
-		phonebook->contact[index].ft_new_contact(index);
-		std::cout<<"Contact "<<index<<" added"<<std::endl;
-		num_contacts++;
-		index++;
+		std::cout<<"Adding contact"<<index_c<<std::endl;
+		phonebook->contact[index_c].ft_new_contact(index_c);
+		std::cout<<"Contact "<<index_c<<" added"<<std::endl;
+		phonebook->contact[index_c].print_contact();
+		index_c++;
 	}	
-	phonebook->contact->print_contact();
 }
 
 /********************[search_contact]***********************/

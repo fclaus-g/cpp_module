@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:51:56 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/05 13:29:16 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:22:13 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 class Phonebook
 {
+private:
 	Contact contact[8];
-	int num_contacts;
-	int index;
+	int index_c;
+	int overwrite;
 public:
 	Phonebook();
 	void add_contact(Phonebook *phonebook);
 	//void search_contact(Phonebook *phonebook);
-	void set_index(int index);
-	int get_num_contacts();
-	int get_index();
+	void set_index_c(int index);
+	int get_index_c();
 	//~Phonebook();
 };
 

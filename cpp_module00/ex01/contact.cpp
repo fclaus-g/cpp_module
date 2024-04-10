@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:04:33 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/05 13:36:04 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:50:44 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,47 @@ Contact::Contact()
 	phone_number = "";
 	darkest_secret= "";
 	index = 0;
+}
+
+/********************[ft_new_contact]**************************/
+void Contact::ft_new_contact(int index)
+{
+	set_index(index);
+	std::cout<<"Enter the name of the contact"<<std::endl;
+	name = get_input();
+	std::cout<<"Enter the last name of the contact"<<std::endl;
+	last_name = get_input();
+	// std::cout<<"Enter the nickname of the contact"<<std::endl;
+	// std::getline(std::cin, input);
+	// std::cout<<"Enter the phone number of the contact"<<std::endl;
+	// std::getline(std::cin, input);
+	// std::cout<<"Enter the darkest secret of the contact"<<std::endl;
+	// std::getline(std::cin, input);	
+}
+/********************[get_input]**************************/
+std::string Contact::get_input()
+{
+	std::string input;
+	std::getline(std::cin, input);
+	// while (input == "")
+	// {
+	// 	std::cout<<"Invalid input"<<std::endl;
+	// 	std::getline(std::cin, input);
+	// }	
+	return input;
+}
+/********************[print_contact]************************/
+
+void Contact::print_contact()
+{
+	std::cout<<std::setw(10)<<std::right<<"index"<<"|";
+	std::cout<<std::setw(10)<<std::right<<"name"<<"|";
+	std::cout<<std::setw(10)<<std::right<<"last_name"<<"|";
+	std::cout<<std::setw(10)<<std::right<<"nickname"<<"|"<<std::endl;
+	std::cout<<std::setw(10)<<std::right<<get_index()<<"|";//tengo que añadir index en la clase contact
+	std::cout<<std::setw(10)<<std::right<<get_name()<<"|";
+	std::cout<<std::setw(10)<<std::right<<get_last_name()<<"|";
+	std::cout<<std::setw(10)<<std::right<<get_nickname()<<"|"<<std::endl;
 }
 /********************[set]**********************************/
 void Contact::set_name(std::string new_name)
@@ -47,34 +88,6 @@ void Contact::set_darkest_secret(std::string new_darkest_secret)
 void Contact::set_index(int new_index)
 {
 	index = new_index;
-}
-/********************[ft_new_contact]**************************/
-void Contact::ft_new_contact(int index)
-{
-	std::cout<<"Enter the name of the contact"<<std::endl;
-	std::cin>>name;
-	std::cout<<"Enter the last name of the contact"<<std::endl;
-	std::cin>>last_name;
-	std::cout<<"Enter the nickname of the contact"<<std::endl;
-	std::cin>>nickname;
-	std::cout<<"Enter the phone number of the contact"<<std::endl;
-	std::cin>>phone_number;
-	std::cout<<"Enter the darkest secret of the contact"<<std::endl;
-	std::cin>>darkest_secret;
-	set_index(index);	
-}
-/********************[print_contact]************************/
-
-void Contact::print_contact()
-{
-	std::cout<<std::setw(10)<<std::right<<"index"<<"|";
-	std::cout<<std::setw(10)<<std::right<<"name"<<"|";
-	std::cout<<std::setw(10)<<std::right<<"last_name"<<"|";
-	std::cout<<std::setw(10)<<std::right<<"nickname"<<"|"<<std::endl;
-	std::cout<<std::setw(10)<<std::right<<get_index()<<"|";//tengo que añadir index en la clase contact
-	std::cout<<std::setw(10)<<std::right<<get_name()<<"|";
-	std::cout<<std::setw(10)<<std::right<<get_last_name()<<"|";
-	std::cout<<std::setw(10)<<std::right<<get_nickname()<<"|"<<std::endl;
 }
 /********************[get]**********************************/
 std::string Contact::get_name()

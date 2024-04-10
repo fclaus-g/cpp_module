@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:04:36 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/05 13:31:35 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:23:36 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class Contact
 	int index;
 public:
 	Contact();
+	//~Contact();
 	void set_name(std::string new_name);
 	void set_last_name(std::string new_last_name);
 	void set_nickname(std::string new_nickname);
@@ -36,7 +37,7 @@ public:
 	std::string get_nickname();
 	std::string get_phone_number();
 	std::string get_darkest_secret();
+	std::string get_input();
 	int get_index();
 	void print_contact();
-	//~Contact();
 };
