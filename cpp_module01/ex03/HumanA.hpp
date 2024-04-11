@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:02:19 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/10 19:22:33 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:48:59 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 # define HUMANA_HPP
 
 # include "Weapon.hpp"
-# include <iostream>
 
 class HumanA
 {
 	private:
 		std::string		name;
-		Weapon 			&weapon;
+		Weapon 			&refWeapon;
 	public:
-		HumanA(std::string initName, Weapon &initWeapon);
+		HumanA(std::string newName, Weapon &refWeapon);
 		~HumanA();
 		void attack();
 		const std::string getName(void) const;

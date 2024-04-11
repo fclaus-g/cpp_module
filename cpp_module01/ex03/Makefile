@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+         #
+#    By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 18:00:57 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/04/10 18:02:34 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/04/11 10:45:18 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp
+SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
