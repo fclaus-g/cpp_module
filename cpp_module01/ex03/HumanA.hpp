@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:02:19 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/11 10:48:59 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:53:34 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class HumanA
 		std::string		name;
 		Weapon 			&refWeapon;
 	public:
-		HumanA(std::string newName, Weapon &refWeapon);
+		HumanA(std::string newName, Weapon &Weapon);
 		~HumanA();
 		void attack();
 		const std::string getName(void) const;

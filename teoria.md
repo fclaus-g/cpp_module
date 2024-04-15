@@ -101,7 +101,7 @@ int main() {
 La visibilidad en C++ se refiere a la accesibilidad de los miembros de una clase (atributos y métodos). Hay tres niveles de visibilidad: `public`, `private` y `protected`.
 
 - `public`: Los miembros públicos son accesibles desde cualquier lugar donde el objeto sea visible.
-- `private`: Los miembros privados solo son accesibles dentro de la clase que los declara.
+- `private`: Los miembros privados solo son accesibles dentro de la clase que los declara. Según ña convención podemos nombrar a las variables y funciones privadas con un '_' ej : int _numeroPrivate.
 - `protected`: Los miembros protegidos son accesibles dentro de la clase que los declara y dentro de cualquier clase que herede de esa clase.
 
 ```cpp
@@ -208,3 +208,124 @@ int main() {
     return 0;
 }
 ```
+
+### Funciones y atributos no miembros
+
+Son aquellas funciones y atributos que no están contenidos dentro de una clase o struct. Son accesibles de manera global y no están asociados con ningún objeto específico de una clase. Es importante tener en cuenta que el uso excesivo de atributos y funciones globales puede hacer que el código sea dificil de entender y mantener. En la POO se prefiere encapsular los atributos y funciones dentro de clases y struct siempre que sea posible.
+```cpp
+#include <iostream>
+
+int globalAttribute; // Atributo no miembro
+
+void globalFunction() { // Función no miembro
+    std::cout << "Esta es una función no miembro.\n";
+}
+
+class MyClass {
+    // ...
+};
+
+int main() {
+    globalAttribute = 10;
+    globalFunction();
+    return 0;
+}
+```
+
+### Punteros a miembros
+
+Son un tipo de puntero que puede apuntar a un miembro de una clase(atributo o función).
+```cpp
+class MyClass {
+public:
+    int myAttribute;
+    void myMethod() {
+        // ...
+    }
+};
+
+int main() {
+    // Declarar un puntero a un atributo de MyClass
+    int MyClass::*ptrToAttribute = &MyClass::myAttribute;
+
+    // Declarar un puntero a una función de MyClass
+    void (MyClass::*ptrToMethod)() = &MyClass::myMethod;
+
+    MyClass instance;
+
+    // Usar el puntero para acceder al atributo
+    instance.*ptrToAttribute = 10;
+
+    // Usar el puntero para llamar a la función
+    (instance.*ptrToMethod)();
+
+    return 0;
+}
+```
+En este código, ptrToAttribute es un puntero al atributo myAttribute de MyClass, y ptrToMethod es un puntero al método myMethod de MyClass. Se pueden usar estos punteros para acceder al atributo y llamar al método en una instancia de MyClass.
+
+Es importante tener en cuenta que los punteros a miembros de una clase son diferentes de los punteros normales. No podemos usar un puntero a un miembro de una clase para apuntar a una variable o función que no sea miembro de esa clase. Además, para usar un puntero a un miembro de la clase necesitamos una instancia de esa clase.
+
+### New y delete
+
+new y delete son operadores en C++ utilizados para la asignación dinámica de memoria.
+
+* **new:** Este operador se utiliza para asignar memoria en el heap para un objeto de un tipo dado. Devuelve un puntero al espacio de memoria asignado. También se puede utilizar para inicializar el objeto durante la asignación de memoria.
+```cpp
+int* ptr = new int(10); // Asigna memoria para un entero y lo inicializa a 10
+```
+* **delete:** Este operador se utiliza para liberar la memoria que ha sido asignada con new. Debes pasarle el puntero que new devolvió. Después de usar delete, ese puntero se convierte en un puntero colgante, por lo que es una buena práctica establecerlo a nullptr.
+```cpp
+delete ptr; // Libera la memoria
+ptr = nullptr; // Evita el puntero colgante
+```
+Es importante recordar que cada new debe tener un delete correspondiente. Si olvidas usar delete, puedes causar una fuga de memoria, donde la memoria que ya no se necesita sigue ocupada. Esto puede agotar la memoria disponible para tu programa.
+
+### Referencias
+
+Son un tipo de alias que se puede utilizar para nombrar una variable existente. Una vez que una referencia es inicializada con una variable, la referencia y la variable original pueden ser utilizadas indistintamente. Ejemplo:
+```cpp
+int original = 10; // Variable original
+int& ref = original; // Referencia a la variable original
+
+ref = 20; // Cambia el valor de la variable original
+
+std::cout << original; // Imprime 20
+```
+En este código, ref es una referencia a original. Cuando cambiamos el valor de ref, también cambiamos el valor de original.
+Las referencias deben ser inicializadas en el momento de su declaración y NO pueden se REASIGNADAS para referirse a diferentes variables una vez han sido inicializadas. Además, no puedes tener referencias apuntando a null, a diferencia de los punteros.
+Son útiles cuando quieres pasar args a una función por referencia(para que la función pueda modificar los argumentos) o cuando quieres devolver mása de un valor de una función o para crear alias para variables con nombres largos o complicados.
+
+### filestream
+
+**fstream** es una biblioteca que proporciona facilidades para realizar operaciones de entrada y salida en archivos. Incluye las clases:
+* **ifstream**-> leer de archivos.
+* **ofstream**-> escrinir en archivos.
+* **fstream**-> leer y escribir.
+```cpp
+#include <fstream>
+#include <iostream>
+
+int main() {
+    // Crear un objeto ofstream y abrir un archivo para escribir
+    std::ofstream outFile("test.txt");
+    if (outFile.is_open()) {
+        outFile << "Hola, mundo!\n";
+        outFile.close();
+    }
+
+    // Crear un objeto ifstream y abrir el mismo archivo para leer
+    std::ifstream inFile("test.txt");
+    if (inFile.is_open()) {
+        std::string line;
+        while (getline(inFile, line)) {
+            std::cout << line << '\n';
+        }
+        inFile.close();
+    }
+
+    return 0;
+}
+```
+En este código, primero creamos un objeto **ofstream** y escribimos "Hola mundo!" en un archivo llamado "test.txt". Luego creamos un objeto **ifstream** y leemos el contenido de dicho archivo. Es importante cerrar los archivos después de usarlos para liberar los recursos que están utilizando.
+

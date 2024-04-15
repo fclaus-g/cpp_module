@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:27:39 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/11 10:40:57 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:55:02 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,20 @@ HumanB::HumanB(std::string newName)
 {
 	this->name = newName;
 	this->pointWeapon = NULL;
+	std::cout << GRN << "HumanB " << this->name << " created" << RST << std::endl;
 }
 
 HumanB::~HumanB()
 {
+	std::cout << YEL << "HumanB says goodbye" << RST << std::endl;
 }
 
 void HumanB::attack()
 {
 	if (this->pointWeapon)
-		std::cout<< this->name << "attacks with his" << this->pointWeapon->getType() << std::endl;
+		std::cout<< RED << this->name << " attacks with his " << this->pointWeapon->getType() << RST << std::endl;
 	else
-		std::cout << this->name << "attacks with his bare hands" << std::endl;
+		std::cout << this->name << " attacks with his bare hands" << std::endl;
 }
 
 const std::string HumanB::getName(void) const
