@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:50:04 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/15 13:52:00 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:24:27 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,35 @@ cosas. Tienes que crear una clase Harl con las siguientes funciones de miembros 
 Harl también tiene una función miembro pública que llama a las cuatro funciones miembro anteriores.
 dependiendo del nivel pasado como parámetro:
 vacío
-quejarse (std::nivel de cadena);
+complain (std::nivel de cadena);
 El objetivo de este ejercicio es utilizar punteros a funciones miembro. Esto no es una
 sugerencia. Harl tiene que quejarse sin usar un bosque de if/else if/else. no piensa
 ¡dos veces!
 Cree y entregue pruebas para demostrar que Harl se queja mucho. Puedes usar los ejemplos.
 de los comentarios enumerados anteriormente en el asunto o elija utilizar sus propios comentarios.
-Enviar comentarios
-Paneles laterales
-Historial
-Guardado
-Contribuye*/
+*/
+
+#include "Harl.hpp"
+
+void	printMsg()
+{
+	std::cout << "Harl is a very special person. He always says the same things."<<std::endl;
+	std::cout << "He has 4 levels of complaints: DEBUG, INFO, WARNING, ERROR." <<std::endl;
+	std::cout << "You can make him complain by typing one of these levels. If you want to exit, type EXIT." << std::endl;
+
+}
+
+int main(void) 
+{
+	std::string	input;
+	Harl 		harl;
+		
+	printMsg();
+	do
+	{
+		std::cout << "Enter the level of complaint: ";
+		std::cin >> input;
+		harl.complain(input);
+	} while (input != "EXIT");	
+	return (0);
+}

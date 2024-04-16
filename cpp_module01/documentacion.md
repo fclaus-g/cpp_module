@@ -93,7 +93,7 @@ para algo que ya haces: manipulación de direcciones.
 
 * **std::string &stringREF = str;:** Esta línea declara una variable stringREF que es una referencia a std::string. Se inicializa con str, por lo que stringREF es otra forma de acceder a str. Cualquier cambio que hagas a stringREF también cambiará str, y viceversa.
 
-## Ex03
+## Ex03 -> Armamos a los humanos!
 
 ### Subject
 Implemente una clase de Arma que tenga:
@@ -110,7 +110,7 @@ HumanA y HumanB son casi iguales excepto por estos dos pequeños detalles:
 • Mientras HumanA toma el Arma en su constructor, HumanB no.
 • Es posible que HumanB no siempre tenga un arma, mientras que HumanA siempre estará armado.
 
-8Asignación de memoria, punteros a los miembros,
+Asignación de memoria, punteros a los miembros,
 referencias, declaración de cambio
 Si su implementación es correcta, ejecutar el siguiente código imprimirá un ataque con "un garrote tosco con púas" y luego un segundo ataque con "algún otro tipo de garrote" para ambos.
 Casos de prueba:
@@ -141,4 +141,206 @@ int main()
 ¿En que caso piensas que sería mejor usar un puntero a Weapon?¿Por qué?
 Piensa sobre eso antes de empezar el ejercicio.
 
+### Objetivo
 
+El objetivo de este ejercicio es familiarizarnos con el uso de la memoria, el uso de punteros a los miembros de la clase, distinguir entre punteros y referencias (HumanA utiliza una referencia a weapon(&refWeapon) y HumanB utiliza un puntero a *pointWeapon).
+Seguimos trabajando para diferenciar punteros y referencias, usar métodos en las clases y trabajar con los atributos.
+Trabajar con setters y getters.
+
+### Explicación
+
+HumanA debe ser creado con un arma (Weapon) por lo que creamos una referencia que se inicialice en en el momento del constructor, HumanB por otro lado comienza sin arma asi que le declaramos un atributo puntero inicializado a null para darle valor mas adelante en el programa en caso que sea necesario.
+Por otro lado weapon no es mas que una clase que alberga una string con el tipo, y su getter y setter.
+
+```cpp
+
+class Weapon
+{
+	private:
+	std::string type;
+	public:
+	Weapon(std::string initType);
+	~Weapon();
+	const std::string &getType(void) const;
+	void setType(std::string newType);
+};
+
+class HumanA
+{
+	private:
+		std::string		name;
+		Weapon 			&refWeapon;
+	public:
+		HumanA(std::string newName, Weapon &Weapon);
+		~HumanA();
+		void attack();
+		const std::string getName(void) const;
+		void setName(std::string newName);
+};
+class HumanB
+{
+	private:
+	std::string name;
+	Weapon *pointWeapon;
+	public:
+	HumanB(std::string initName);
+	~HumanB();
+	void attack();
+	const std::string getName(void) const;
+	void setName(std::string newName);
+	void setWeapon(Weapon &newWeapon);
+};
+```
+El main es el que se encargará de declarar weapon y asignarla a los humanos.
+*En resumen, si quieres una asociación que nunca cambie, usa una referencia. Si necesitas una asociación que pueda cambiar o que pueda no existir en algunos puntos, usa un puntero.*
+
+## Ex04 -> Cambio y cambiucheo de cadenas en archivos
+
+### Subject
+Cree un programa que tome tres parámetros en el siguiente orden: un nombre de archivo y
+dos strings, s1 y s2.
+Abrirá el archivo **<nombre de archivo>** y copiará su contenido en un archivo nuevo.
+**<nombre de archivo>.replace**, reemplazando cada aparición de s1 con s2.
+El uso de funciones de manipulación de archivos C está prohibido y se considerará trampa. Todo
+las funciones miembro de la clase std::string están permitidas, excepto replace. Usalos, usalos a ellos
+sabiamente!
+Por supuesto, maneje entradas y errores inesperados. Tienes que crear y entregar tu
+propias pruebas para garantizar que su programa funcione como se espera.
+
+### Objetivos
+
+Familiarizarnos con el uso de funciones miembro de la clase std::string (menos .replace) y conocer estas funciones.
+Usar la biblioteca <fstream> (filestream) que alberga funciones de entrada y salida de archivos.
+
+### Desarrollo
+
+Este ejercicio es muy cortito, solo vamos a necesitar un main y su Makefile. El tema aqui está en tomar los argumentos recibidos por el main y hacer uso de ifstream(lectura) y ofstream(escritura) y de los médodos propios de la clase.
+```cpp
+int	main(int ac, char **av)
+{
+	if (ac == 4)
+	{
+		std::string filename = av[1];
+		std::string target = av[2];
+		std::string replace = av[3];
+		if (target.empty() || replace.empty() || filename.empty())
+		{
+			std::cout << "Error: s1, s2 or filename is empty" << std::endl;
+			return (1);
+		}
+		std::ifstream inFile(filename.c_str());//COMPROBAR CON LOS COMPAÑEROS SI ESTO ES NECESARIO
+		if (!inFile.is_open())
+		{
+			std::cout << "Error: file not found" << std::endl;
+			return (1);
+		}
+		std::string newFilename = filename + ".replace";
+		std::ofstream outFile(newFilename .c_str());
+		if (!outFile.is_open())
+		{
+			std::cout << "Error: file not created" << std::endl;
+			return (1);
+		}
+		while (!inFile.eof())
+	        replaceStrings(inFile, outFile, target, replace);
+		inFile.close();
+		outFile.close();
+	}
+	else 
+	{
+		std::cout << "Error: wrong number of arguments" << std::endl;
+		std::cout << "Usage: ./replace filename s1 s2" << std::endl;
+	}
+	return (0);
+}
+```
+Este sería nuestro main. Basicamente comprobamos que ningun argumento este vacío y procedemos a la declaración del objeto inFile que guardará la lectura del archivo y el objeto outFile al que le pasamos el nombre del archivo que vamos a crear para hacer el cambio de strings. Tras eso vamos a ir leyendo inFile hasta el final buscando la cadena objetivo y reemplaandola con la nueva cadena en el archivo outFile mediante la función **replaceStrings()**.
+
+## Ex05 -> Harl el quejoso
+
+### Subject
+¿Conoces a Harl? Todos lo hacemos, ¿verdad? En caso de que no lo hagas, encuentra a continuación el tipo de
+comentarios que hace Harl. Se clasifican por niveles:
+• Nivel "DEBUG": los mensajes de depuración contienen información contextual. son en su mayoría
+utilizado para el diagnóstico de problemas.
+Ejemplo: "Me encanta tener tocino extra para mi 7XL-doble-queso-triple-pepinillo-especial-
+hamburguesa con salsa de tomate. ¡Realmente lo hago!"
+• Nivel "INFO": Estos mensajes contienen amplia información. Son útiles para
+Seguimiento de la ejecución del programa en un entorno de producción.
+Ejemplo: "No puedo creer que agregar tocino extra cueste más dinero. No pusiste
+¡Suficiente tocino en mi hamburguesa! ¡Si lo hicieras, no pediría más!"
+• Nivel "ADVERTENCIA": los mensajes de advertencia indican un problema potencial en el sistema.
+Sin embargo, se puede manejar o ignorar.
+Ejemplo: "Creo que merezco un poco de tocino extra gratis. He estado viniendo por
+años mientras que tú empezaste a trabajar aquí desde el mes pasado."
+• Nivel "ERROR": Estos mensajes indican que se ha producido un error irrecuperable.
+Este suele ser un problema crítico que requiere intervención manual.
+Ejemplo: "¡Esto es inaceptable! Quiero hablar con el gerente ahora".
+11Asignación de memoria, indicaciones para los miembros,
+referencias, declaración de cambio
+C++ - Módulo 01
+Vas a automatizar a Harl. No será difícil ya que siempre dice lo mismo.
+cosas. Tienes que crear una clase Harl con las siguientes funciones de miembros privados:
+• depuración nula (nulo);
+• información nula (anular);
+• advertencia de anulación (anula);
+• error de anulación (anular);
+Harl también tiene una función miembro pública que llama a las cuatro funciones miembro anteriores.
+dependiendo del nivel pasado como parámetro:
+vacío
+complain (std::nivel de cadena);
+El objetivo de este ejercicio es utilizar punteros a funciones miembro. Esto no es una
+sugerencia. Harl tiene que quejarse sin usar un bosque de if/else if/else. no piensa
+¡dos veces!
+Cree y entregue pruebas para demostrar que Harl se queja mucho. Puedes usar los ejemplos.
+de los comentarios enumerados anteriormente en el asunto o elija utilizar sus propios comentarios.
+
+### Objetivos
+
+La parte clave de este ejercicio está en el uso de punteros a metodos de la clase.
+
+### Desarrollo
+
+La realización de este ejercicio es relativamente sencilla hasta que llegamos a la definición de la función complain(std::stringLevel) que es donde haremos uso del objetivo del ejercicio, punteros a funciones y lo haremos de la siguiente manera:
+```cpp
+/* Aquí presentamos al objeto Harl con sus 4 métodos privados y su metodo complain(std::string level)*/
+class Harl
+{
+	private:
+		/*Cada uno de los métodos privados de Harl son impresiones por pantalla(std::cout) de los mensajes dados en el subject*/
+		void _debug(void);
+		void _info(void);
+		void _warning(void);
+		void _error(void);
+	public:
+		Harl(void);
+		~Harl(void);
+		void complain( std::string level );
+};
+
+/*Y así sería la definición de la función complain(std::string level)*/
+void Harl::complain(std::string level)
+{
+    /*Array de punteros a los métodos(funciones) de la clase Harl. Cada puntero apunta a un método 
+	void método(void)*/
+	void (Harl::*f[4]) (void) = {&Harl::_debug, &Harl::_info, &Harl::_warning, &Harl::_error};//Aquí es donde muere ella
+    /*Array de strings con los niveles de queja que usaremos para comparar con el arg de entrada*/
+	std::string lvl[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    int i = 0;
+
+    while (i < 4)
+    {
+        if (lvl[i] == level)
+        {
+            /*si el nivel de queja coincide con el argumentoo pasado al método complain
+			se llama al método correspondiente del array de funciones*/
+			(this->*f[i])();
+            return ;
+        }
+        i++;
+    }
+    if (i >= 4)
+        std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+    return ;
+}
+```

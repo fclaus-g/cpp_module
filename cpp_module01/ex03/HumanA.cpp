@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:08:05 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/15 11:48:25 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:41:20 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ estará armado.*/
 
 #include "HumanA.hpp"
 
-/*en el constructor debemos pararle la lista de inicialización porque al ser refWeapon
+/*en el constructor debemos pasarle la lista de inicialización porque al ser refWeapon
 una referencia debe de iniciarse en el momento de su declaración, declararlo 
 dentro del constructor sería tarde*/
 HumanA::HumanA(std::string newName, Weapon &Weapon): name(newName), refWeapon(Weapon)
