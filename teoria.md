@@ -329,3 +329,42 @@ int main() {
 ```
 En este código, primero creamos un objeto **ofstream** y escribimos "Hola mundo!" en un archivo llamado "test.txt". Luego creamos un objeto **ifstream** y leemos el contenido de dicho archivo. Es importante cerrar los archivos después de usarlos para liberar los recursos que están utilizando.
 
+### Números flotantes
+ Los números flotantes(float) tiene una serie de particularidades que debemos tener en cuenta a la hora de trabajar con ellos.
+
+ * En ocasiones los float qaunque parezcan iguales necesariamente no satisfacen la prueba '==' de C.
+ * Un float de 4 bytes puede contener menos valores distintos que un int de 4 bytes debido a que los bits que representan un float tienen una interpretación mas complicada que la de los int.
+ ####  * Exactitud vs precisión
+
+La **exactitud** se refiere a que tan cerca está una medición del valor real, mientras que la **precisión** tiene que ver con la cantidad de información que de tiene sobre una cantidad, con qué precisión se tiene definida.
+
+La aritmética de int tiene una precisión total: si tengo el int '2', es exactamente 2 en el punto indiscutiblemente y si le sumamos uno obtendremos exactamente 3. Independientemente de las operaciones que se hagan con int, siempre que no haya desbordamiento, obtendremos un número con la respuesta correcta bit por bit.
+Los float son exactamente lo opuesto a los int con respecto a exactitud y precisión. En muchos casos literalmente no hay esperanza de que una respuesta de float coincida bit a bit con la respuesta correcta. No todas las fracciones se pueden representar exactamente en binario mientras que cualquier entero si. Esta restricción se aplica a cualquier sistema base no solo al binario. Por ej: 1/3 = 0,333333333... ninguna representación de dígitos decimales finitos podria ser igual a 1/3.
+Nuestro trabajo es evitar que esos errores de redondeo supongan un problema.
+
+#### * Representación de números en coma flotante
+
+Las representaciones en coma flotante varína de una máquina a otra, pero para ello tenemos el estándar IEEE-754.
+Un flotante IEEE-754 (4bytes) o doble(8bytes) tiene tres componentes:
+1. Un bit de signo que representa si el float es postivo o negativo.
+2. Un exponente que da su orden de magnitud. 8 bits
+3. Y una mantisa que especifica los digitos reales del número. 23 bits
+Ejemplo: 
+
+Seeeeeeemmmmmmmmmmmmmmmmmmmmmmm 
+s = bit de signo, e = exponente, m = mantisa.
+
+El valor del número es la es la mantisa multiplicada por 2^x, donde x es el exponente. Estamos tratando con fracciones binarias, de modo que el 0,1(el bit de mantisa mas a la izquierda) significa 1/2 (los valores posicionales a la derecha del punto decimal son 2^-1, 2^-2, etc (tal como tener 10^-1, 10^-2 en decimal)).
+Existe un problema potencial al almacenar tanto a una mantisa como un exponente: 2x10^-1 = 0,2x10^0 = 0,02x10^1. Esto correspondería a muchos patrones de bits diferentes que representa la misma cantidad. Este problema se soluciona interpretando que la mantisa completa esta a la derecha del punto decimal, con un '1' implícito siempre presente a la izquierda del decimal. Nos referiremos a esto como una representación "1,m". ¿Que pasa si no quieres un 1 en ese lugar?. Hay que pensarlo de la siguiente manera: imaginemos que escribimos un número en binario. A menos que sea cero debe tener un 1 en alguna parte. Cambia su punto decimal justo después del primer 1, luego no se moleste en almacenar ese 1 ya que sabemos que siempre estará implicito. Ahora todo lo que hay que hacer es configurar el exponente correctamente para reproducir la cantidad original.
+Si el número es 0, si cada bit es cero(el bit de signo es irrelevante), el número se considera 0.
+
+La interpretación de los bits del exponente seria de la siguiente manera:
+* Está codificado como "shift-127" lo que significa que el exponente real es eeeeeee - 127.
+* Cede en el extremo inferior siendo el exponente mas bajo posible -126.
+
+
+
+
+
+
+
