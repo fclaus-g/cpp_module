@@ -329,7 +329,7 @@ int main() {
 ```
 En este código, primero creamos un objeto **ofstream** y escribimos "Hola mundo!" en un archivo llamado "test.txt". Luego creamos un objeto **ifstream** y leemos el contenido de dicho archivo. Es importante cerrar los archivos después de usarlos para liberar los recursos que están utilizando.
 
-### Números flotantes
+## Números flotantes
  Los números flotantes(float) tiene una serie de particularidades que debemos tener en cuenta a la hora de trabajar con ellos.
 
  * En ocasiones los float qaunque parezcan iguales necesariamente no satisfacen la prueba '==' de C.
@@ -349,6 +349,9 @@ Un flotante IEEE-754 (4bytes) o doble(8bytes) tiene tres componentes:
 1. Un bit de signo que representa si el float es postivo o negativo.
 2. Un exponente que da su orden de magnitud. 8 bits
 3. Y una mantisa que especifica los digitos reales del número. 23 bits
+
+*El valor del número se calcula como (-1)^signo * 1.mantisa * 2^(exponente - 127), donde el "1." antes de la mantisa representa el "1" implícito.*
+
 Ejemplo: 
 
 Seeeeeeemmmmmmmmmmmmmmmmmmmmmmm 
@@ -363,8 +366,15 @@ La interpretación de los bits del exponente seria de la siguiente manera:
 * Cede en el extremo inferior siendo el exponente mas bajo posible -126.
 
 
+Property	                    Value for float	| Value for double
+Mayor num representable	        3.402823466e+38	| 1.7976931348623157e+308
+Menor num sin perder pres	    1.175494351e-38	| 2.2250738585072014e-308
+Menor num representable(*)  	1.401298464e-45	| 5e-324
+Mantissa bits	                             23	| 52
+Exponent bits	                              8	| 11
+Epsilon(**)	                       1.1929093e-7	| 2.220446049250313e-16
 
-
-
+(*) Si se establecen los bits del exponente en 0, se puede representar num distintos de 0 usando los bits de mantisa. Ya hemos visto que la mantisa se interpreta como "1.m" siendo el 1 un implícito, sin embargo, si todos los bits del exp son 0, se hace una excepción y se interpreta la mantisa como "0.m". Esto permitiría representar num mas pequeños que 2^126, que sería el num mas bajo representable contando con el 1 implícito.
+(**) Épsilon es el x más pequeño tal que 1+x > 1. Es el valor posicional del bit menos significativo cuando el exponente es cero (es decir, almacenado como 0x7f). Por lo que Épsilon determina la precisión(double es mas preciso que float).
 
 
