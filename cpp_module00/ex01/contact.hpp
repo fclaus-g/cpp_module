@@ -6,9 +6,12 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:04:36 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/09 11:23:36 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:50:43 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
 #include <iostream>
 #include <string>
@@ -16,28 +19,26 @@
 
 class Contact
 {
+private:
 	std::string name;
-	std::string last_name;
-	std::string nickname;
-	std::string phone_number;
-	std::string darkest_secret;
+	std::string lastName;
+	std::string nickName;
+	std::string phoneNumber;
+	std::string darkestSecret;
 	int index;
 public:
 	Contact();
-	//~Contact();
-	void set_name(std::string new_name);
-	void set_last_name(std::string new_last_name);
-	void set_nickname(std::string new_nickname);
-	void set_phone_number(std::string new_phone_number);
-	void set_darkest_secret(std::string new_darkest_secret);
-	void set_index(int new_index);
-	void ft_new_contact(int index);
-	std::string get_name();
-	std::string get_last_name();
-	std::string get_nickname();
-	std::string get_phone_number();
-	std::string get_darkest_secret();
-	std::string get_input();
-	int get_index();
-	void print_contact();
+	~Contact();
+	void setIndex(int new_index);
+	void addContact(int index);
+	std::string getName();
+	std::string getLastName();
+	std::string getNickName();
+	std::string getPhoneNumber();
+	std::string getDarkestSecret();
+	std::string getInput();
+	int getIndex();
+	void printContact();
 };
+
+#endif

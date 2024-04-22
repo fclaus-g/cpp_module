@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:04:39 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/09 10:56:43 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:42:29 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ int main()
 	std::string command;
 
 	ft_welcome();
-	while (command != "EXIT")
+	while (1)
 	{
 		std::cout<<"Enter a command "<<std::endl;
-		std::cin>>command;
+		std::getline(std::cin, command);
 		if (command == "ADD")
 			phonebook.add_contact(&phonebook);
 		else if (command == "SEARCH")
-			//phonebook.search_contact();
-			std::cout<<"SEARCH"<<std::endl;
+			phonebook.searchContact();
 		else if (command == "EXIT")
 			break;
 		else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 11:46:08 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/01 12:27:27 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/22 12:09:24 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(int ac, char **av)
 				std::cout << (char)std::toupper(av[i][j]);
 				j++;
 			}
+			if (ac > 2)
+				std::cout << " ";
 			i++;
 		}
 		std::cout<< std::endl;

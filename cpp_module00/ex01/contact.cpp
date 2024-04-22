@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:04:33 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/09 12:50:44 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:34:00 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,102 +16,79 @@
 Contact::Contact()
 {
 	name = "";
-	last_name = "";
-	nickname = "";
-	phone_number = "";
-	darkest_secret= "";
+	lastName = "";
+	nickName = "";
+	phoneNumber = "";
+	darkestSecret= "";
 	index = 0;
 }
 
-/********************[ft_new_contact]**************************/
-void Contact::ft_new_contact(int index)
+/********************[destructor]**************************/
+Contact::~Contact()
 {
-	set_index(index);
+
+}
+
+/********************[ft_new_contact]**************************/
+void Contact::addContact(int index)
+{
+	setIndex(index);
 	std::cout<<"Enter the name of the contact"<<std::endl;
-	name = get_input();
+	name = getInput();
 	std::cout<<"Enter the last name of the contact"<<std::endl;
-	last_name = get_input();
-	// std::cout<<"Enter the nickname of the contact"<<std::endl;
+	lastName = getInput();
+	//std::cout<<"Enter the nickname of the contact"<<std::endl;
 	// std::getline(std::cin, input);
 	// std::cout<<"Enter the phone number of the contact"<<std::endl;
 	// std::getline(std::cin, input);
 	// std::cout<<"Enter the darkest secret of the contact"<<std::endl;
 	// std::getline(std::cin, input);	
 }
-/********************[get_input]**************************/
-std::string Contact::get_input()
+/********************[getInput]**************************/
+std::string Contact::getInput()
 {
 	std::string input;
 	std::getline(std::cin, input);
-	// while (input == "")
-	// {
-	// 	std::cout<<"Invalid input"<<std::endl;
-	// 	std::getline(std::cin, input);
-	// }	
 	return input;
 }
-/********************[print_contact]************************/
-
-void Contact::print_contact()
+/***********************[printContact]*********************/
+void Contact::printContact()
 {
-	std::cout<<std::setw(10)<<std::right<<"index"<<"|";
-	std::cout<<std::setw(10)<<std::right<<"name"<<"|";
-	std::cout<<std::setw(10)<<std::right<<"last_name"<<"|";
-	std::cout<<std::setw(10)<<std::right<<"nickname"<<"|"<<std::endl;
-	std::cout<<std::setw(10)<<std::right<<get_index()<<"|";//tengo que añadir index en la clase contact
-	std::cout<<std::setw(10)<<std::right<<get_name()<<"|";
-	std::cout<<std::setw(10)<<std::right<<get_last_name()<<"|";
-	std::cout<<std::setw(10)<<std::right<<get_nickname()<<"|"<<std::endl;
+	std::cout<<"Name: "<<name<<std::endl;
+	std::cout<<"Last name: "<<lastName<<std::endl;
+	std::cout<<"Nickname: "<<nickName<<std::endl;
+	std::cout<<"Phone number: "<<phoneNumber<<std::endl;
+	std::cout<<"Darkest secret "<<darkestSecret<<std::endl;
 }
+
 /********************[set]**********************************/
-void Contact::set_name(std::string new_name)
-{
-	name = new_name;
-}
-void Contact::set_last_name(std::string new_last_name)
-{
-	last_name = new_last_name;
-}
-void Contact::set_nickname(std::string new_nickname)
-{
-	nickname = new_nickname;
-}	
-void Contact::set_phone_number(std::string new_phone_number)
-{
-	phone_number = new_phone_number;
-}
-void Contact::set_darkest_secret(std::string new_darkest_secret)
-{
-	darkest_secret = new_darkest_secret;
-
-}
-void Contact::set_index(int new_index)
-{
-	index = new_index;
-}
+ void Contact::setIndex(int new_index)
+ {
+ 	index = new_index;
+ }
 /********************[get]**********************************/
-std::string Contact::get_name()
+std::string Contact::getName()
 {
 	return name;
 }
-std::string Contact::get_last_name()
+std::string Contact::getLastName()
 {
-	return last_name;
+	return lastName;
 }
-std::string Contact::get_nickname()
+std::string Contact::getNickName()
 {
-	return nickname;
+	return nickName;
 }
-std::string Contact::get_phone_number()
+std::string Contact::getPhoneNumber()
 {
-	return phone_number;
+	return phoneNumber;
 }
-std::string Contact::get_darkest_secret()
+std::string Contact::getDarkestSecret()
 {
-	return darkest_secret;
+	return darkestSecret;
 }
 
-int Contact::get_index()
+int Contact::getIndex()
 {
 	return index;
 }
