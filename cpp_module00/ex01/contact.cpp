@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:04:33 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/22 14:34:00 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:49:59 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,18 @@ void Contact::addContact(int index)
 	name = getInput();
 	std::cout<<"Enter the last name of the contact"<<std::endl;
 	lastName = getInput();
-	//std::cout<<"Enter the nickname of the contact"<<std::endl;
-	// std::getline(std::cin, input);
-	// std::cout<<"Enter the phone number of the contact"<<std::endl;
-	// std::getline(std::cin, input);
-	// std::cout<<"Enter the darkest secret of the contact"<<std::endl;
-	// std::getline(std::cin, input);	
+	std::cout<<"Enter the nickname of the contact"<<std::endl;
+	nickName = getInput();
+	std::cout<<"Enter the phone number of the contact"<<std::endl;
+	phoneNumber = getInput();
+	while (phoneNumber.length() != 9) // && isNumeric(phoneNumber) == false) COMPROBAR SI EL TELEFONO CONTIENE SOLO NUM
+	{
+		std::cout<<"The phone number must have 9 digits"<<std::endl;
+		std::cout<<"Enter the phone number of the contact"<<std::endl;
+		phoneNumber = getInput();
+	}
+	std::cout<<"Enter the darkest secret of the contact"<<std::endl;
+	darkestSecret = getInput();	
 }
 /********************[getInput]**************************/
 std::string Contact::getInput()

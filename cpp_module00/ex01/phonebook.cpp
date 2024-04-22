@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:51:43 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/22 14:43:36 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:41:48 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void Phonebook::searchContact()
 	std::cout<<"Enter the index of the contact"<<std::endl;
 	int index = -1;
 	std::cin>>index;
+	std::cout<<"index: "<<index<<std::endl;
 	if (std::cin.fail()) 
     {
         std::cin.clear(); // limpia el estado de error
@@ -85,6 +86,11 @@ void Phonebook::searchContact()
 		return;
 	}
 	std::cin.ignore();
+	if (contact[index].getName().empty())
+	{
+		std::cout<<"Contact not found"<<std::endl;
+		return;
+	}
 	contact[index].printContact();
 }
 
