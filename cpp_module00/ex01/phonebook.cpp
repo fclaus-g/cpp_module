@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:51:43 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/22 18:41:48 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/23 20:16:11 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,21 @@ Phonebook::~Phonebook()
 }
 
 /********************[set]**********************************/
-void Phonebook::set_index_c(int new_index)
+void	Phonebook::set_index_c(int new_index)
 {
 	index_c = new_index;
 }
 
 /********************[get]**********************************/
 
-int Phonebook::get_index_c()
+int		Phonebook::get_index_c()
 {
 	return index_c;
 }
 
 /********************[add_contact]**************************/
 
-void Phonebook::add_contact(Phonebook *phonebook)
+void	Phonebook::add_contact(Phonebook *phonebook)
 {
 	if (index_c > 7)
 	{
@@ -57,19 +57,25 @@ void Phonebook::add_contact(Phonebook *phonebook)
 	{
 		std::cout<<"Adding contact "<<index_c<<std::endl;
 		phonebook->contact[index_c].addContact(index_c);
-		std::cout<<"Contact "<<index_c<<" added"<<std::endl;
-		phonebook->contact[index_c].printContact();
+		if (phonebook->contact[index_c].getName().empty())
+			return;
+		std::cout<<"Contact "<<index_c + 1<<" added"<<std::endl;
 		index_c++;
 	}	
 }
 
 /********************[search_contact]***********************/
 
-void Phonebook::searchContact()
+void	Phonebook::searchContact()
 {
+	if (contact[0].getName().empty())
+	{
+		std::cout<<"The phonebook is empty"<<std::endl;
+		return;
+	}
 	printPhonebook();
 	std::cout<<"Searching contact"<<std::endl;
-	std::cout<<"Enter the index of the contact"<<std::endl;
+	std::cout<<"Enter the index of the contact[from 0 to 7]"<<std::endl;
 	int index = -1;
 	std::cin>>index;
 	std::cout<<"index: "<<index<<std::endl;
@@ -83,6 +89,7 @@ void Phonebook::searchContact()
 	if (index < 0 || index > 7) 
 	{
 		std::cout<<"Invalid index"<<std::endl;
+		std::cin.ignore();
 		return;
 	}
 	std::cin.ignore();

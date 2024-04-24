@@ -6,13 +6,13 @@
 #    By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/01 12:49:29 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/04/01 16:52:41 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/04/23 16:41:46 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
 
-CC = c++
+CC = g++
 CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 SRC = main.cpp contact.cpp phonebook.cpp 
@@ -26,7 +26,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-cpp.o:
+%.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

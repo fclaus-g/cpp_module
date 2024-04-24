@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:04:39 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/22 14:42:29 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:48:08 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void ft_welcome()
 {
 	std::cout<<"Welcome to the phonebook"<<std::endl;
-	std::cout<<"You can ADD a contact, SEARCH for a contact, PRINT a contact or EXIT"<<std::endl;
+	std::cout<<"You can ADD a contact, SEARCH for a contact or EXIT"<<std::endl;
+	std::cout<<"Enter a command "<<std::endl;
 }
 
 int main()
@@ -24,10 +25,8 @@ int main()
 	std::string command;
 
 	ft_welcome();
-	while (1)
+	while (std::getline(std::cin, command))
 	{
-		std::cout<<"Enter a command "<<std::endl;
-		std::getline(std::cin, command);
 		if (command == "ADD")
 			phonebook.add_contact(&phonebook);
 		else if (command == "SEARCH")
@@ -36,6 +35,8 @@ int main()
 			break;
 		else
 			std::cout<<"Invalid command"<<std::endl;
+		std::cin.clear();
+		ft_welcome();
 	}
 	return 0;
 }

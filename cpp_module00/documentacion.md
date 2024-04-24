@@ -73,3 +73,174 @@ Espacios de nombres, clases, funciones miembro, flujos stdio, C++ - Listas de in
 
 ### Desarrollo
 
+<<<<<<< HEAD
+=======
+Para la ejecución de este ejercicio debemos:
+1. Crear una clase *Phonebook* que albergará el array de contactos[8] enel que iremos guardando los datos de cada contacto. Desde la instancia phonebook usaremos las funciones previamente definidas en nuestro phonebook.cpp que se encargarán de ejecutar los comandos que el usuario nos introduce por el prompt.
+	* ADD -> Crea un contacto en el array, para ello usaremos una función definida en la clase contacto que rellenará los campos o atributos de este contacto.
+	* SEARCH -> Nos mostrará con formato el array de contactos con 4 atributos, tras elegir el indice del contacto mostraremos todos los atributos de este.
+	* EXIT -> Nos sacará del programa.
+```cpp
+//phonebook.hpp
+#include "contact.hpp"
+
+class	Phonebook
+{
+private:
+	Contact contact[8];
+	int 	index_c;
+public:
+	Phonebook();
+	~Phonebook();
+	void	add_contact(Phonebook *phonebook);
+	void	searchContact();
+	void	printPhonebook();
+	void	set_index_c(int index);
+	int		get_index_c();
+};
+
+//phonebook.cpp
+
+void	Phonebook::add_contact(Phonebook *phonebook)
+{
+	/*si la agenda está llena podremos sobreescibir el primer contacto*/
+	if (index_c > 7)
+	{
+		std::cout<<"The phonebook is full"<<std::endl;
+		std::cout<<"Do you want to overwrite a contact? (yes/no)"<<std::endl;
+		std::string answer;
+		std::getline(std::cin, answer);
+		if (answer == "y" || answer == "yes")
+			index_c = 0;
+		else
+			return;
+	}
+	if (index_c < 8)
+	{
+		std::cout<<"Adding contact "<<index_c<<std::endl;
+		phonebook->contact[index_c].addContact(index_c);
+		std::cout<<"Contact "<<index_c<<" added"<<std::endl;
+		index_c++;
+	}	
+}
+
+void	Phonebook::searchContact()
+{
+	if (contact[0].getName().empty())
+	{
+		std::cout<<"The phonebook is empty"<<std::endl;
+		return;
+	}
+	printPhonebook();
+	std::cout<<"Searching contact"<<std::endl;
+	std::cout<<"Enter the index of the contact"<<std::endl;
+	int index = -1;
+	std::cin>>index;
+	std::cout<<"index: "<<index<<std::endl;
+	if (std::cin.fail()) 
+    {
+        std::cin.clear(); // limpia el estado de error
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // descarta la entrada incorrecta
+        std::cout<<"Invalid input"<<std::endl;
+        return;
+    }
+	if (index < 0 || index > 7) 
+	{
+		std::cout<<"Invalid index"<<std::endl;
+		std::cin.ignore();
+		return;
+	}
+	std::cin.ignore();
+	if (contact[index].getName().empty())//protegemos si la agenda está vacía 
+	{
+		std::cout<<"Phonebook is empty "<<std::endl;
+		return;
+	}
+	contact[index].printContact();
+}
+```
+2. Trabajaremos en la clase contacto declarando los atributos como privados y los métodos publicos correspondientes.
+	* Rellenar los atributos con la entrada del usuario.
+	* Imprimir el contacto cuando se solicite a través de search.
+
+```cpp
+//Contact.hpp
+class	Contact
+{
+private:
+	int			index;
+	std::string	name;
+	std::string	lastName;
+	std::string	nickName;
+	std::string	phoneNumber;
+	std::string	darkestSecret;
+public:
+	Contact();
+	~Contact();
+	std::string	getName();
+	std::string	getLastName();
+	std::string	getNickName();
+	std::string	getPhoneNumber();
+	std::string	getDarkestSecret();
+	std::string	getInput();
+	int			getIndex();
+	void		setIndex(int new_index);
+	void		addContact(int index);
+	void		printContact();
+	bool		isNumeric(std::string str);
+};
+
+//Contact.cpp
+void Contact::addContact(int index)
+{
+	setIndex(index);
+	std::cout << "Enter the name of the contact" << std::endl;
+	name = getInput();
+	if (std::cin.eof()) return; //cada una de estas lineas protege que al hacer C^d nos solicite el resto de datos
+	std::cout << "Enter the last name of the contact" << std::endl;
+	lastName = getInput();
+	if (std::cin.eof()) return;
+	std::cout << "Enter the nickname of the contact" << std::endl;
+	nickName = getInput();
+	if (std::cin.eof()) return;
+	std::cout << "Enter the phone number of the contact" << std::endl;
+	phoneNumber = getInput();
+	if (std::cin.eof()) return;
+	if (phoneNumber.length() != 9 || !isNumeric(phoneNumber))
+	{
+		std::cout << "The phone number must have 9 digits" << std::endl;
+		std::cout << "Enter the phone number of the contact" << std::endl;
+		phoneNumber = getInput();
+	}
+	std::cout << "Enter the darkest secret of the contact" << std::endl;
+	darkestSecret = getInput();
+	if (std::cin.eof()) return;
+}
+```
+3. Nuestro main tendra un loop en el que recibiremos los comandos y llamará a las funciones correspondientes de nuestra agenda.
+
+```cpp
+int main()
+{
+	Phonebook phonebook;
+	std::string command;
+
+	ft_welcome();
+	while (std::getline(std::cin, command))
+	{
+		if (command == "ADD")
+			phonebook.add_contact(&phonebook);
+		else if (command == "SEARCH")
+			phonebook.searchContact();
+		else if (command == "EXIT")
+			break;
+		else
+			std::cout<<"Invalid command"<<std::endl;
+		std::cin.clear();
+		ft_welcome();
+	}
+	return 0;
+}
+```
+
+>>>>>>> 371ba19b484e819c1535fee15e07fb9a85fc7be0
