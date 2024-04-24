@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:01:38 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/10 12:15:35 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:59:41 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ y le asigna un nombre para luego llamar al metodo announce de la clase Zombie
 para que el objeto se anuncie a si mismo. Una vez sale del ámbito de la función
 la variable zombie se destruye automaticamente.*/
 
-void randomChump(std::string name) 
+void	randomChump(std::string name) 
 {
-	Zombie zombie = Zombie(name);
+	Zombie	zombie = Zombie(name);
 	zombie.announce();
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:24:29 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/11 10:41:13 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:08:00 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "Weapon.hpp"
 
-class HumanB
+class	HumanB
 {
 	private:
 	std::string name;
@@ -23,9 +23,10 @@ class HumanB
 	public:
 	HumanB(std::string initName);
 	~HumanB();
-	void attack();
-	const std::string getName(void) const;
-	void setName(std::string newName);
-	void setWeapon(Weapon &newWeapon);
+	const std::string	getName(void) const;
+	void				setName(std::string newName);
+	void				setWeapon(Weapon &newWeapon);
+	void				attack();
 };
+
 #endif

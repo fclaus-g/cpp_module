@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+         #
+#    By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 12:22:58 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/04/10 12:29:39 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/04/24 16:13:43 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = zombie
 
-CC = c++
+CC = g++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 

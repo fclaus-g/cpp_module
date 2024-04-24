@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:17:09 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/10 12:53:11 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:00:30 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ destructor y la función que hace el anuncio. */
 class Zombie 
 {
 	private:
-		std::string _name;
+		std::string	_name;
 	public:
 		Zombie(std::string name);
 		~Zombie(void);
-		void announce(void);
+		void	announce(void);
 };
 
 #endif

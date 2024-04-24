@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:16:26 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/10 12:34:21 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:59:22 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ Zombie *newZombie(std::string name);
 
 int main(void)
 {
-	Zombie *zombie = newZombie("Zombie1");
+	Zombie	*zombie = newZombie("Zombie1");
 	zombie->announce();
 	randomChump("Zombie2");
 	delete zombie;
-	zombie = nullptr;
+	zombie = NULL;
 	return (0);
 }
 

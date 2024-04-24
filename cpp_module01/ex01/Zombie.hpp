@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:27:16 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/10 13:18:52 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:37:00 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 /*Creamos la clase Zombie que incluirá la string name en private el constructor
 destructor y la función que hace el anuncio. */
 #include "Zombie.hpp"

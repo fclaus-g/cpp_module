@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:02:19 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/15 10:53:34 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:06:27 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "Weapon.hpp"
 
-class HumanA
+class	HumanA
 {
 	private:
 		std::string		name;
@@ -23,8 +23,8 @@ class HumanA
 	public:
 		HumanA(std::string newName, Weapon &Weapon);
 		~HumanA();
-		void attack();
-		const std::string getName(void) const;
-		void setName(std::string newName);
+		const std::string	getName(void) const;
+		void				setName(std::string newName);
+		void				attack();
 };
 #endif

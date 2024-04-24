@@ -6,13 +6,13 @@
 #    By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 17:16:30 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/04/09 17:26:37 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/04/24 16:10:24 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = zombie
 
-CC = c++
+CC = g++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 

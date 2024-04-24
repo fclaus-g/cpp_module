@@ -6,13 +6,13 @@
 #    By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 18:00:57 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/04/10 18:02:34 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/04/24 16:13:59 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = brain
 
-CC = c++
+CC = g++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 

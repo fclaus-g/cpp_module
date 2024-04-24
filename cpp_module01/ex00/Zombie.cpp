@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:17:04 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/10 12:37:40 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:59:55 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Zombie::~Zombie()
 	std::cout << "Zombie " << this->_name << " has been destroyed" << std::endl;
 }
 
-void Zombie::announce(void)
+void	Zombie::announce(void)
 {
 	std::cout << "<" << this->_name << "> BraiiiiiiinnnzzzZ..." << std::endl;
 }

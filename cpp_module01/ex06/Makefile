@@ -6,11 +6,11 @@
 #    By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 09:36:20 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/04/17 12:56:53 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/04/24 19:11:59 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Harl
+NAME = harlFilter
 
 CC = c++
 

@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:56:09 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/15 13:45:02 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:18:35 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ int	main(int ac, char **av)
 {
 	if (ac == 4)
 	{
-		std::string filename = av[1];
-		std::string target = av[2];
-		std::string replace = av[3];
+		std::string	filename = av[1];
+		std::string	target = av[2];
+		std::string	replace = av[3];
+
 		if (target.empty() || replace.empty() || filename.empty())
 		{
 			std::cout << "Error: s1, s2 or filename is empty" << std::endl;
@@ -62,7 +63,7 @@ int	main(int ac, char **av)
 			std::cout << "Error: file not found" << std::endl;
 			return (1);
 		}
-		std::string newFilename = filename + ".replace";
+		std::string	newFilename = filename + ".replace";
 		std::ofstream outFile(newFilename .c_str());
 		if (!outFile.is_open())
 		{
@@ -70,7 +71,7 @@ int	main(int ac, char **av)
 			return (1);
 		}
 		while (!inFile.eof())
-	        replaceStrings(inFile, outFile, target, replace);
+			replaceStrings(inFile, outFile, target, replace);
 		inFile.close();
 		outFile.close();
 	}

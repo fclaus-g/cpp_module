@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:01:50 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/17 13:02:19 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:11:55 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@
 class Harl
 {
 	private:
-		void _debug(void);
-		void _info(void);
-		void _warning(void);
-		void _error(void);
+		void	_debug(void);
+		void	_info(void);
+		void	_warning(void);
+		void	_error(void);
 	public:
 		Harl(void);
 		~Harl(void);
-		void complain( std::string level );
+		void	complain(std::string level);
 };
 
 #endif
