@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 17:50:57 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/10 18:15:53 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:03:32 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ para algo que ya haces: manipulación de direcciones.
 
 int main(void)
 {
-	std::string str = "HI THIS IS BRAIN";
-	std::string *stringPTR = &str;
-	std::string &stringREF = str;
+	std::string	str = "HI THIS IS BRAIN";
+	std::string	*stringPTR = &str;
+	std::string	&stringREF = str;
 
 	std::cout << "Address of the string: " << &str << std::endl;
 	std::cout << "Address of the stringPTR: " << stringPTR << std::endl;

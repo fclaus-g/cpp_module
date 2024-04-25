@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:08:05 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/16 11:41:20 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:04:33 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ HumanA::~HumanA()
 	std::cout << YEL << "HumanA says goodbye" << RST << std::endl;
 }
 
-void HumanA::attack()
+void	HumanA::attack()
 {
 	std::cout << RED << this->name << " attacks with his " << this->refWeapon.getType() << RST << std::endl;
 }
 
-const std::string HumanA::getName(void) const
+const std::string	HumanA::getName(void) const
 {
 	return (this->name);
 }
 
-void HumanA::setName(std::string newName)
+void	HumanA::setName(std::string newName)
 {
 	this->name = newName;
 }

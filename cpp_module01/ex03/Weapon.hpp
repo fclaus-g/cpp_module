@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:15:29 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/15 11:42:47 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:10:33 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ como parámetro.*/
 class Weapon
 {
 	private:
-	std::string type;
+	std::string	type;
 	public:
 	Weapon(std::string initType);
 	~Weapon();
-	const std::string &getType(void) const;
-	void setType(std::string newType);
+	const std::string	&getType(void) const;
+	void				setType(std::string newType);
 };
-
 
 #endif

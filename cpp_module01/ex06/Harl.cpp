@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:01:44 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/17 19:51:40 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:27:54 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,37 @@ void Harl::complain(std::string level)
 	std::string lvl[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     int i = 0;
 
-    while (i < 4)
-    {
-        if (lvl[i] == level)
-        {
-            /*si el nivel de queja coincide con el argumentoo pasado al método complain
-			se llama al método correspondiente del array de funciones*/
-			(this->*f[i])();
-            return ;
-        }
+    while (i < 4 && lvl[i] != level)
         i++;
+    switch (i)
+    {
+        case 0:
+            (this->*f[0])();
+            //fall through
+        case 1:
+            (this->*f[1])();
+            //fall through
+        case 2:
+            (this->*f[2])();
+            //fall through
+        case 3:
+            (this->*f[3])();
+            break;
+        default:
+            std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
     }
-    if (i >= 4)
-        std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+    // while (i < 4)
+    // {
+    //     if (lvl[i] == level)
+    //     {
+    //         /*si el nivel de queja coincide con el argumentoo pasado al método complain
+	// 		se llama al método correspondiente del array de funciones*/
+	// 		(this->*f[i])();
+    //         return ;
+    //     }
+    //     i++;
+    // }
+    // if (i >= 4)
+    //     std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
     return ;
 }

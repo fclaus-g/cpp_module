@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:21:50 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/15 11:48:32 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:10:01 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ Weapon::~Weapon()
 
 /*Una función miembro setType() que establece el tipo usando el nuevo pasado 
 como parámetro (SETTER)*/
-void Weapon::setType(std::string newType)
+void	Weapon::setType(std::string newType)
 {
 	this->type = newType;
 }
 
 /*Una función miembro getType() que devuelve una referencia constante al tipo.*/
-const std::string &Weapon::getType(void) const
+const std::string	&Weapon::getType(void) const
 {
 	return (this->type);
 }

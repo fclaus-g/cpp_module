@@ -6,13 +6,13 @@
 #    By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/15 11:56:15 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/04/15 13:19:29 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/04/24 16:14:33 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = replaceStrings
 
-CC = c++
+CC = g++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 

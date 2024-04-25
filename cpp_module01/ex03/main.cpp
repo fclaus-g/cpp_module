@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:37:56 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/15 11:54:04 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:08:42 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,20 @@ Casos de prueba:*/
 #include "HumanA.hpp"
 #include "HumanB.hpp"
 
-int main()
+int	main()
 {
 	{
-		Weapon club = Weapon("crude spiked club");
+		Weapon	club = Weapon("crude spiked club");
 
-		HumanA bob("Bob", club);
+		HumanA	bob("Bob", club);
 		bob.attack();
 		club.setType("baseball bat");
 		bob.attack();
 	}
 	{
-		Weapon club = Weapon("crude spiked club");
+		Weapon	club = Weapon("crude spiked club");
 
-		HumanB jim("Jim");
+		HumanB	jim("Jim");
 		jim.setWeapon(club);
 		jim.attack();
 		club.setType("baseball bat");

@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+         #
+#    By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/15 13:49:16 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/04/16 12:59:33 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/04/24 19:05:48 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Harl
+NAME = harl
 
-CC = c++
+CC = g++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
