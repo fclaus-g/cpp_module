@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:56:09 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/24 18:18:35 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:59:37 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int ac, char **av)
 			std::cout << "Error: s1, s2 or filename is empty" << std::endl;
 			return (1);
 		}
-		std::ifstream inFile(filename.c_str());//COMPROBAR CON LOS COMPAÑEROS SI ESTO ES NECESARIO
+		std::ifstream inFile(filename.c_str());
 		if (!inFile.is_open())
 		{
 			std::cout << "Error: file not found" << std::endl;

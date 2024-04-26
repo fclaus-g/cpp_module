@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:37:56 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/24 18:08:42 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:56:23 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ referencias, declaración de cambio
 
 Si su implementación es correcta, ejecutar el siguiente código imprimirá un 
 ataque con "un garrote tosco con púas" y luego un segundo ataque con "algún otro
-tipo de garrote" para ambos
-Casos de prueba:*/
+tipo de garrote" para ambos*/
+
 #include "HumanA.hpp"
 #include "HumanB.hpp"
 

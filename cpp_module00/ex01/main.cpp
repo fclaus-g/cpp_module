@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:04:39 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/23 17:48:08 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 10:18:47 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int main()
 			break;
 		else
 			std::cout<<"Invalid command"<<std::endl;
+		if (std::cin.eof())
+			return 0;
 		std::cin.clear();
 		ft_welcome();
 	}

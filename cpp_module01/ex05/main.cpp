@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:50:04 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/16 13:24:27 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:59:19 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ int main(void)
 		std::cout << "Enter the level of complaint: ";
 		std::cin >> input;
 		harl.complain(input);
-	} while (input != "EXIT");	
+	} while (input != "EXIT");
 	return (0);
 }

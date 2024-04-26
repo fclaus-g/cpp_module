@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:27:39 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/24 18:06:12 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:56:35 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,3 @@ void	HumanB::setWeapon(Weapon &newWeapon)
 {
 	this->pointWeapon = &newWeapon;
 }
-

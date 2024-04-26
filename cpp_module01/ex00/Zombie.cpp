@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:17:04 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/24 17:59:55 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:50:14 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ ejecuta automáticamente cuando un objeto de la clase sale del ámbito o se
 destruye explícitamente mediante el operador delete. El destructor se utiliza
 para liberar los recursos que el objeto puede haber adquirido durante su vida.*/
 
-Zombie::Zombie(std::string name) : _name(name) 
+Zombie::Zombie(std::string name) : _name(name)
 {
 	std::cout << "Zombie " << this->_name << " has been created" << std::endl;
 }

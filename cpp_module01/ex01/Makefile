@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+         #
+#    By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 12:22:58 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/04/24 16:13:43 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/04/26 10:45:54 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = zombie
+NAME = zombieHorde
 
 CC = g++
 

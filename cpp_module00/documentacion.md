@@ -73,8 +73,6 @@ Espacios de nombres, clases, funciones miembro, flujos stdio, C++ - Listas de in
 
 ### Desarrollo
 
-<<<<<<< HEAD
-=======
 Para la ejecución de este ejercicio debemos:
 1. Crear una clase *Phonebook* que albergará el array de contactos[8] enel que iremos guardando los datos de cada contacto. Desde la instancia phonebook usaremos las funciones previamente definidas en nuestro phonebook.cpp que se encargarán de ejecutar los comandos que el usuario nos introduce por el prompt.
 	* ADD -> Crea un contacto en el array, para ello usaremos una función definida en la clase contacto que rellenará los campos o atributos de este contacto.
@@ -243,4 +241,10 @@ int main()
 }
 ```
 
->>>>>>> 371ba19b484e819c1535fee15e07fb9a85fc7be0
+Hay una serie de detalles que tenemos que tener en cuenta:
+
+* **std::cin**-> Entrada estandar de flujo, lee hasta el primer espacio en blanco. Si el usuario presiona C^d enviara un carácter EOF que std::cin interpretará como el final de entrada. Despues de esto todas las lecturas postriores fallarán hasta que se limpie su estado por ello es buena práctica limpiar el estado de flujo con **std::cin.clear()**. Especialmente si estamos leyendo en un bucle, ya que un error en una lectura puede hacer que el resto de lecturas fallen.
+* **std::cin.ignore()**-> Si estamos leyendo un valor y luego queremos leer una línea es importante usarlo ya que la siguiente lectura de linea podría leer el resto de la línea actual en lugar e la siguiente línea completa.
+* **std::getline(std::cin, myString)** -> Leerá una línea completa de texto hasta que el usuario presione enter(encuentre '\n' o se alcance el final del flujo) y lo almacenará en la cadena pasada como argumento. Leerá '\n' pero no lo almacenará.
+* **std::streamsize**-> Se utiliza para representar el num de carácteres en un flujo de entrada/salida.
+* **std::numeric_limits\<std::streamsize\>::max()**-> El valor más grande que puede representar un std::streamsize. Se suele utilizar con std::cin.ignore() para ignorar todos los carácteres hasta el final de la linea o del flujo.

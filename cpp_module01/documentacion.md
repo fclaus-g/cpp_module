@@ -242,7 +242,7 @@ int	main(int ac, char **av)
 			return (1);
 		}
 		while (!inFile.eof())
-	        replaceStrings(inFile, outFile, target, replace);
+			replaceStrings(inFile, outFile, target, replace);
 		inFile.close();
 		outFile.close();
 	}
@@ -321,27 +321,27 @@ class Harl
 /*Y así sería la definición de la función complain(std::string level)*/
 void Harl::complain(std::string level)
 {
-    /*Array de punteros a los métodos(funciones) de la clase Harl. Cada puntero apunta a un método 
+	/*Array de punteros a los métodos(funciones) de la clase Harl. Cada puntero apunta a un método 
 	void método(void)*/
 	void (Harl::*f[4]) (void) = {&Harl::_debug, &Harl::_info, &Harl::_warning, &Harl::_error};//Aquí es donde muere ella
-    /*Array de strings con los niveles de queja que usaremos para comparar con el arg de entrada*/
+	/*Array de strings con los niveles de queja que usaremos para comparar con el arg de entrada*/
 	std::string lvl[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    int i = 0;
+	int i = 0;
 
-    while (i < 4)
-    {
-        if (lvl[i] == level)
-        {
-            /*si el nivel de queja coincide con el argumentoo pasado al método complain
+	while (i < 4)
+	{
+		if (lvl[i] == level)
+		{
+			/*si el nivel de queja coincide con el argumentoo pasado al método complain
 			se llama al método correspondiente del array de funciones*/
 			(this->*f[i])();
-            return ;
-        }
-        i++;
-    }
-    if (i >= 4)
-        std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-    return ;
+			return ;
+		}
+		i++;
+	}
+	if (i >= 4)
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+	return ;
 }
 ```
 
@@ -371,3 +371,52 @@ De manera que si Harl tiene como quejas {"DEBUG", "INFO", "WARNING", "ERROR"} y 
 
 ### Desarrollo
 
+En este ejercicio partimos de la base del ejercicio anterior pero, para solucionar el problema que nos plantean de ejecutar en cascada las quejas a partir la que nos pasen por args para ello una de las opciones mas atractivas sería hacer una lectura de control **switch** y así practicar un poco el uso de estos condicionales, el codigo para ello se vería tal que asi:
+
+```cpp
+
+void	harlComplain(std::string level)
+{
+	/*Array f de punteros a los métodos privados de la clase Harl, entre corchetes le damos donde apuntará cada función, no devuelven ni reciben nada*/
+	void (Harl::*f[4]) (void) = {&Harl::_debug, &Harl::_info, &Harl::_warning, &Harl::_error};
+	std::string lvl[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	
+	while (i < 4 && lvl[i] != level)
+		i++;
+	switch (i) 
+	{
+		case 0:
+			(this->*f[i])();
+		case 1:
+			(this->*f[i])();
+		case 2:
+			(this->*f[i])();
+		case 3:
+			(this->*f[i])();
+			break;
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]" <<std::endl;
+	}
+}
+
+/*Una vez practicado el condicional switch y probado su funcionamiento, puede ser muy util en algunos casos pero hemos optado por una solución a nuestro entender mas cortita y elegante, usando un bucle while que nos ocuparía muchas menos lineas de código y funciona de la misma manera*/ 
+
+void	harlComplain(std::string level)
+{
+	void (Harl::*f[4]) (void) = {&Harl::_debug, &Harl::_info, &Harl::_warning, &Harl::_error};
+	std::string lvl[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	
+	while (i < 4 && lvl[i] != level)
+		i++;
+	if (i >= 4)
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+	else
+	{
+		while (i < 4)
+		{
+			(this->*f[i])();
+			i++;
+		}
+	}
+}
+```

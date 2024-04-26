@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:51:43 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/23 20:16:11 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/24 10:22:58 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	Phonebook::searchContact()
 	std::cout<<"Enter the index of the contact[from 0 to 7]"<<std::endl;
 	int index = -1;
 	std::cin>>index;
-	std::cout<<"index: "<<index<<std::endl;
 	if (std::cin.fail()) 
     {
         std::cin.clear(); // limpia el estado de error

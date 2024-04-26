@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:40:20 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/24 18:02:11 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:52:15 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
  * @param name -> Nombre de los objetos.
  * @return Zombie* -> Puntero a la primera posición del array.
  */
+
 Zombie	*zombieHorde(int N, std::string name)
 {
 	Zombie	*horde = new Zombie[N];

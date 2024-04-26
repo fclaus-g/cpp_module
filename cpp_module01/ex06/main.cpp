@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 09:36:26 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/17 13:00:59 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:00:19 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ Debe utilizar, y tal vez descubrir, la declaración de cambio en este ejercicio.
 
 #include "Harl.hpp"
 
-int main(int ac, char **av) 
+int main(int ac, char **av)
 {
 	Harl 		harl;
 
 	if (ac != 2)
 	{
-		std::cout << "Usage: ./harlFilter [DEBUG, INFO, WARNING, ERROR]" << std::endl;
+		std::cout << "Usage: ./harlFilter (DEBUG|INFO|WARNING|ERROR)" << std::endl;
 		return (1);
 	}
 	harl.complain(av[1]);
