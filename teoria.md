@@ -1,6 +1,6 @@
 # C++ conceptos
 
-### namespace
+## namespace
 
 Un `namespace` en C++ es un contenedor que permite agrupar entidades como clases, objetos y funciones bajo un nombre. El propósito principal de los `namespace` es evitar conflictos de nombres en programas grandes. Por ejemplo, puedes tener dos clases con el mismo nombre en diferentes `namespace` y C++ las tratará como diferentes clases. Para acceder a una entidad en un `namespace`, debes usar el operador de resolución de ámbito (`::`).
 ```cpp
@@ -16,7 +16,7 @@ int main() {
 }
 ```
 
-### Class and instance
+## Class and instance
 Una `class` en C++ es una plantilla para crear objetos (una instancia particular de la clase), y define qué atributos (datos) y métodos (funciones) tendrán esos objetos. Una `instance` es un objeto específico creado a partir de una clase. Cada instancia de una clase tiene su propio conjunto de atributos, que no se comparten con otras instancias.
 
 ```cpp
@@ -56,7 +56,7 @@ int main() {
 }
 ```
 
-### Initializacion list
+## Initializacion list
 
 Las listas de inicialización en C++ se utilizan para inicializar los miembros de datos de una clase durante la construcción de un objeto. Son especialmente útiles cuando se trabaja con miembros de datos que son objetos de otras clases y necesitan ser construidos con argumentos específicos.
 
@@ -76,7 +76,7 @@ int main() {
 }
 ```
 
-# Const
+## Const
 
 En C++, `const` es una palabra clave que indica que el valor de una variable no puede ser cambiado después de su inicialización. También puede ser utilizado con punteros y referencias para indicar que el objeto al que apuntan no puede ser modificado, o que el puntero mismo no puede ser cambiado para apuntar a otro objeto.
 
@@ -96,7 +96,7 @@ int main() {
 }
 ```
 
-### Visibilidad
+## Visibilidad
 
 La visibilidad en C++ se refiere a la accesibilidad de los miembros de una clase (atributos y métodos). Hay tres niveles de visibilidad: `public`, `private` y `protected`.
 
@@ -124,7 +124,7 @@ int main() {
     return 0;
 }
 ```
-### Funciones privadas
+## Funciones privadas
 
 Las funciones `private` en C++ se utilizan para encapsular la lógica interna de una clase que no debe ser accesible desde fuera de la clase. Esto es parte de un principio de programación orientada a objetos llamado encapsulación, que ayuda a mantener la integridad de los datos y a prevenir la manipulación no deseada de los miembros internos de la clase.
 
@@ -149,7 +149,7 @@ int main() {
 }
 ```
 
-### Class vs struct
+## Class vs struct
 
 En C++, `class` y `struct` son muy similares. Ambos pueden tener atributos y métodos, y ambos pueden ser utilizados para definir tipos de datos personalizados. La principal diferencia entre ellos es la visibilidad por defecto de sus miembros:
 
@@ -187,7 +187,7 @@ int main() {
 }
 ```
 
-### Getter
+## Getter
 
 Un "getter" en C++ es un método que se utiliza para leer el valor de un atributo privado de una clase. Este método permite mantener la encapsulación de los datos, ya que el atributo privado no puede ser accedido directamente desde fuera de la clase.
 
@@ -209,7 +209,7 @@ int main() {
 }
 ```
 
-### Funciones y atributos no miembros
+## Funciones y atributos no miembros
 
 Son aquellas funciones y atributos que no están contenidos dentro de una clase o struct. Son accesibles de manera global y no están asociados con ningún objeto específico de una clase. Es importante tener en cuenta que el uso excesivo de atributos y funciones globales puede hacer que el código sea dificil de entender y mantener. En la POO se prefiere encapsular los atributos y funciones dentro de clases y struct siempre que sea posible.
 ```cpp
@@ -232,7 +232,7 @@ int main() {
 }
 ```
 
-### Punteros a miembros
+## Punteros a miembros
 
 Son un tipo de puntero que puede apuntar a un miembro de una clase(atributo o función).
 ```cpp
@@ -266,7 +266,7 @@ En este código, ptrToAttribute es un puntero al atributo myAttribute de MyClass
 
 Es importante tener en cuenta que los punteros a miembros de una clase son diferentes de los punteros normales. No podemos usar un puntero a un miembro de una clase para apuntar a una variable o función que no sea miembro de esa clase. Además, para usar un puntero a un miembro de la clase necesitamos una instancia de esa clase.
 
-### New y delete
+## New y delete
 
 new y delete son operadores en C++ utilizados para la asignación dinámica de memoria.
 
@@ -281,7 +281,7 @@ ptr = nullptr; // Evita el puntero colgante
 ```
 Es importante recordar que cada new debe tener un delete correspondiente. Si olvidas usar delete, puedes causar una fuga de memoria, donde la memoria que ya no se necesita sigue ocupada. Esto puede agotar la memoria disponible para tu programa.
 
-### Referencias
+## Referencias
 
 Son un tipo de alias que se puede utilizar para nombrar una variable existente. Una vez que una referencia es inicializada con una variable, la referencia y la variable original pueden ser utilizadas indistintamente. Ejemplo:
 ```cpp
@@ -296,7 +296,7 @@ En este código, ref es una referencia a original. Cuando cambiamos el valor de 
 Las referencias deben ser inicializadas en el momento de su declaración y NO pueden se REASIGNADAS para referirse a diferentes variables una vez han sido inicializadas. Además, no puedes tener referencias apuntando a null, a diferencia de los punteros.
 Son útiles cuando quieres pasar args a una función por referencia(para que la función pueda modificar los argumentos) o cuando quieres devolver mása de un valor de una función o para crear alias para variables con nombres largos o complicados.
 
-### filestream
+## filestream
 
 **fstream** es una biblioteca que proporciona facilidades para realizar operaciones de entrada y salida en archivos. Incluye las clases:
 * **ifstream**-> leer de archivos.
@@ -377,4 +377,92 @@ Epsilon(**)	                       1.1929093e-7	| 2.220446049250313e-16
 (*) Si se establecen los bits del exponente en 0, se puede representar num distintos de 0 usando los bits de mantisa. Ya hemos visto que la mantisa se interpreta como "1.m" siendo el 1 un implícito, sin embargo, si todos los bits del exp son 0, se hace una excepción y se interpreta la mantisa como "0.m". Esto permitiría representar num mas pequeños que 2^126, que sería el num mas bajo representable contando con el 1 implícito.
 (**) Épsilon es el x más pequeño tal que 1+x > 1. Es el valor posicional del bit menos significativo cuando el exponente es cero (es decir, almacenado como 0x7f). Por lo que Épsilon determina la precisión(double es mas preciso que float).
 
+### Igualdad
 
+El operador '==' dirá si dos float son exactamente iguales(coinciden bit por bit). Normalmente tiene poco sentido comparar bits cuando alguno de ellos podría ser incorrecto y esta situación la tenemos con la precisión limitada de flotadores. Los resultados deben redondearse para que quepan en una variable finita, y si la CPU o el software no redondean como esperamos , las pruebas de igualdad podrian fallar. Nos encontramos con el panorama en que debemos trabajar con igualdad significando *"lo suficientemente cerca"* con algo parecido a esto.
+```cpp
+
+#define EPSILON 1.0e-7//le asignamos ese valor pequeño para usarlo para comparar floats EPSILON = 0,0000001
+
+#define  flt_equals(a, b)(fabs((a) - (b)) < EPSILON)
+/*comprueba si dos floats son aprox iguales,restando uno de otro tomando el valor absoluto (positivo) y comprobando que el resultado es menor que EPSILON. 
+```
+Esta técnica a veces funciona pero no siempre es la apropiada, no tienen en cuenta los exponentes de los dos números.Esto se debe a que la precisión de un flotante no está determinada por la magnitud ("¡En esta CPU, los resultados siempre están dentro de 1,0e-7 de la respuesta!"), sino por el número de bits correctos. El EPSILON de arriba es una tolerancia; es una declaración de cuánta precisión espera en sus resultados. Y la precisión se mide en dígitos significativos, no en magnitud; No tiene sentido hablar de "1.0e-7 de precisión". Un ejemplo rápido hace que esto sea obvio: digamos que tenemos los números 1,25e-20 y 2,25e-20. Su diferencia es 1e-20, mucho menor que EPSILON, pero claramente no queremos que sean iguales. Sin embargo, si los números fueran 1,2500000e-20 y 1,2500001e-20, entonces podríamos considerarlos iguales.
+
+### Desbordamiento (Overflow)
+
+El desbordamiento es una de las preocupaciones mas comunes del programador. Si sumamos 1 al mayor entero sin signo posible este vuelve a 0. Una de las cosas buenas de los floats es que cuando se desbordan lo que queda es +/-inf. Estas cantidades tienden a comportarse como esperamos: +inf es mayor que cualquier numero y -inf es menor que cualquier num. Esta propiedad hace que los floats sean útiles para comprobar el desbordamiento en matemáticas de enteros. Puedes hacer un cálculo en float y luego comparar el resultado con INT_MAX antes de volver a convertirlo en num entero. Siempre con cuidado porque puede ser que el float no tenga la precisión suficiente para un int completo. Un int de 32bits puede representar un decimas de 9 dígitos pero un float de 32bits solo representaría unos 7 dígitos de precisión. Sin embargo un double si tendría la suficiente precisión para representarlo.
+
+## Adhoc Polymorphism (Polimorfismo de sobrecarga)
+
+Es un tipo de polimorfismo en el que una función puede tener múltiples implementaciones dependiendo de los args con los que se llame. Esto se logra a trvés de la sobrecarga de funciones o métodos, por lo que podemos tener varias funciones con el mismo nombre y distintos tipor o números de args. El compilador seleccionará la implementación correcta en tiempo de compilación basándose en los args usados para llamar la función. Ejemplo:
+```cpp
+#include <iostream>
+#include <string>
+
+class MiClase {
+public:
+    // Método para sumar dos enteros
+    int sumar(int a, int b) {
+        return a + b;
+    }
+
+    // Método para concatenar dos strings
+    std::string sumar(std::string a, std::string b) {
+        return a + b;
+    }
+};
+
+int main() {
+    MiClase obj;
+    int num1 = 5, num2 = 10;
+    std::string str1 = "Hola ", str2 = "Mundo";
+
+    // Llamada al método sumar con enteros
+    std::cout << "Suma de enteros: " << obj.sumar(num1, num2) << std::endl;
+
+    // Llamada al método sumar con strings
+    std::cout << "Concatenación de strings: " << obj.sumar(str1, str2) << std::endl;
+
+    return 0;
+}
+```
+## Operator overload (Sobrecarga de operador)
+
+Es una característica que permite cambiar el funcionamiento de los operadores(+, - *, /, etc...) para que funcionen con los tipos de datos definidos por el usuario.
+class Hola
+{
+    private:
+        int numero;
+    publica:
+        Hola();
+        Hola(std::string name);   // Hola a("string");
+        ~Hola();
+        Hola(const Hola &)   // Hola a;
+                            //Hola b(a);
+        Hola &operator = (const Hola &);  // a = b;
+
+
+        Hola(const Hola &copy)
+        : name(copy.name);
+        {
+            name(copy.name);
+        }
+        
+        Hola &operator = (const Hola &other)
+        {
+            if (this != other)
+            {
+                name = other.namme;
+            }
+        }
+
+
+        Hola &operator * (const Hola &);  // a * b;
+        void funcion(std::string name);
+        void funcion(int a);
+
+        main
+        funcion("string");
+        funcion(2);
+}
