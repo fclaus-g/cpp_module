@@ -430,39 +430,60 @@ int main() {
 ## Operator overload (Sobrecarga de operador)
 
 Es una característica que permite cambiar el funcionamiento de los operadores(+, - *, /, etc...) para que funcionen con los tipos de datos definidos por el usuario.
-class Hola
+```cpp
+class Vector {
+public:
+    Vector(int x, int y): x(x), y(y) {}
+
+    // Sobrecarga del operador +
+    Vector operator+(const Vector& other) {
+        return Vector(x + other.x, y + other.y);
+    }
+
+private:
+    int x, y;
+};
+/*En este código el operador '+' se sobrecarga para la clase Vector definiendo una función de operador+. Esta función toma otro vector como arg y devuelve un nuevo vector que es la suma de los dos vectores(Definimos de que manera se puede sumar una clase con otra como si fueran números)*/
+```
+
+## Forma canónica
+
+Se refiere a un conjunto de convenciones de diseño para las clases que incluyen un contructor por defecto, un constructor de copia, un operador de asignación de copia y un destructor. Ejemplo:
+```cpp
+class MyClass
 {
-    private:
-        int numero;
-    publica:
-        Hola();
-        Hola(std::string name);   // Hola a("string");
-        ~Hola();
-        Hola(const Hola &)   // Hola a;
-                            //Hola b(a);
-        Hola &operator = (const Hola &);  // a = b;
+public:
+    // Constructor por defecto
+    MyClass() 
+    { 
+        // Inicialización de los miembros de la clase
+    }
 
+    // Constructor de copia
+    MyClass(const MyClass& other) 
+    { 
+        // Copia de los miembros de la clase
+    }
 
-        Hola(const Hola &copy)
-        : name(copy.name);
+    // Operador de asignación de copia
+    MyClass& operator=(const MyClass& other) 
+    {
+        if (this != &other) 
         {
-            name(copy.name);
+            // Liberación de los recursos actuales
+            // Copia de los miembros de la clase
         }
-        
-        Hola &operator = (const Hola &other)
-        {
-            if (this != other)
-            {
-                name = other.namme;
-            }
-        }
+        return *this;
+    }
 
+    // Destructor
+    ~MyClass() 
+    { 
+        // Liberación de los recursos
+    }
 
-        Hola &operator * (const Hola &);  // a * b;
-        void funcion(std::string name);
-        void funcion(int a);
-
-        main
-        funcion("string");
-        funcion(2);
-}
+private:
+    // Miembros de la clase
+};
+```
+Estas convenciones son importantes cuando tu clase maneja recursos, como memoria dinámicao archivos. En estos casos necesitas asegurarte de que los recursos se copien correctamente en el constructor de copia y el operador de asignación de copia y se liberen correctamente.
