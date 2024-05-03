@@ -130,5 +130,43 @@ del número de punto fijo en el objeto de flujo de salida pasado como parámetro
 
 ### Objetivo
 
+El objetivo de este ejercicio sin duda es la comprensión de como funciona y como se trabaja con números de punto fijo y las correspondientes conversiones desde int y float.
+
 ### Desarrollo
+
+Hay una teoría que creo que hay que tener muy clara y es la siguiente:
+
+1. **Número de punto fijo->** Representación de un número real que reserva un num fijo de bits para la parte entera y un num de bits para la parte fraccionaria. A diferencia de los floats donde el punto decimal puede flotar y ser representado por un exponente, en el num de punto fijo el punto decimal está en una ubicación fija. Por ejemplo:
+Si tienes un num de 16 bits con 8 bits para la parte entera y 8 bits para la parte fraccionaria, podríamos representar num desde -128,0 hasta 127,996 (el valor exacto depende de la precisión que proporcionen esos bits fraccionarios) Recordemos que en los floats la precisión está determinada por los bits de mantisa. A tener en cuenta que la precisión no podemos confundirla con el rango, un num puede representar fracciones muy pequeñas pero tener un rango pequeño(no puede representar num muy grandes o muy pequeños).
+
+2. **Conversión de un punto flotante a un punto fijo->** Implicaría dos pasos:
+	1. Multiplicar el float por una potencia de 2 que es igual al num de bits fraccionarios en la representación de punto fijo("movería" la parte fraccionaria del num float a la parte entera del num resultante).
+	2. Redondear el num resultante al entero mas cercano y almacenarlo en un int. Este entero representa el num de punto fijo.
+Ejemplo:
+```cpp
+#include <cmath>
+
+class Fixed {
+private:
+    int _value; 
+    static const int _bits = 16;  // Número de bits fraccionarios
+public:
+    void set(float value) {
+        this->_value = std::round(value * (1 << _bits));
+		//le damos a _value el resultado de multiplicar el arg de entrada * [(1*2^16) =  65536]
+		//value=5,5 * 65536 = 360448 -> 360448.0f -> esto sería la representacion de 5,5 en punto fijo.
+    }
+    float get() {
+        return static_cast<float>(this->_value) / (1 << _bits);
+    }
+};
+
+int main() {
+    Fixed obj;
+    obj.set(5.5f);
+    std::cout << obj.get();  // Imprime: 5.5
+    return 0;
+}
+```
+
 

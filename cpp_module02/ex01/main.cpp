@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:57:38 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/02 17:33:02 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:10:15 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ del número de punto fijo en el objeto de flujo de salida pasado como parámetro
 
 int	main(void)
 {
-	Fixed a;
-	Fixed const b(10);
-	Fixed const c(42.42f);
-	Fixed const d(b);
+	Fixed a;//constructor predeterminado
+	Fixed const b(10);//constructor que toma un número entero constante como parámetro
+	Fixed const c(42.42f);//constructor que toma un número de coma flotante constante como parámetro
+	Fixed const d(b);//constructor de copias
 	
 	a = Fixed(1234.4321f);
 	

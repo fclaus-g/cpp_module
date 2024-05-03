@@ -487,3 +487,26 @@ private:
 };
 ```
 Estas convenciones son importantes cuando tu clase maneja recursos, como memoria dinámicao archivos. En estos casos necesitas asegurarte de que los recursos se copien correctamente en el constructor de copia y el operador de asignación de copia y se liberen correctamente.
+
+## Datos de punto fijo
+
+Se utiliza en el procesamiento de señales digitales y aplicaciones de juegos donde el rendimiento es más importante que la precisión. La aritmética de punto fijo es mucho más rápida que la de punto flotante.
+
+* **Punto binario->** Es la clave para representar num fraccionarios. Actúa como divisor entre la parte entera y la parte fraccionaria de un num.
+* **Son parientes de los int, solo se diferencian en la posición del punto binario**. Los int se pueden interpretar como un caso especial de los num de punto fijo donde el punto binario está en la posición 0.
+* La arítmetica de punto fijo es tan sencilla y eficiente como la aritmética de int en las computadoras.
+* **La desventaja es la pérdida de rango y precisión en comparación con los float. Por ejemplo en una repersentación fixed<8,1> nuestra parte fraccionaria solo tiene una precisión de 0.5. No podemos reperesentar num como 0,75. Podemos representar 0,75 con fixed<8,2> pero perderíamos rango en la parte entera.
+* La idea de punto fijo es almacenar los valores multiplicados por una determinada cantidad, utilizar los valores multiplicados para todos los cálculos y dividirlos por la misma cantidad cuando queramos el resultado. **El propósito es usar aritmética de num enteros (int ,long...) y al mismo tiempo poder representar fracciones.**
+
+## El punto binario
+
+En el sistema decimal el punto decimal denota la posición en un num en la que el coeficiente debe multiplicarse por 10^0 = 1. Por ejemplo en el num 26,5, el coeficiente 6 tiene un peso de 10^0=1 y el 5 a la derecha del punto decimal tendría un peso de 10^-1. Sabemos que el num 26,5 representa el valor veintiseis y medio porque 2*10^1 + 6*10^0 + 5*10^-1 = 26,5 o lo que sería lo mismo 20 + 6 + 0,5 = 26,5.
+El mismo concepto de punto decimal se aplicaría a nuestra representación binaria formando el **punto binario**. Como en el sistema decimal un punto binario representa el coeficiente del término 2^0=1. Todos los dígitos o bits a la izquierda del punto binario tienen un peso de 2^0, 2^1, 2^2, etc. Los num o bits a la derecha del punto binario tienen un peso de 2^-1, 2^-2, 2^-3 , etc. Por ejemplo, el num :
+
+11010.1^2 representa el valor:
+| 2^5 |  2^4  |  2^3  |  2^2  |  2^1  |  2^0  |  2^-1  |  2^-2  | 2^-3 |
+|-----|-------|-------|-------|-------|-------|--------|--------|------|
+| ... |   1   |   1   |   0   |   1   |   0   |    1   |    0   |  ... |
+| ... | 1*2^4 | 1*2^3 | 0*2^2 | 1*2^1 | 0*2^0 | 1*2^-1 | 0*2^-2 |  ... |
+| ... |   16  |   8   |   0   |   2   |   0   |   0,5  |    0   |  ... |
+| ... |-------|result-|-------|-[26,5]|-------|-result-|--------|  ... |
