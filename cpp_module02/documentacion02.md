@@ -128,6 +128,55 @@ Y agregue la siguiente función a los archivos de clase fija:
 • Una sobrecarga del operador de inserción («) que inserta una representación de punto flotante
 del número de punto fijo en el objeto de flujo de salida pasado como parámetro.
 
+```cpp
+//Usando este código
+
+#include <iostream>
+int main( void ) {
+Fixed a;
+Fixed const b( 10 );
+Fixed const c( 42.42f );
+Fixed const d( b );
+
+a = Fixed( 1234.4321f );
+std::cout << "a is " << a << std::endl;
+std::cout << "b is " << b << std::endl;
+std::cout << "c is " << c << std::endl;
+std::cout << "d is " << d << std::endl;
+std::cout << "a is " << a.toInt() << " as integer" << std::endl;
+std::cout << "b is " << b.toInt() << " as integer" << std::endl;
+std::cout << "c is " << c.toInt() << " as integer" << std::endl;
+std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+return 0;
+}
+```
+Debería mostrar algo como esto:
+
+```shell
+$> ./a.out
+Default constructor called
+Int constructor called
+Float constructor called
+Copy constructor called
+Copy assignment operator called
+Float constructor called
+Copy assignment operator called
+Destructor called
+a is 1234.43
+b is 10
+c is 42.4219
+d is 10
+a is 1234 as integer
+b is 10 as integer
+c is 42 as integer
+d is 10 as integer
+Destructor called
+Destructor called
+Destructor called
+Destructor called
+$>
+```
+
 ### Objetivo
 
 El objetivo de este ejercicio sin duda es la comprensión de como funciona y como se trabaja con números de punto fijo y las correspondientes conversiones desde int y float.
@@ -169,7 +218,7 @@ int main() {
 }
 ```
 
-## Ex02 Now we're talking
+## Ex02 Fixed III- Now we're talking
 
 ### Subject
 
@@ -182,5 +231,110 @@ Agregue estas cuatro funciones miembro públicas sobrecargadas a su clase:
 * Una función miembro estática min que toma como parámetros dos referencias a números de punto fijo constantes y devuelve una referencia al más pequeño.
 * Una función miembro estática max que toma como parámetros dos referencias a números de punto fijo y devuelve una referencia al mayor.
 * Una función miembro estática max que toma como parámetros dos referencias a números de punto fijo constantes y devuelve una referencia al mayor.
+```cpp
+//Teniendo este código:
+#include <iostream>
+
+int main( void ) {
+Fixed a;
+Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+
+std::cout << a << std::endl;
+std::cout << ++a << std::endl;
+std::cout << a << std::endl;
+std::cout << a++ << std::endl;
+std::cout << a << std::endl;
+std::cout << b << std::endl;
+std::cout << Fixed::max( a, b ) << std::endl;
+return 0;
+}
+```
+El programa debería mostrar algo parecido a esto:
+```shell
+$> ./a.out
+0
+0.00390625
+0.00390625
+0.00390625
+0.0078125
+10.1016
+10.1016
+$>
+```
+
+### Objetivo
+
+Practicar la sobrecarga de operadores y y la sobrecarga y el uso de funciones miembro. En mi caso concreto tambien aprovecho, en las funciones miembro estáticas, para hacer uso de los operadores ternarios.
+
+### Desarrollo
+
+En este ejercicio hemos hecho uso de la sobrecarga en varios operadores (aritméticos, comparativos y decremento e incremento) y añadido algunas funciones miembro estáticas (para no modificar atributos de nuestras clases).
+
+**Función miembre estática->** Función que pertenece a una clase pero no opera en un objeto de esa clase. No necesita un objeto de la clase para ser llamada, son como funciones globales que tienen acceso a los  miembros privados de la clase.
+
+Veamos el .hpp como quedaría:
+```cpp
+#include <iostream>
+ 
+ class Fixed{
+	
+	private:
+		int					_value;
+		static const int	_bits = 8;
+	
+	public:
+		Fixed();
+		Fixed(int const value);//constructor que toma un número entero constante como parámetro
+		Fixed(float const value);//constructor que toma un número de coma flotante constante como parámetro
+		Fixed(const Fixed &copy);//constructor de copias
+		~Fixed();
+
+		Fixed	&operator=(const Fixed &copy);//sobrecarga del operador de asignación de copia
+		
+		/*Operadores >|>=|<|<=|!=|==*/
+		bool	operator>(const Fixed &value) const;
+		bool	operator>=(const Fixed &value) const;
+		bool	operator<(const Fixed &value) const;
+		bool	operator<=(const Fixed &value) const;
+		bool	operator!=(const Fixed &value) const;
+		bool	operator==(const Fixed &value) const;
+
+		/*Operadores =|+|-|*|/*/
+		Fixed	operator+(const Fixed &rhs) const;//sobrecarga del operador de suma
+		Fixed	operator-(const Fixed &rhs) const;//sobrecarga del operador de resta
+		Fixed	operator*(const Fixed &rhs) const;//sobrecarga del operador de multiplicación
+		Fixed	operator/(const Fixed &rhs) const;//sobrecarga del operador de división
+
+		/*Operadores ++a|a++|--a|a--*/
+		Fixed	&operator++(void);//sobrecarga del operador de preincremento
+		Fixed	operator++(int);//sobrecarga del operador de postincremento
+		Fixed	&operator--(void);//sobrecarga del operador de predecremento
+		Fixed	operator--(int);//sobrecarga del operador de postdecremento
+
+		/*Funciones miembro*/
+		int		getRawBits( void ) const;
+		void	setRawBits( int const raw );
+		float	toFloat( void ) const;//convierte el valor de punto fijo en un valor de punto flotante
+		int		toInt( void ) const;//convierte el valor de punto fijo en un valor entero
+		
+		/*Funciones miembro estáticas*/
+		static Fixed	&min(Fixed &a, Fixed &b);//toma como parámetros dos referencias a números de punto fijo y devuelve una referencia al más pequeño
+		static Fixed	&min(Fixed const &a, Fixed const &b);//toma como parámetros dos referencias a números de punto fijo constantes y devuelve una referencia al más pequeño
+		static Fixed	&max(Fixed &a, Fixed &b);//toma como parámetros dos referencias a números de punto fijo y devuelve una referencia al mayor
+		static Fixed	&max(Fixed const &a, Fixed const &b);//toma como parámetros dos referencias a números de punto fijo constantes y devuelve una referencia al mayor
+};
+
+//Ejemplo de .cpp de sobrecarga de funciones y uso de operador ternario
+
+Fixed	&Fixed::min(Fixed &a, Fixed &b)
+{
+	return (a < b) ? a : b;
+}
+
+Fixed	&Fixed::min(Fixed const &a, Fixed const &b)
+{
+	return (a < b) ? (Fixed &)a : (Fixed &)b;
+}
+```
 
 

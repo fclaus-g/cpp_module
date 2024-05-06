@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 17:47:55 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/06 10:26:18 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/06 20:02:24 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <cmath>
+
+/*----------------------------[CONSTRUCTOR|DESTRUCTOR]------------------------*/
 
 /*Constructor predeterminado*/
 Fixed::Fixed() : _value(0)
@@ -49,19 +51,107 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
+/*-----------------------------[SOBRECARGA DE OPERADORES]---------------------*/
+
 /*Sobrecarga del operador de asignación de copia*/
 Fixed	&Fixed::operator=(const Fixed &copy)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	std::cout << "Assignation operator called" << std::endl;
 	if (this!= &copy)
 		this->_value = copy.getRawBits();
 	return *this;
 }
 
+/*Sobrecarga operadores comparación [<|<=|>|>=|!=|==]*/
+
+bool	Fixed::operator>(const Fixed &value) const
+{
+	return this->_value > value.getRawBits();
+}
+
+bool	Fixed::operator>=(const Fixed &value) const
+{
+	return this->_value >= value.getRawBits();
+}
+
+bool	Fixed::operator<(const Fixed &value) const
+{
+	return this->_value < value.getRawBits();
+}
+
+bool	Fixed::operator<=(const Fixed &value) const
+{
+	return this->_value <= value.getRawBits();
+}
+
+bool	Fixed::operator!=(const Fixed &value) const
+{
+	return this->_value != value.getRawBits();
+}
+
+bool	Fixed::operator==(const Fixed &value) const
+{
+	return this->_value == value.getRawBits();
+}
+
+/*Sobrecarga operadores aritméticos [+|-|*|/]*/
+/*rhs = right hand side || lado derecho del operador || a + rhs*/
+
+Fixed	Fixed::operator+(const Fixed &rhs) const
+{
+	return Fixed(this->toFloat() + rhs.toFloat());
+}
+
+Fixed	Fixed::operator-(const Fixed &rhs) const
+{
+	return Fixed(this->toFloat() - rhs.toFloat());
+}
+
+Fixed	Fixed::operator*(const Fixed &rhs) const
+{
+	return Fixed(this->toFloat() * rhs.toFloat());
+}
+
+Fixed	Fixed::operator/(const Fixed &rhs) const
+{
+	return Fixed(this->toFloat() / rhs.toFloat());
+}
+
+/*Sobrecarga operadores incremento y decremento [++|--]*/
+
+Fixed	&Fixed::operator++(void)
+{
+	this->_value++;
+	return *this;
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed tmp(*this);
+	operator++();
+	return tmp;
+}
+
+Fixed	&Fixed::operator--(void)
+{
+	this->_value--;
+	return *this;
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+	operator--();
+	return tmp;
+}
+
+/*-----------------------------[FUNCIONES MIEMBRO]---------------------------*/
+
 /*Getter de _value*/
 int		Fixed::getRawBits( void ) const
 {
-	return this->_value;
+	std::cout << "getRawBits member function called" << std::endl;
+	return _value;
 }
 
 /*Setter de _value*/
@@ -70,24 +160,39 @@ void	Fixed::setRawBits( int const raw )
 	this->_value = raw;
 }
 
-/*Conversor a float
-Retornamos a float dividiendo el valor por el resultado de la operación de desplazamiento de bits,
-es equivalente a elevar 2 a la potencia de this->_bits. */
 float	Fixed::toFloat( void ) const
 {
 	return (float)this->_value / (1 << this->_bits);
 }
 
-/*Conversor a int 
-Desplaza a la derecha el num de posiciones de this->_bits*/
 int		Fixed::toInt( void ) const
 {
 	return this->_value >> this->_bits;
 }
 
-/*Sobrecarga del operador de salida
-Convierte el valor de objeto Fixed a float utilizando el método toFloat y lo envia 
-al stream(secuencia de datos que se mueven de un lugar a otro) de salida out*/
+/*-----------------------------[FUNCIONES MIEMBRO ESTÁTICAS]-------------------*/
+
+Fixed	&Fixed::min(Fixed &a, Fixed &b)
+{
+	return (a < b) ? a : b;
+}
+
+Fixed	&Fixed::min(Fixed const &a, Fixed const &b)
+{
+	return (a < b) ? (Fixed &)a : (Fixed &)b;
+}
+
+Fixed	&Fixed::max(Fixed &a, Fixed &b)
+{
+	return (a > b) ? a : b;
+}
+
+Fixed	&Fixed::max(Fixed const &a, Fixed const &b)
+{
+	return (a > b) ? (Fixed &)a : (Fixed &)b;
+}
+
+
 std::ostream	&operator<<(std::ostream &out, Fixed const &value)
 {
 	out << value.toFloat();

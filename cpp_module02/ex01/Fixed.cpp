@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 17:47:55 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/06 10:54:07 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/06 19:37:40 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <cmath>
-
-/*----------------[CONSTRUCTOR & DESTRUCTOR]-----------------------]*/
 
 /*Constructor predeterminado*/
 Fixed::Fixed() : _value(0)
@@ -50,15 +48,6 @@ Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
-
-/*----------------[OPERATORS]-----------------------]*/
-
-/*Operadores >|>=|<|<=|!=|==*/
-bool	Fixed::operator>(const Fixed &value) const
-{
-	return this->_value > value.getRawBits();
-}
-
 
 /*Sobrecarga del operador de asignación de copia*/
 Fixed	&Fixed::operator=(const Fixed &copy)
