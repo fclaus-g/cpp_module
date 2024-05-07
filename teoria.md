@@ -510,3 +510,72 @@ El mismo concepto de punto decimal se aplicaría a nuestra representación binar
 | ... | 1*2^4 | 1*2^3 | 0*2^2 | 1*2^1 | 0*2^0 | 1*2^-1 | 0*2^-2 |  ... |
 | ... |   16  |   8   |   0   |   2   |   0   |   0,5  |    0   |  ... |
 | ... |-------|result-|-------|-[26,5]|-------|-result-|--------|  ... |
+
+
+## Inheritance (Herencia)
+
+La herencia es unprincipio fundamental de la programación orientada a objetos(OOP ó POO). Permite que una clase adquiera las propiedades y métodos de otra clase. La clase de la que se heredan las propiedades se llama *clase base o clase padre*, y la clase que hereda se llama *clase hija o clase derivada*
+Por ejemplo si tienes una clase **Vehículo** con propiedades como **color** y **velocidad**, y métodos como **acelerar()** y **frenar()**, prodrias tener una clase **Coche** que herede de **Vehículo**. Tendría todas las propiedades de **Vehículo** y podría tener propiedades y métodos adicionales como **numDePuertas()** y **abrirPuerta()**
+En C++ la herencia se denota con el símbolo **':'**. Ejemplo:
+```cpp
+class Vehiculo{
+public:
+    std::string color;
+    int         velocidad;
+    void        acelerar();
+    void        frenar();
+};
+
+class Coche : public Vehiculo{
+public:
+    int numDePuertas;
+    void    abrirPuerta();
+};
+```
+
+### Sensible specialisations (Especializaciones sensatas)
+
+Se refiere a la práctica de proporcionar versiones especializadas de una función o clase genérica que son más eficientes para ciertos tipos de datos específicos. Por ejemplo podríamos tener una funcion genérica para comparar dos elementos, pero luego proporcionar una especialización sensata para los num enteros que utiliza operaciones de comparación de enteros rápidas.
+
+### Prueba "is a" y prueba "has a"
+
+* **Prueba "is a"->** Permite verificar si un objeto es de un cierto tipo o si un puntero o referencia a una clase base apunta a un objeto de la clase derivada. Ejemplo:
+```cpp
+#include <typeinfo>
+class Base{
+    virtual ~base();
+};
+class Derived : public Base {};
+
+int main(){
+    Base    *b = new Derived();
+
+    if (typeid(*b) == typeid(Derived))
+        std::cout << "b is a Derived\n";
+    else 
+        std::cout << "b is not a derived\n";
+    delete b;
+    return 0;
+}
+```
+Para que esto funcione, la clase base debe tener al menos un método virtual, para que el objeto tenga información de tipo en tiempo de ejecución.
+Además este código solo verifica el tipo exacto del objeto. No considera la herencia. Si **Derived** tuviera una subclase **subDerived**, un objeto de tipo **subDerived** no pasaría la prueba typeid(*b) == typeid(Derived).
+
+* **prueba "has a"->** Es una verificación en tiempo de compilación que verifica si un objeto tiene un miembro de cierto tipo.
+
+#### Agregation 
+
+Término en la POO para decribir una relación entre dos clases que se conoce como *"has a"*. En la agregación una clase ("contenedora/padre") tiene una referencia a otra clase ("contenida/hija"). Sin embargo la clase contenida puede existir independientemente de la clase contenedora.
+Por ejemplo, podríamos tener una clase **Equipo** que tiene una lista de objetos **Jugador**. Cada **Jugador** es un miembro del **Equipo**, pero también puede existir sin pertenecer a un **Equipo**.
+```cpp
+class Jugador {
+    // ...
+};
+
+class Equipo {
+public:
+    std::vector<Jugador> jugadores;
+    // ...
+};
+/*En este código, la clase Equipo tiene una agregación de objetos Jugador. Cada Equipo tiene una lista de Jugadores, pero cada Jugador también puede existir independientemente de un Equipo.*/
+```
