@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:23:05 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/08 15:16:05 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:05:53 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ Agregue las siguientes funciones de miembros públicos para que ClapTrap parezca
 • void beRepaired(unsigned int amount);*/
 
 class ClapTrap{
-	private:
-	std::string		_name;
+	protected:
+	std::string 	_name;
 	unsigned int	_life_points;
 	unsigned int	_energy_points;
 	unsigned int	_attack_damage;
@@ -52,15 +52,15 @@ class ClapTrap{
 	unsigned int	getLifePoints(void);
 	unsigned int	getEnergyPoints(void);
 	unsigned int	getAttackDamage(void);
-	void			setLifePoints(unsigned int life_points);
-	void			setEnergyPoints(unsigned int energy_points);
-	void			setAttackDamage(unsigned int attack_damage);
+	void 			setLifePoints(unsigned int life_points);
+	void 			setEnergyPoints(unsigned int energy_points);
+	void 			setAttackDamage(unsigned int attack_damage);
 
 	void	attack(const std::string &target);
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
 
-	void	printClapTrap(void);
+	void 	printClapTrap(void);
 };
 
 #endif

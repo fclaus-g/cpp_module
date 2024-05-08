@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:23:11 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/08 15:22:45 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:30:16 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ ClapTrap::ClapTrap(std::string name){
 
 ClapTrap::ClapTrap(const ClapTrap &copy){
 	std::cout << "ClapTrap copy constructor called" << std::endl;
-	*this = copy;
+	this->_name = copy._name;
+    this->_life_points = copy._life_points;
+    this->_energy_points = copy._energy_points;
+    this->_attack_damage = copy._attack_damage;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &copy){
@@ -89,8 +92,11 @@ void ClapTrap::attack(const std::string &target){
 
 void ClapTrap::takeDamage(unsigned int amount){
 	std::cout << YEL << this->_name << " takes " << amount << " points of damage!" RES << std::endl;
-	this->_life_points -= amount;
-	if (this->_life_points <= 0){
+	if (this->_life_points < amount)
+		this->_life_points = 0;
+	else	
+		this->_life_points -= amount;
+	if (this->_life_points == 0){
 		std::cout << RED << this->_name << " is death" RES << std::endl;
 		return ;
 	}

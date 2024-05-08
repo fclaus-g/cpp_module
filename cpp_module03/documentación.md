@@ -22,4 +22,7 @@ o puntos de energía restantes.
 
 ### Objetivo
 
-Trabajar con la **inheritance**
+Practicar clases, miembros y métodos.
+
+### Desarrollo
+Este ejercicio me ha resultado muy chulo

@@ -579,3 +579,27 @@ public:
 };
 /*En este código, la clase Equipo tiene una agregación de objetos Jugador. Cada Equipo tiene una lista de Jugadores, pero cada Jugador también puede existir independientemente de un Equipo.*/
 ```
+
+### Access specifier (base class & class members) Acceso específico.
+
+Determina como acceder a los miembros de la clase base dentro de la clase derivada.
+* **Private->** Los miembros son totalmente privados de la clase. No solo no se puede acceder a ellos desde fuera de la clase base, sino que tampoco se puede acceder a ellos desde dentro de una clase que los hereda.
+
+* **Protected->** Se puede acceder a los miembros de una clase base desde dentro de una clase derivada, pero están protegidos de interferencias externas.
+
+El acceso a los miembros heredados de un objeto no sólo está determinado por su especificación de acceso en la clase base, sino también por el especificador de acceso de la clase base en la clase derivada.
+
+Poder **cambiar el nivel de acceso** de los miembros heredados en una clase derivada le brinda cierto grado de flexibilidad, pero **solo puede hacer que el nivel de acceso sea mas estricto**, no puede relajar el nivel de acceso despecificado en la clase base.
+```cpp
+class Quadruped { // Can access name, run() and legs
+
+private:
+	std::string name; // Only accessible from an Quadruped object
+
+protected:
+	Leg legs[4]; // Accessible from an Quadruped or derived object
+
+public:
+	void run(); // Accessible from wherever
+};
+```
