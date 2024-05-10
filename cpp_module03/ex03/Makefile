@@ -6,17 +6,21 @@
 #    By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 17:47:40 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/05/10 09:45:43 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/05/10 11:01:21 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ScavTrap
+NAME = FragTrap
 
 CC = g++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRC = main.cpp \
+	ClapTrap.cpp \
+	ScavTrap.cpp \
+	FragTrap.cpp \
+	DiamondTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

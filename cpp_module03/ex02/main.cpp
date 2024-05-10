@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 12:32:42 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/09 10:44:40 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/10 09:44:59 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,26 @@ Esta función miembro muestra una solicitud positiva de choca esos cinco en la
 salida estándar. Nuevamente, agregue más pruebas a su programa.*/
 
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void){
 	ClapTrap	Hero("Hero");
 	ClapTrap	Villain("Villain");
 	ScavTrap	Robot("Robot");
-	
+	FragTrap	Frag("Frag");
 	
 	
 	Hero.printClapTrap();
 	Villain.printClapTrap();
 	Robot.printClapTrap();
+	Frag.printClapTrap();
 	Hero.attack(Villain.getName());
 	Villain.takeDamage(0);
-	Robot.attack(Villain.getName());
-	Villain.takeDamage(Robot.getAttackDamage());
 	Robot.guardGate();
+	Villain.attack(Robot.getName());
+	Robot.takeDamage(Villain.getAttackDamage());	
+	Frag.attack(Villain.getName());
+	Villain.takeDamage(Frag.getAttackDamage());
+	Frag.highFivesGuys();
 	return (0);
 }

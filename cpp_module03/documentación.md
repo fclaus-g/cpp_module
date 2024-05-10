@@ -87,7 +87,8 @@ Practicar sobre la herencia y el acceso específico en nuestro programa.
 
 ### Desarrollo 
 
-En este caso hemos trabajado sobre el ejercicio anterior añadiendo acceso específico a nuestra clase principal (ClapTrap) dejando los atributos en **protected** en lugar de en **private** para que nuestra clase hijo(ClapTrap) pueda trabajar y modificarlos en su propia clase además de añadir alguna función mas a nuestra clase **ClavTrap**.
+En este caso hemos trabajado sobre el ejercicio anterior creando una clase nueva (**scavTrap**) que heredará los atributos y métodos de la clase base **clapTrap**.
+Para ello debemos tener en cuenta que debemos cambiar los atributos privado a protegidos para que la clase hijo pueda acceder ellos. La clase hijo podra acceder a los miembros públicos y protegidos. Aunque un atributo protegido puede ser modificado por una clase derivada, no puede ser accedido desde el código que esta fuera de la clase y sus clases derivadas a no ser, que en el código de la clase en cuestión cuente con su correspondiente setter.
 
 ```cpp
 #include <iostream>
@@ -149,4 +150,64 @@ Lo mismo para los atributos, pero esta vez con valores diferentes:
 FragTrap también tiene una capacidad especial:
 	void highFivesGuys(void);
 Esta función miembro muestra una solicitud positiva de choca esos cinco en la salida estándar. Nuevamente, agregue más pruebas a su programa.
+
+### Objetivo
+
+Trabajar con herencias, métodos, con el acceso específico a los atributos, forma canónica ortodoxa, constructor con parámetros, etc. Obserrvar el orden de construcción-destrucción de las clases hijo-padre.
+
+### Desarrollo
+
+Seguimos trabajando con los ClapTrap y en este caso debemos crear una segunda clase heredada **ScavTrap** que heredará los atributos de la clase base **clapTrap** pero con valores diferentes. Incluirá tambien un sencillo método que imprimirá un simpático mensaje. El .hpp de clapTrap se queda como en el ejercicio anterior y el de la clase **ScavTrap** quedaría de la siguiente manera:
+```cpp
+# include "ClapTrap.hpp"
+
+class FragTrap : public ClapTrap {
+	public:
+		FragTrap();
+		FragTrap(std::string name);
+		FragTrap(const FragTrap &copy);
+		FragTrap	&operator=(const FragTrap &copy);
+		~FragTrap();
+		
+		void	highFivesGuys(void);
+};
+```
+
+## Ex03->DiamondTrap
+
+### Subject 
+
+En este ejercicio, crearás un monstruo: un ClapTrap que es mitad FragTrap, mitad ScavTrap. Se llamará DiamondTrap y heredará tanto de FragTrap como de ScavTrap. ¡Esto es tan arriesgado!
+La clase DiamondTrap tendrá un atributo privado de nombre. Asigne a este atributo exactamente el mismo nombre de variable (sin hablar aquí del nombre del robot) que el de la clase base de ClapTrap.
+Para ser más claro, aquí hay dos ejemplos.
+Si la variable de ClapTrap es nombre, asigne el nombre a la de DiamondTrap.
+Si la variable de ClapTrap es _name, dale el nombre _name a la de DiamondTrap.
+Sus atributos y funciones miembro se seleccionarán de cualquiera de sus clases principales:
+* Nombre, que se pasa como parámetro a un constructor.
+* ClapTrap::name (parameter of the constructor + "_clap_name" suffix)
+* Hit points (FragTrap)
+* Energy points (ScavTrap)
+* Attack damage (FragTrap)
+* attack() (Scavtrap)
+
+C++ - Módulo 03 Herencia
+Además de las funciones especiales de ambas clases principales, DiamondTrap tendrá su propia capacidad especial:
+	void whoAmI();
+Esta función miembro mostrará tanto su nombre como su nombre de ClapTrap.
+Por supuesto, el subobjeto ClapTrap de DiamondTrap se creará una vez, y sólo una vez. Sí, hay un truco.
+Nuevamente, agregue más pruebas a su programa.
+
+### Objetivo
+
+Conocer el problema del diamante, trabajar con herencia múltiple.
+
+### Desarrollo
+
+En nuestro programa tendremos que añadir una nueva clase(**DiamondTrap**) que será una mezcla de dos clases hijas(**ScavTrap** y **FragTrap**) de la clase **ClapTrap** y aqui nos vamos a encontrar con una serie de problemas:
+
+1. Métodos con la misma firma en distintas clases.
+	* Solución: declaramos las funciones de la clase base como virtual.
+2. Atributos heredados de las clases hijo que se solapan.
+	* Añadimos una variable constante en nuestra subclase ScarTrap.
+3. Problemas  al mostrar el nombre en nuestra funcion de imprimir el objeto
 

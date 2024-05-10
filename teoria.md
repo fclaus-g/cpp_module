@@ -603,3 +603,84 @@ public:
 	void run(); // Accessible from wherever
 };
 ```
+
+## Multiple Inheritance (Herencia múltiple)
+
+Una clase puede heredar comportamientos y carácterísticas de más de una clase base:
+```cpp
+class Base1 {
+public:
+    void methodFromBase1() {
+        // Implementación del método
+    }
+};
+
+class Base2 {
+public:
+    void methodFromBase2() {
+        // Implementación del método
+    }
+};
+
+class Derived : public Base1, public Base2 {
+    // Derived hereda de Base1 y Base2
+};
+```
+
+En este ejemplo la clase **Derived** hereda de **Base1** y **Base2** pudendo usar los métodos de las dos clases.
+La herencia múltiple puede ser complicada y generar problemas cuando no se maneja con cuidado. Si las dos clases base tienen un método con el mismo nombre, es confuso determinar cual de los métodos se usará. Esto se conoce como el problema del diamante.
+Este problema se resuelve en C++ de la siguiente manera:
+```cpp
+class Base {
+public:
+    virtual void foo() {}
+};
+
+class Derived1 : virtual public Base {
+public:
+    void foo() override {}
+};
+
+class Derived2 : virtual public Base {
+public:
+    void foo() override {}
+};
+
+class Diamond : public Derived1, public Derived2 {
+    // Ahora Diamond solo tiene una versión de foo()
+};
+```
+Al hacer que **Derived1** y **Derived2** hereden virtualmente de **Base**, se asegura que soo haya una copia de los miembros de **Base** en **Diamond**, resolviendo así el problema del diamante. 
+
+### Diamond problem
+
+Es un problema de ambigüedad que puede suceder con la herencia múltiple, ocurre cuando una clase hereda de dos o mas clases que tienen un método con la misma firma.
+```cpp
+class A {
+public:
+    void foo() { cout << "A::foo" << endl; }
+};
+
+class B : public A { };
+
+class C : public A { };
+
+class D : public B, public C { };
+/*En este caso si llamamos al método foo, el compilador no sabrá si usar B::foo() o C::foo() ya que 
+ambos son válidos debido a la herencia de A.*/
+```
+En lenguajes como python y C#, utilizan un método llamado "Linearización de C3" para determinar un orden de resolución. Otros lenguajes como Java evitan el problema no permitiendo la herencia múltiple. 
+En C++ usamos la herencia virtual, que asegura que sólo se crea una copia base de la clase base A, independientemente de cuantas clases intermedias hereden de ella.
+```cpp
+class A {
+public:
+    void foo() { cout << "A::foo" << endl; }
+};
+
+class B : virtual public A { };
+
+class C : virtual public A { };
+
+class D : public B, public C { };
+```
+Ahora D::foo() se compilará y ejecutará sin problemas, ya que hay un A::foo al que llamar.
