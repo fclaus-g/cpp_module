@@ -393,6 +393,43 @@ Esta técnica a veces funciona pero no siempre es la apropiada, no tienen en cue
 
 El desbordamiento es una de las preocupaciones mas comunes del programador. Si sumamos 1 al mayor entero sin signo posible este vuelve a 0. Una de las cosas buenas de los floats es que cuando se desbordan lo que queda es +/-inf. Estas cantidades tienden a comportarse como esperamos: +inf es mayor que cualquier numero y -inf es menor que cualquier num. Esta propiedad hace que los floats sean útiles para comprobar el desbordamiento en matemáticas de enteros. Puedes hacer un cálculo en float y luego comparar el resultado con INT_MAX antes de volver a convertirlo en num entero. Siempre con cuidado porque puede ser que el float no tenga la precisión suficiente para un int completo. Un int de 32bits puede representar un decimas de 9 dígitos pero un float de 32bits solo representaría unos 7 dígitos de precisión. Sin embargo un double si tendría la suficiente precisión para representarlo.
 
+## Polymorphism (Polimorfismo)
+
+Es un concepto fundamental de la programación orientada a objetos. Se refiere a la capacidad de un objeto para tomar muchas formas, permite que las clases derivadas hereden y modifiquen los comportamientos de las clases base.
+Se logra principalmente a través de funciones virtuales y herencia. Ejemplo:
+```cpp
+class Base {
+public:
+    virtual void hacerAlgo() {
+        std::cout << "Haciendo algo en la clase base.\n";
+    }
+};
+
+class Derivada : public Base {
+public:
+    void hacerAlgo() override {
+        std::cout << "Haciendo algo en la clase derivada.\n";
+    }
+};
+
+int main() {
+    Base* b = new Derivada();
+    b->hacerAlgo();  // Imprime: "Haciendo algo en la clase derivada."
+
+    delete b;
+    return 0;
+}
+/*En este código, Base es una clase con un método virtual hacerAlgo(). Derivada es una clase que hereda de Base y sobreescribe
+el método hacerAlgo(). Cuando llamamos a hacerAlgo() en un puntero a Base que realmente apunta a un objeto Derivada se llama al 
+método hacerAlgo() de la clase Derivada. Esto es polimorfismo.*/
+```
+El polimorfismo tiene varios subtipos:
+
+1. **Polimorfismo de subtipos o polimorfismo de inclusión**-> Lo veremos un poco mas adelante, es el tipo mas común y ocurre cuando una clase hija es tratada como su clase padre. La clase hija puede sobreescribir la clase padre, permitiendo comportamientos diferentes.
+2. **Polimorfismo paramétrico->** Permite que el código sea escrito sin mencionar tipos específicos, esto se logra con las plantillas **templates**.
+3. **Polimorfismo Ad-hoc->** Permite que una función tenga el mismo nombre pero distintos comportamientos dependiendo de los argumentos que se le pasen. esto se logra a través de la sobrecarga de operadores y de funciones.
+4. **Polimorfismo de coerción->** Permite que un tipo sea tratado como otro, a menudo a través de conversiones. Esto se logra a través de las conversiones de tipo y las funciones de conversión.
+
 ## Adhoc Polymorphism (Polimorfismo de sobrecarga)
 
 Es un tipo de polimorfismo en el que una función puede tener múltiples implementaciones dependiendo de los args con los que se llame. Esto se logra a trvés de la sobrecarga de funciones o métodos, por lo que podemos tener varias funciones con el mismo nombre y distintos tipor o números de args. El compilador seleccionará la implementación correcta en tiempo de compilación basándose en los args usados para llamar la función. Ejemplo:
@@ -684,3 +721,50 @@ class C : virtual public A { };
 class D : public B, public C { };
 ```
 Ahora D::foo() se compilará y ejecutará sin problemas, ya que hay un A::foo al que llamar.
+
+
+## Sub-typing polimorphism (Polimorfismo de subtipos o de inclusión)
+
+Es un tipo de polimorfismo en el que una clase derivada (subtipo) puede ser utilizada en lugar de una clase base (supertipo), permitiendo diferentes comportamientos al sobreescribir los métodos de la clase base en la clase derivada. Ejemplo:
+```cpp
+#include <iostream>
+
+class Animal {
+public:
+    virtual void hacerSonido() {
+        std::cout << "(silencio)" << std::endl;
+    }
+};
+
+class Perro : public Animal {
+public:
+    void hacerSonido() override {
+        std::cout << "Guau!" << std::endl;
+    }
+};
+
+class Gato : public Animal {
+public:
+    void hacerSonido() override {
+        std::cout << "Miau!" << std::endl;
+    }
+};
+
+void reproducirSonido(Animal* animal) {
+    animal->hacerSonido();
+}
+
+int main() {
+    Perro perro;
+    Gato gato;
+
+    reproducirSonido(&perro);  // Imprime "Guau!"
+    reproducirSonido(&gato);   // Imprime "Miau!"
+
+    return 0;
+}
+/*En este código, Animal es la clase base que tiene un método hacerSonido(). Perro y Gato son clases derivadas 
+que sobreescriben este método. La función reproducirSonido() toma un puntero a Animal y llama al método 
+hacerSonido() en él. Gracias al polimorfismo de inclusión puedes pasar un puntero a Perro o Gato a esta 
+función, y se llamará al método hacerSonido() apropiado.*/
+```
