@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 13:33:08 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/14 19:53:18 by fclaus-g         ###   ########.fr       */
+/*   Created: 2024/05/14 19:35:29 by fclaus-g          #+#    #+#             */
+/*   Updated: 2024/05/14 19:37:59 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-Cat::Cat(void) : Animal("Cat") {
-	std::cout << GRN "Cat constructor called" RST << std::endl;
-}
+# include "WrongAnimal.hpp"
 
-Cat::~Cat() {
-	std::cout << GRN "Cat destructor called" RST << std::endl;
-}
+class WrongCat : public WrongAnimal {
+	public:
+		WrongCat();
+		~WrongCat();
+		void	makeSound() const;
+};
 
-void Cat::makeSound() const {
-	std::cout << GRN "Meow! Meow!" RST << std::endl;
-}
-
+#endif

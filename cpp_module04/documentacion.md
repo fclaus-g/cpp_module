@@ -43,3 +43,26 @@ Implemente y entregue más pruebas que las indicadas anteriormente.
 Familiarizarnos con el polimorfismo de inclusión.
 
 ### Desarrollo
+
+Para este ejercicio debemos hacer varias clases empezando con Animal que será nuestra clase base y luego la clase Cat y Dog. A tener en cuenta que al trabajar con subclases debemos, en nuestra clase base, crear un destructor virtual para evitar leaks de memoria y la correspondiente función virtual, makeSound() en este caso, para poder ser sobreescrita por las subclases.
+
+```cpp
+
+# include <iostream>
+# include <string>
+
+class Animal {
+	protected:
+		std::string type;
+	public:
+		Animal();
+		Animal(std::string type);//constructor con parametro
+		virtual ~Animal();//virtual destructor para que se llame al destructor de las clases hijas
+		Animal(const Animal& other);//copy constructor
+		Animal&	operator=(const Animal &other);//asignacion por sobrecarga de operador
+		
+		std::string		getType() const;
+		virtual void	makeSound() const;//funcion virtual pura que se implementara en las clases hijas
+};
+```
+Tenemos tambien que crear una clase equivocada para trabajar con errores y muestre mensajes equivocados.

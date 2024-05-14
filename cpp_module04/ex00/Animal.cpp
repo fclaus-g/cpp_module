@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:00:11 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/14 13:20:36 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:52:58 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Animal::Animal(std::string type){
 }
 
 Animal::~Animal() {
-	std::cout << "Animal destructor called" << std::endl;
+	std::cout << YEL "Animal destructor called" RST << std::endl;
 }
 
 Animal::Animal(const Animal &other) {
@@ -38,5 +38,5 @@ std::string Animal::getType() const {
 }
 
 void Animal::makeSound() const {
-	std::cout << "Animal sound" << std::endl;
+	std::cout << YEL "Animal sound" RST << std::endl;
 }

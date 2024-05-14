@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+         #
+#    By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 20:13:07 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/05/14 13:34:51 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/05/14 19:42:31 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp \
 	Animal.cpp \
 	Dog.cpp \
-	Cat.cpp 
+	Cat.cpp \
+	WrongAnimal.cpp \
+	WrongCat.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

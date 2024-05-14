@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 13:33:08 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/14 19:53:18 by fclaus-g         ###   ########.fr       */
+/*   Created: 2024/05/14 19:35:22 by fclaus-g          #+#    #+#             */
+/*   Updated: 2024/05/14 19:55:29 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
-Cat::Cat(void) : Animal("Cat") {
-	std::cout << GRN "Cat constructor called" RST << std::endl;
+WrongCat::WrongCat() : WrongAnimal("WrongCat") {
+	std::cout << PNK "WrongCat constructor called" RST << std::endl;
 }
 
-Cat::~Cat() {
-	std::cout << GRN "Cat destructor called" RST << std::endl;
+WrongCat::~WrongCat() {
+	std::cout << PNK "WrongCat destructor called" RST << std::endl;
 }
 
-void Cat::makeSound() const {
-	std::cout << GRN "Meow! Meow!" RST << std::endl;
+void WrongCat::makeSound() const {
+	std::cout << PNK "Meow! Meow!" RST << std::endl;
 }
-

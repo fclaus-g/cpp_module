@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:25:00 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/14 13:35:19 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:40:36 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ Imprimirá un sonido apropiado (los gatos no ladran).*/
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {
@@ -39,5 +41,18 @@ int main()
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 	meta->makeSound();
+	
+	delete meta;
+	delete j;
+	delete i;
+
+	const WrongAnimal* meta2 = new WrongAnimal();
+	const WrongAnimal* j2 = new WrongCat();
+	std::cout << j2->getType() << " " << std::endl;
+	j2->makeSound();
+	meta2->makeSound();
+
+	delete meta2;
+	delete j2;
 	return 0;
 }
