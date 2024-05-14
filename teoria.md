@@ -768,3 +768,43 @@ que sobreescriben este método. La función reproducirSonido() toma un puntero a
 hacerSonido() en él. Gracias al polimorfismo de inclusión puedes pasar un puntero a Perro o Gato a esta 
 función, y se llamará al método hacerSonido() apropiado.*/
 ```
+
+## Etiqueta virtual
+
+Se utiliza para permitir que una función en una clase base sea sobreescrita en una clase derivada. Esto es fundamental para el polimorfismo.
+
+```cpp
+class Animal {
+public:
+    virtual void hacerSonido() {
+        std::cout << "El animal hace un sonido" << std::endl;
+    }
+};
+```
+### Destructor virtual
+
+Se utiliza para asegurar que el destructor correcto se llame para un objeto cuando se elimina un puntero a la clase base que apunta aun objeto de la clase derivada. Si no se hacde el destructor de la clase base virtual, cuando se elimina el puntero a la clase base, solo se llamará al destructor de la clase base, no el de la clase derivada. Esto puede conllevar memory leaks si la clase derivada tiene recursos que necesitan ser liberados en su destructor.
+```cpp
+class Base {
+public:
+    virtual ~Base() {
+        std::cout << "Destructor de Base" << std::endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    ~Derived() override {
+        std::cout << "Destructor de Derived" << std::endl;
+    }
+};
+
+int main() {
+    Base* ptr = new Derived();
+    delete ptr;  // Llama al destructor de Derived y luego al de Base
+    return 0;
+}
+/*En este código, el destructor de Base es virtual, lo que significa que si eliminas 
+un puntero a Base que apunta a un objeto Derived, se llamará al destructor correcto.
+Primero se llamará al destructor de Derived y luego al de Base.*/
+```

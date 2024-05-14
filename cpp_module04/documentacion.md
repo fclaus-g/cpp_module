@@ -41,3 +41,5 @@ Implemente y entregue más pruebas que las indicadas anteriormente.
 ### Objetivo
 
 Familiarizarnos con el polimorfismo de inclusión.
+
+### Desarrollo
