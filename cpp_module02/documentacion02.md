@@ -64,7 +64,7 @@ $>
 ```
 ### Objetivo
 
-Conocer y practicar la forma *canónica ortodoxa*, trabajar con la sobrecarga de funciones(funciones con el mismo nombre y con diferentes argumentos) y la sobrecarga de operadores (aclara el comportamiento de un operador cuando se hacen operaciones entre clases y conocer que es el formato de punto fijo.
+Conocer y practicar la forma *canónica ortodoxa*, trabajar con la sobrecarga de funciones(funciones con el mismo nombre y con diferentes argumentos) y la sobrecarga de operadores (aclara el comportamiento de un operador cuando se hacen operaciones entre clases) y conocer que es el formato de punto fijo.
 
 ### Desarrollo
 
@@ -106,7 +106,17 @@ return 0;
 }
 ```
 
-**Formato de punto fijo->** Es una representación de num reales en informática que proporciona un num fijo de dígitos antes y después de la coma decimal. Un num se reptresenta como un entero que se divide por una potencia de 2 para obtener el valor real. Ej: Si tienes un num de 16bits en unto fijo con 8bits en la parte entera y 8bits para la parte fraccionaria. El num 256 representaría el num 1.0(256/2⁸= 1)
+* **A tener en cuenta->** Una variable de tipo int, Fixed o float en tiene un tamaño de 4 bytes (32 bits) en C++ por lo que la diferencia entre ambos  seria la siguiente:
+	* Int -> No tiene una parte decimal. 
+	* float -> Tiene parte decimal y se divide en 3 partes:
+		1. 1 bit de signo.
+		2. 8 bits de exponente.
+		3. 23 bits de mantisa (parte fraccionaria del num)
+	* Fixed -> En nuestro programa Fixed tiene dos partes:
+		1. 24 bits para la parte entera
+		2. 8 bits para la parte fraccionaria.
+
+**Formato de punto fijo->** Es una representación de num reales en informática que proporciona un num fijo de dígitos antes y después de la coma decimal. Un num se reptresenta como un entero que se divide por una potencia de 2 para obtener el valor real. Ej: Si tienes un num de 16bits en punto fijo con 8bits en la parte entera y 8bits para la parte fraccionaria. El num 256 representaría el num 1.0(256/2⁸= 1)
 
 ## Ex01->Fixed II
 
@@ -217,6 +227,30 @@ int main() {
     return 0;
 }
 ```
+3. **Sobrecarga del operador '<<'->** << es el operador de inserción de flujo (se utiliza para insertar datos en flujos de salida, como std::cout). La declaramos fuera del objeto porque el primer parametro es un std::ostream&, no un Fixed. Por lo tanto debe ser una función no miembro. Además al declararla fuera de la clese, permite que la función sea utilizada con la sintaxis natural de la operación de inserción de flujo. (mas intuitiva y legible).
+```cpp
+std::ostream&	operator<<(std::ostream& out, Fixed const& value);
+
+/**
+ * std::ostream -> representa un flujo de salida, envia datos hacia la salida(consola, archivo...)
+ * std::ostream& -> referencia a un objeto de la clase std::ostream, cuando se pasan datos a esa ref
+ * se estan pasando al objeto original.
+ * args->
+ * 		std::ostream& out-> Flujo de salida en el que se insertaran los datos.
+ * 		Fixed const& value-> valor que se va a insertar en el flujo de salida.
+ */
+std::ostream	&operator<<(std::ostream &out, Fixed const &value)
+{
+	out << value.toFloat();
+	return out;
+}
+/*Se programa o sobrecarga el << de manera que cuando se llame imprima su valor a float.*/
+
+	Fixed const c(42.42f);//literal de punto flotante float, en c++ suelen ser double
+
+	std::cout << "c is " << c << std::endl;//output 42.4219, el elemento fixed es mas preciso por eso muestra mas decimales
+	std::cout << "c is " << c.toInt() << " as integer" << std::endl;//output 42
+```
 
 ## Ex02 Fixed III- Now we're talking
 
@@ -270,7 +304,7 @@ Practicar la sobrecarga de operadores y y la sobrecarga y el uso de funciones mi
 
 En este ejercicio hemos hecho uso de la sobrecarga en varios operadores (aritméticos, comparativos y decremento e incremento) y añadido algunas funciones miembro estáticas (para no modificar atributos de nuestras clases).
 
-**Función miembre estática->** Función que pertenece a una clase pero no opera en un objeto de esa clase. No necesita un objeto de la clase para ser llamada, son como funciones globales que tienen acceso a los  miembros privados de la clase.
+**Función miembro estática->** Función que pertenece a una clase pero no opera en un objeto de esa clase. No necesita un objeto de la clase para ser llamada, son como funciones globales que tienen acceso a los  miembros privados de la clase.
 
 Veamos el .hpp como quedaría:
 ```cpp
@@ -286,29 +320,29 @@ Veamos el .hpp como quedaría:
 		Fixed();
 		Fixed(int const value);//constructor que toma un número entero constante como parámetro
 		Fixed(float const value);//constructor que toma un número de coma flotante constante como parámetro
-		Fixed(const Fixed &copy);//constructor de copias
+		Fixed(const Fixed&	copy);//constructor de copias
 		~Fixed();
 
-		Fixed	&operator=(const Fixed &copy);//sobrecarga del operador de asignación de copia
+		Fixed&	operator=(const Fixed &copy);//sobrecarga del operador de asignación de copia
 		
 		/*Operadores >|>=|<|<=|!=|==*/
-		bool	operator>(const Fixed &value) const;
-		bool	operator>=(const Fixed &value) const;
-		bool	operator<(const Fixed &value) const;
-		bool	operator<=(const Fixed &value) const;
-		bool	operator!=(const Fixed &value) const;
-		bool	operator==(const Fixed &value) const;
+		bool	operator>(const Fixed&	value) const;
+		bool	operator>=(const Fixed& value) const;
+		bool	operator<(const Fixed& value) const;
+		bool	operator<=(const Fixed& value) const;
+		bool	operator!=(const Fixed& value) const;
+		bool	operator==(const Fixed& value) const;
 
 		/*Operadores =|+|-|*|/*/
-		Fixed	operator+(const Fixed &rhs) const;//sobrecarga del operador de suma
-		Fixed	operator-(const Fixed &rhs) const;//sobrecarga del operador de resta
-		Fixed	operator*(const Fixed &rhs) const;//sobrecarga del operador de multiplicación
-		Fixed	operator/(const Fixed &rhs) const;//sobrecarga del operador de división
+		Fixed	operator+(const Fixed& rhs) const;//sobrecarga del operador de suma
+		Fixed	operator-(const Fixed& rhs) const;//sobrecarga del operador de resta
+		Fixed	operator*(const Fixed& rhs) const;//sobrecarga del operador de multiplicación
+		Fixed	operator/(const Fixed& rhs) const;//sobrecarga del operador de división
 
 		/*Operadores ++a|a++|--a|a--*/
-		Fixed	&operator++(void);//sobrecarga del operador de preincremento
+		Fixed&	operator++(void);//sobrecarga del operador de preincremento
 		Fixed	operator++(int);//sobrecarga del operador de postincremento
-		Fixed	&operator--(void);//sobrecarga del operador de predecremento
+		Fixed&	operator--(void);//sobrecarga del operador de predecremento
 		Fixed	operator--(int);//sobrecarga del operador de postdecremento
 
 		/*Funciones miembro*/
@@ -318,23 +352,39 @@ Veamos el .hpp como quedaría:
 		int		toInt( void ) const;//convierte el valor de punto fijo en un valor entero
 		
 		/*Funciones miembro estáticas*/
-		static Fixed	&min(Fixed &a, Fixed &b);//toma como parámetros dos referencias a números de punto fijo y devuelve una referencia al más pequeño
-		static Fixed	&min(Fixed const &a, Fixed const &b);//toma como parámetros dos referencias a números de punto fijo constantes y devuelve una referencia al más pequeño
-		static Fixed	&max(Fixed &a, Fixed &b);//toma como parámetros dos referencias a números de punto fijo y devuelve una referencia al mayor
-		static Fixed	&max(Fixed const &a, Fixed const &b);//toma como parámetros dos referencias a números de punto fijo constantes y devuelve una referencia al mayor
+		static Fixed&	min(Fixed& a, Fixed& b);//toma como parámetros dos referencias a números de punto fijo y devuelve una referencia al más pequeño
+		static Fixed&	min(Fixed const& a, Fixed const& b);//toma como parámetros dos referencias a números de punto fijo constantes y devuelve una referencia al más pequeño
+		static Fixed&	max(Fixed& a, Fixed& b);//toma como parámetros dos referencias a números de punto fijo y devuelve una referencia al mayor
+		static Fixed&	max(Fixed const& a, Fixed const& b);//toma como parámetros dos referencias a números de punto fijo constantes y devuelve una referencia al mayor
 };
 
 //Ejemplo de .cpp de sobrecarga de funciones y uso de operador ternario
 
-Fixed	&Fixed::min(Fixed &a, Fixed &b)
+Fixed&	Fixed::min(Fixed& a, Fixed& b)
 {
 	return (a < b) ? a : b;
 }
 
-Fixed	&Fixed::min(Fixed const &a, Fixed const &b)
+Fixed&	Fixed::min(Fixed const& a, Fixed const& b)
 {
 	return (a < b) ? (Fixed &)a : (Fixed &)b;
 }
 ```
+**Sobrecarga incremento y decremento->**
 
+```cpp
+Fixed&	Fixed::operator++(void)
+{
+	this->_value++;
+	return *this;
+}
+/*Toma y devuelve una referencia porque el resultado de un preincremento es el objeto incrementado*/
 
+Fixed	Fixed::operator++(int)
+{
+	Fixed tmp(*this);
+	operator++();
+	return tmp;
+}
+/*crea una copia del objeto original, luego incrementa el objeto original, y devuelve la copia original. Devuelve una copia y no una referencia porque el resultado de un postincremento es el vaolr original del objeto antes de ser incrementado.
+```

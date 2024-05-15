@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 17:47:55 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/06 20:02:24 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:09:52 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ Fixed::~Fixed()
 /*-----------------------------[SOBRECARGA DE OPERADORES]---------------------*/
 
 /*Sobrecarga del operador de asignación de copia*/
-Fixed	&Fixed::operator=(const Fixed &copy)
+Fixed&	Fixed::operator=(const Fixed& copy)
 {
 	std::cout << "Assignation operator called" << std::endl;
 	if (this!= &copy)
@@ -64,32 +64,32 @@ Fixed	&Fixed::operator=(const Fixed &copy)
 
 /*Sobrecarga operadores comparación [<|<=|>|>=|!=|==]*/
 
-bool	Fixed::operator>(const Fixed &value) const
+bool	Fixed::operator>(const Fixed& value) const
 {
 	return this->_value > value.getRawBits();
 }
 
-bool	Fixed::operator>=(const Fixed &value) const
+bool	Fixed::operator>=(const Fixed& value) const
 {
 	return this->_value >= value.getRawBits();
 }
 
-bool	Fixed::operator<(const Fixed &value) const
+bool	Fixed::operator<(const Fixed& value) const
 {
 	return this->_value < value.getRawBits();
 }
 
-bool	Fixed::operator<=(const Fixed &value) const
+bool	Fixed::operator<=(const Fixed& value) const
 {
 	return this->_value <= value.getRawBits();
 }
 
-bool	Fixed::operator!=(const Fixed &value) const
+bool	Fixed::operator!=(const Fixed& value) const
 {
 	return this->_value != value.getRawBits();
 }
 
-bool	Fixed::operator==(const Fixed &value) const
+bool	Fixed::operator==(const Fixed& value) const
 {
 	return this->_value == value.getRawBits();
 }
@@ -97,29 +97,29 @@ bool	Fixed::operator==(const Fixed &value) const
 /*Sobrecarga operadores aritméticos [+|-|*|/]*/
 /*rhs = right hand side || lado derecho del operador || a + rhs*/
 
-Fixed	Fixed::operator+(const Fixed &rhs) const
+Fixed	Fixed::operator+(const Fixed& rhs) const
 {
 	return Fixed(this->toFloat() + rhs.toFloat());
 }
 
-Fixed	Fixed::operator-(const Fixed &rhs) const
+Fixed	Fixed::operator-(const Fixed& rhs) const
 {
 	return Fixed(this->toFloat() - rhs.toFloat());
 }
 
-Fixed	Fixed::operator*(const Fixed &rhs) const
+Fixed	Fixed::operator*(const Fixed& rhs) const
 {
 	return Fixed(this->toFloat() * rhs.toFloat());
 }
 
-Fixed	Fixed::operator/(const Fixed &rhs) const
+Fixed	Fixed::operator/(const Fixed& rhs) const
 {
 	return Fixed(this->toFloat() / rhs.toFloat());
 }
 
 /*Sobrecarga operadores incremento y decremento [++|--]*/
 
-Fixed	&Fixed::operator++(void)
+Fixed&	Fixed::operator++(void)
 {
 	this->_value++;
 	return *this;
@@ -132,7 +132,7 @@ Fixed	Fixed::operator++(int)
 	return tmp;
 }
 
-Fixed	&Fixed::operator--(void)
+Fixed&	Fixed::operator--(void)
 {
 	this->_value--;
 	return *this;
@@ -172,28 +172,28 @@ int		Fixed::toInt( void ) const
 
 /*-----------------------------[FUNCIONES MIEMBRO ESTÁTICAS]-------------------*/
 
-Fixed	&Fixed::min(Fixed &a, Fixed &b)
+Fixed&	Fixed::min(Fixed& a, Fixed& b)
 {
 	return (a < b) ? a : b;
 }
 
-Fixed	&Fixed::min(Fixed const &a, Fixed const &b)
+Fixed&	Fixed::min(Fixed const& a, Fixed const& b)
 {
-	return (a < b) ? (Fixed &)a : (Fixed &)b;
+	return (a < b) ? (Fixed&)a : (Fixed&)b;
 }
 
-Fixed	&Fixed::max(Fixed &a, Fixed &b)
+Fixed&	Fixed::max(Fixed& a, Fixed& b)
 {
 	return (a > b) ? a : b;
 }
 
-Fixed	&Fixed::max(Fixed const &a, Fixed const &b)
+Fixed&	Fixed::max(Fixed const& a, Fixed const& b)
 {
-	return (a > b) ? (Fixed &)a : (Fixed &)b;
+	return (a > b) ? (Fixed&)a : (Fixed&)b;
 }
 
 
-std::ostream	&operator<<(std::ostream &out, Fixed const &value)
+std::ostream	&operator<<(std::ostream& out, Fixed const& value)
 {
 	out << value.toFloat();
 	return out;
