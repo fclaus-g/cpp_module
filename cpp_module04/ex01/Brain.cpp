@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 13:33:08 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/15 18:49:59 by fclaus-g         ###   ########.fr       */
+/*   Created: 2024/05/15 18:30:23 by fclaus-g          #+#    #+#             */
+/*   Updated: 2024/05/15 18:37:29 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Brain.hpp"
 
-Cat::Cat(void) : Animal("Cat") {
-	std::cout << GRN "Cat constructor called" RST << std::endl;
+Brain::Brain() {
+	std::cout << "Brain constructor called" << std::endl;
 }
 
-Cat::~Cat() {
-	std::cout << GRN "Cat destructor called" RST << std::endl;
+Brain::Brain(const Brain &other) {
+	*this = other;
 }
 
-void Cat::makeSound() const {
-	std::cout << GRN "Meow! Meow!" RST << std::endl;
+Brain&	Brain::operator=(const Brain &other) {
+	if (this != &other)
+	{
+		for (int i = 0; i < 100; i++)
+			this->ideas[i] = other.ideas[i];
+	}
+	return *this;
 }
 
+Brain::~Brain() {
+	std::cout << "Brain destructor called" << std::endl;
+}
