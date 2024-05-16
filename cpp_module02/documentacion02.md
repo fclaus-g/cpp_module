@@ -371,6 +371,7 @@ Fixed&	Fixed::min(Fixed const& a, Fixed const& b)
 }
 ```
 **Sobrecarga incremento y decremento->**
+A tener en cuenta, cuando a = 0, si hacemos el incremento a pasaria a tomar el valor a = 0.00390625 que , en el contexto de punto fijo, es la diferencia mas pequeña que puede representarse entre dos números(Epsilon), y que ajustamos con nuestro atributo _bits. Si aumentáramos el valor de _bits , la precisión de nuestro Fixed aumentaría y Epsilon disminuiría. Lo que al hacer a++ el incremento sería mas pequeño. El cálculo sería si _bits = n, Epsilon = 1/2^n.
 
 ```cpp
 Fixed&	Fixed::operator++(void)
@@ -386,5 +387,5 @@ Fixed	Fixed::operator++(int)
 	operator++();
 	return tmp;
 }
-/*crea una copia del objeto original, luego incrementa el objeto original, y devuelve la copia original. Devuelve una copia y no una referencia porque el resultado de un postincremento es el valor original del objeto antes de ser incrementado.
+/*crea una copia del objeto original, luego incrementa el objeto original, y devuelve la copia original. Devuelve una copia y no una referencia porque el resultado de un postincremento es el valor original del objeto antes de ser incrementado. El tomar un arg de tipo int, es una convención para distinguir del preincremento, sin embargo este valor no se usa en la función.
 ```

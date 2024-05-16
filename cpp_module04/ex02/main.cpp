@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:25:00 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/16 10:53:33 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:04:25 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,16 @@ Animal.*/
 
 int main()
 {
-	Animal *animals[8];
+	Animal *animals[4];
 
-	for (int i = 0; i < 4; i++)
+	animals[0] = new Dog();
+	animals[1] = new Cat();
+	animals[2] = new Dog();
+	animals[3] = new Cat();
+	for (int i = 0; i < 2; i++)
 	{
-		animals[i] = new Dog();
 		animals[i]->makeSound();
-		animals[i + 4] = new Cat();
-		animals[i + 4]->makeSound();
-	}
-	for (int i = 0; i < 8; i++)
 		delete animals[i];
-
+	}
 	return 0;
 }

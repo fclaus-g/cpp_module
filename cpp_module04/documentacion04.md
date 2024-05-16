@@ -159,7 +159,7 @@ public:
  y el tamaño tamano del objeto original*/
  ```
  
-## Ex02->Interface & Recap
+## Ex02-> Abstract Class
 
 ### Subject
 Después de todo, crear objetos animales no tiene sentido. ¡Es verdad, no emiten ningún sonido!
@@ -168,4 +168,107 @@ Si lo desea, puede actualizar el nombre de la clase agregando un prefijo A a Ani
 
 ### Objetivo
 
+Conocer como funciona la clase abstracta y los métodos virtuales puros.
+
 ### Desarrollo
+
+Pues es sorprendentemente rápido terminar este ejercicio puesto que lo que tenemos que hacer es cambiar el método virtual makeSound() de la clase Animal por un método virtual puro añadiendo una igualación a 0. Esto haría que no podamos instanciar una clase Animal, sino que solo serviria como clase base para las subclases.
+
+```cpp
+class Animal {
+	protected:
+		std::string type;
+	public:
+		Animal();
+		Animal(std::string type);//constructor con parametro
+		virtual ~Animal();//virtual destructor para que se llame al destructor de las clases hijas
+		Animal(const Animal& other);//copy constructor
+		Animal&	operator=(const Animal &other);//asignacion por sobrecarga de operador
+		
+		std::string		getType() const;
+		virtual void	makeSound() const = 0;//metodo virtual puro
+};
+```
+
+## Ex03 -> Interface & Recap
+
+### Subject
+
+Las interfaces no existen en C++98 (ni siquiera en C++20). Sin embargo, las clases puramente abstractas comúnmente se denominan interfaces. Por lo tanto, en este último ejercicio, intentemos implementar interfaces para asegurarte de que tienes este módulo.
+Complete la definición de la siguiente clase AMateria e implemente las necesarias funciones miembro.
+```cpp
+class AMateria
+{
+	protected:
+	[...]
+	public:
+	AMateria(std::string const & type);
+	[...]
+	std::string const & getType() const; //Returns the materia type
+	virtual AMateria* clone() const = 0;
+	virtual void use(ICharacter& target);
+};
+```
+Implementar las clases de Materias concretas Ice y Cure. Utilice su nombre en minúsculas
+case ("ice" para Ice, "cure" para Cure) para establecer sus tipos. Por supuesto, su función de miembro.
+clone() devolverá una nueva instancia del mismo tipo (es decir, si clonas un Ice Materia,
+obtendrás una nueva Materia de Hielo).
+La función miembro use(ICharacter&) mostrará:
+* Hielo: "* dispara un rayo de hielo a <nombre> *"
+* Cura: "*cura las heridas de <nombre>*"
+<nombre> es el nombre del carácter pasado como parámetro. No imprimas el ángulo
+corchetes (< y >).
+Al asignar una Materia a otra, copiar el tipo no hace sentido.
+Escriba la clase concreta Carácter que implementará la siguiente interfaz
+
+```cpp
+class ICharacter
+{
+	public:
+	virtual ~ICharacter() {}
+	virtual std::string const & getName() const = 0;
+	virtual void equip(AMateria* m) = 0;
+	virtual void unequip(int idx) = 0;
+	virtual void use(int idx, ICharacter& target) = 0;
+};
+```
+
+El Personaje posee un inventario de 4 espacios, lo que significa 4 Materias como máximo.
+El inventario está vacío en la construcción. Equipan las Materias en el primer hueco vacío
+ellos encuentran. Esto significa, en este orden: del slot 0 al slot 3. En caso de que intenten agregar
+una Materia a un inventario completo, o usar/desequipar una Materia inexistente, no hagas nada
+(pero aún así, los errores están prohibidos). La función miembro unequip() NO debe eliminar el
+¡Materia!
+Maneja las Materias que tu personaje dejó en el suelo como quieras.
+Guarde las direcciones antes de llamar a unequip(), o cualquier otra cosa, pero
+No olvides que debes evitar pérdidas de memoria.
+La función miembro use(int, ICharacter&) tendrá que usar Materia en el
+slot[idx] y pase el parámetro de destino a la función AMateria::use.
+El inventario de tu personaje podrá soportar cualquier tipo de
+Materia.
+Tu personaje debe tener un constructor que tome su nombre como parámetro. cualquier copia
+(usando el constructor de copia o el operador de asignación de copia) de un personaje debe ser profundo.
+Durante la copia, las Materias de un Personaje deben eliminarse antes de agregar las nuevas.
+a su inventario. Por supuesto, las Materias deben eliminarse cuando se destruye un Personaje.
+Escriba la clase concreta MateriaSource que implementará la siguiente interfaz:.
+
+```cpp
+class IMateriaSource
+{
+	public:
+	virtual ~IMateriaSource() {}
+	virtual void learnMateria(AMateria*) = 0;
+	virtual AMateria* createMateria(std::string const & type) = 0;
+};
+```
+
+• aprenderMateria(AMateria*)
+Copia la Materia pasada como parámetro y la almacena en la memoria para poder clonarla.
+más tarde. Al igual que el personaje, MateriaSource puede conocer como máximo 4 Materias. Ellos
+no son necesariamente únicos.
+• createMateria(std::string const &)
+Devuelve una nueva Materia. Esta última es una copia de la Materia previamente aprendida por
+MateriaSource cuyo tipo es igual al pasado como parámetro. Devuelve 0 si
+el tipo es desconocido.
+En pocas palabras, su MateriaSource debe poder aprender "plantillas" de Materias para
+crearlos cuando sea necesario. Entonces, yo

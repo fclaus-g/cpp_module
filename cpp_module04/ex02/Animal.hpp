@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:49:21 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/15 18:48:07 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:54:10 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Animal {
 		Animal&	operator=(const Animal &other);//asignacion por sobrecarga de operador
 		
 		std::string		getType() const;
-		virtual void	makeSound() const;//funcion virtual pura que se implementara en las clases hijas
+		virtual void	makeSound() const = 0;//metodo virtual puro
 };
 
 #endif
