@@ -386,5 +386,5 @@ Fixed	Fixed::operator++(int)
 	operator++();
 	return tmp;
 }
-/*crea una copia del objeto original, luego incrementa el objeto original, y devuelve la copia original. Devuelve una copia y no una referencia porque el resultado de un postincremento es el vaolr original del objeto antes de ser incrementado.
+/*crea una copia del objeto original, luego incrementa el objeto original, y devuelve la copia original. Devuelve una copia y no una referencia porque el resultado de un postincremento es el valor original del objeto antes de ser incrementado.
 ```

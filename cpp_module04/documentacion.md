@@ -159,3 +159,13 @@ public:
  y el tamaño tamano del objeto original*/
  ```
  
+## Ex02->Interface & Recap
+
+### Subject
+Después de todo, crear objetos animales no tiene sentido. ¡Es verdad, no emiten ningún sonido!
+Para evitar posibles errores, la clase Animal predeterminada no debe ser instanciable. Arregla la clase Animal para que nadie pueda crear una instancia de ella. Todo debería funcionar como antes.
+Si lo desea, puede actualizar el nombre de la clase agregando un prefijo A a Animal.
+
+### Objetivo
+
+### Desarrollo

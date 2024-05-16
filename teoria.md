@@ -808,3 +808,44 @@ int main() {
 un puntero a Base que apunta a un objeto Derived, se llamará al destructor correcto.
 Primero se llamará al destructor de Derived y luego al de Base.*/
 ```
+
+## Abstrass Classes
+
+Una classe abstracta es una clase que **no puede ser instanciada directamente**. Se utiliza principalmente como una clase base para otras clases.
+En C++ una clase se vuelve abstracta si tiene al menos un **método virtual puro**. Un **método virtual puro** es un método que se declara en una clase base y tiene una especificación '= 0' en su declaración.
+Las clases derivadas de la clase abstracta deben implementar todos los métodos virtuales puros, de lo contrario, también se convertirán en clases abstractas y no podrán ser instanciadas. Ejemplo:
+```cpp
+#include <iostream>
+
+// Clase abstracta
+class Animal {
+public:
+    // Método virtual puro
+    virtual void makeSound() = 0;
+
+    // Método concreto
+    void eat() {
+        std::cout << "El animal come" << std::endl;
+    }
+};
+
+// Clase derivada
+class Dog : public Animal {
+public:
+    // Implementación del método virtual puro
+    void makeSound() override {
+        std::cout << "El perro ladra" << std::endl;
+    }
+};
+
+int main() {
+    Dog myDog;
+    myDog.makeSound(); // El perro ladra
+    myDog.eat(); // El animal come
+
+    return 0;
+}
+/*En este código, Animal es una clase abstracta que tiene un método virtual puro makeSound().
+La clase Dog hereda de la clase Animal y proporciona una implementación para el método makeSound()*/
+```
+
