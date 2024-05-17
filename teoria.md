@@ -849,3 +849,34 @@ int main() {
 La clase Dog hereda de la clase Animal y proporciona una implementación para el método makeSound()*/
 ```
 
+## Interfaces
+
+Una interfaz es un contrato que define un conjunto de métodos y propiedades de una clase de implementar. Es una forma de garantizar que una clase cumpla un cierto estándar o se comporte de una cierta manera.
+Son útiles para:
+* Proporcionar una forma de asegurar que una clase cumpla con un cierto contrato.
+* Permitir que diferentes clases sean utilizadas de manera intercambiable si implementan la misma interfaz.
+* Proporcionar una forma de separar la definición de métodos y propiedades de su implementación, lo que puede hacer que el código sea mas modular y fácil de mantener.
+
+Es importante que una interface define lo que tiene que hacer una clase pero cómo debe hacerlo. La implementación de los métodos y propiedades definidos en la interfaz se deja a la clase que implementa la interfaz.
+
+En C++ las interfaces no son un concepto incorporado en el lenguaje (en java o C# si por ejemplo). Sin embargo se puede hacer algo similar usando clases abstractas puras. Ejemplo:
+```cpp
+class IMyInterface
+{
+public:
+    virtual ~IMyInterface() {}
+    virtual void MyMethod() = 0; // Método virtual puro
+};
+/* En este código, IMyInterface es una clase abstracta pura que actúa como una interfaz. Tiene un método virtual puro (MyMethod), que cualquier clase que herede IMyInterface deberá implementar.
+
+Una clase que implemente esta interfaz debe verse algo así:*/
+
+class MyClass : public IMyInterface
+{
+public:
+    void MyMethod() override
+    {
+        // Implementación del método
+    }
+};
+```

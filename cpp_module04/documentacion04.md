@@ -195,7 +195,7 @@ class Animal {
 ### Subject
 
 Las interfaces no existen en C++98 (ni siquiera en C++20). Sin embargo, las clases puramente abstractas comúnmente se denominan interfaces. Por lo tanto, en este último ejercicio, intentemos implementar interfaces para asegurarte de que tienes este módulo.
-Complete la definición de la siguiente clase AMateria e implemente las necesarias funciones miembro.
+1. Complete la definición de la siguiente clase AMateria e implemente las necesarias funciones miembro.
 ```cpp
 class AMateria
 {
@@ -209,17 +209,17 @@ class AMateria
 	virtual void use(ICharacter& target);
 };
 ```
-Implementar las clases de Materias concretas Ice y Cure. Utilice su nombre en minúsculas
+* Implementar las clases de Materias concretas Ice y Cure. Utilice su nombre en minúsculas
 case ("ice" para Ice, "cure" para Cure) para establecer sus tipos. Por supuesto, su función de miembro.
-clone() devolverá una nueva instancia del mismo tipo (es decir, si clonas un Ice Materia,
+* clone() devolverá una nueva instancia del mismo tipo (es decir, si clonas un Ice Materia,
 obtendrás una nueva Materia de Hielo).
-La función miembro use(ICharacter&) mostrará:
-* Hielo: "* dispara un rayo de hielo a <nombre> *"
-* Cura: "*cura las heridas de <nombre>*"
-<nombre> es el nombre del carácter pasado como parámetro. No imprimas el ángulo
-corchetes (< y >).
-Al asignar una Materia a otra, copiar el tipo no hace sentido.
-Escriba la clase concreta Carácter que implementará la siguiente interfaz
+* La función miembro use(ICharacter&) mostrará:
+	* Hielo: "* dispara un rayo de hielo a <nombre> *"
+	* Cura: "*cura las heridas de <nombre>*"
+	<nombre> es el nombre del carácter pasado como parámetro. No imprimas el ángulocorchetes (< y >).
+* Al asignar una Materia a otra, copiar el tipo no hace sentido.
+
+2. Escriba la clase concreta Carácter que implementará la siguiente interfaz
 
 ```cpp
 class ICharacter
@@ -233,24 +233,20 @@ class ICharacter
 };
 ```
 
-El Personaje posee un inventario de 4 espacios, lo que significa 4 Materias como máximo.
-El inventario está vacío en la construcción. Equipan las Materias en el primer hueco vacío
-ellos encuentran. Esto significa, en este orden: del slot 0 al slot 3. En caso de que intenten agregar
-una Materia a un inventario completo, o usar/desequipar una Materia inexistente, no hagas nada
-(pero aún así, los errores están prohibidos). La función miembro unequip() NO debe eliminar el
-¡Materia!
-Maneja las Materias que tu personaje dejó en el suelo como quieras.
-Guarde las direcciones antes de llamar a unequip(), o cualquier otra cosa, pero
-No olvides que debes evitar pérdidas de memoria.
-La función miembro use(int, ICharacter&) tendrá que usar Materia en el
-slot[idx] y pase el parámetro de destino a la función AMateria::use.
-El inventario de tu personaje podrá soportar cualquier tipo de
-Materia.
-Tu personaje debe tener un constructor que tome su nombre como parámetro. cualquier copia
+* El Personaje posee un inventario de 4 espacios, lo que significa 4 Materias como máximo.
+* El inventario está vacío en la construcción. Equipan las Materias en el primer hueco vacío ellos encuentran. Esto significa, en este orden: del slot 0 al slot 3. En caso de que intenten agregar una Materia a un inventario completo, o usar/desequipar una Materia inexistente, no hagas nada(pero aún así, los errores están prohibidos). La función miembro unequip() NO debe eliminar el ¡Materia!
+* Maneja las Materias que tu personaje dejó en el suelo como quieras.
+* Guarde las direcciones antes de llamar a unequip(), o cualquier otra cosa, pero
+	No olvides que debes evitar pérdidas de memoria.
+* La función miembro use(int, ICharacter&) tendrá que usar Materia en el
+	slot[idx] y pase el parámetro de destino a la función AMateria::use.
+* El inventario de tu personaje podrá soportar cualquier tipo de Materia.
+* Tu personaje debe tener un constructor que tome su nombre como parámetro. cualquier copia
 (usando el constructor de copia o el operador de asignación de copia) de un personaje debe ser profundo.
 Durante la copia, las Materias de un Personaje deben eliminarse antes de agregar las nuevas.
 a su inventario. Por supuesto, las Materias deben eliminarse cuando se destruye un Personaje.
-Escriba la clase concreta MateriaSource que implementará la siguiente interfaz:.
+
+3. Escriba la clase concreta MateriaSource que implementará la siguiente interfaz:.
 
 ```cpp
 class IMateriaSource
@@ -262,13 +258,10 @@ class IMateriaSource
 };
 ```
 
-• aprenderMateria(AMateria*)
-Copia la Materia pasada como parámetro y la almacena en la memoria para poder clonarla.
-más tarde. Al igual que el personaje, MateriaSource puede conocer como máximo 4 Materias. Ellos
-no son necesariamente únicos.
-• createMateria(std::string const &)
-Devuelve una nueva Materia. Esta última es una copia de la Materia previamente aprendida por
-MateriaSource cuyo tipo es igual al pasado como parámetro. Devuelve 0 si
-el tipo es desconocido.
-En pocas palabras, su MateriaSource debe poder aprender "plantillas" de Materias para
-crearlos cuando sea necesario. Entonces, yo
+* • aprenderMateria(AMateria*)
+	Copia la Materia pasada como parámetro y la almacena en la memoria para poder clonarla más tarde. Al igual que el personaje, MateriaSource puede conocer como máximo 4 Materias. Ellos
+	no son necesariamente únicos.
+* • createMateria(std::string const &)
+	Devuelve una nueva Materia. Esta última es una copia de la Materia previamente aprendida por MateriaSource cuyo tipo es igual al pasado como parámetro. Devuelve 0 si el tipo es desconocido. 
+* En pocas palabras, su MateriaSource debe poder aprender "plantillas" de Materias para crearlos cuando sea necesario. Luego, podrás generar una nueva Materia usando solo una cadena que identifique su tipo.
+
