@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:22:20 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/15 18:30:06 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:48:45 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ class Brain {
 		std::string ideas[100];
 	public:
 		Brain();
+		Brain(const Brain& other);
 		~Brain();
-		Brain(const Brain &other);
-		Brain& operator=(const Brain &other);
+		
+		Brain& operator=(const Brain& other);
 };
 
 #endif

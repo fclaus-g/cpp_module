@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:33:08 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/15 20:01:17 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:51:17 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ Cat::Cat(const Cat& copy) : Animal(copy) {
 Cat&	Cat::operator=(const Cat& copy) {
 	std::cout << GRN "Cat assignation operator called" RST << std::endl;
 	if (this != &copy) {
-		Animal::operator=(copy);
-		delete this->_brain;
+		this->type = copy.getType();
 		this->_brain = new Brain(*copy._brain);
 	}
 	return *this;

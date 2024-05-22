@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:49:21 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/16 16:54:10 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:57:01 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@
 # define CYN "\033[1;36m"
 # define RST "\033[0m"
 
-class Animal {
+class AAnimal {
 	protected:
 		std::string type;
 	public:
-		Animal();
-		Animal(std::string type);//constructor con parametro
-		virtual ~Animal();//virtual destructor para que se llame al destructor de las clases hijas
-		Animal(const Animal& other);//copy constructor
-		Animal&	operator=(const Animal &other);//asignacion por sobrecarga de operador
+		AAnimal();
+		AAnimal(std::string type);//constructor con parametro
+		virtual ~AAnimal();//virtual destructor para que se llame al destructor de las clases hijas
+		AAnimal(const AAnimal& other);//copy constructor
+		AAnimal&	operator=(const AAnimal &other);//asignacion por sobrecarga de operador
 		
 		std::string		getType() const;
 		virtual void	makeSound() const = 0;//metodo virtual puro

@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:31:39 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/17 11:35:37 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:11:20 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,17 @@ class AMateria{
 		std::string _type;
 
 	public:
-		AMateria(std::string const &type);
-		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter &target);
+		AMateria();
+		AMateria(const std::string&  type);//constructor con parametro
+		AMateria(const AMateria& other);//constructor de copia const porque
+		~AMateria();
+		AMateria& operator=(const AMateria& other);//asignacion por sobrecarga de operador
+
+		const	std::string& getType() const;
+		void	setType(std::string type);
+		
+		virtual AMateria* 	clone() const = 0;
+		virtual void		use(ICharacter &target);
 };
 
 #endif

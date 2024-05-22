@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:00:11 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/14 19:52:58 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:40:29 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ Animal::Animal(const Animal &other) {
 }
 
 Animal&	Animal::operator=(const Animal& other) {
-	this->type = other.type;
+	if (this != &other)
+		this->type = other.getType();
 	return *this;
 }
 

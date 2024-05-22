@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 12:38:08 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/10 11:05:36 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:26:22 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class ScavTrap : virtual public ClapTrap{
 		~ScavTrap();
 
 		void guardGate();
-		using ClapTrap::attack;
+		void attack(std::string const & target);
 };
 
 #endif

@@ -265,3 +265,53 @@ class IMateriaSource
 	Devuelve una nueva Materia. Esta última es una copia de la Materia previamente aprendida por MateriaSource cuyo tipo es igual al pasado como parámetro. Devuelve 0 si el tipo es desconocido. 
 * En pocas palabras, su MateriaSource debe poder aprender "plantillas" de Materias para crearlos cuando sea necesario. Luego, podrás generar una nueva Materia usando solo una cadena que identifique su tipo.
 
+### Objetivo 
+
+Poner en práctica todo lo aprendido en estos módulos, es un buen proyecto final muy completo.
+
+### Desarrollo
+
+Vamos a empezar declarando los hpp que nos pide el subject, poco a poco iremos comprendiendo exactamente que es y como tenemos que ir haciendo el ejercicio.
+
+1. El primer hpp que vamos a hacer es el de **AMateria**, una **clase abstracta**(tiene un método virtual puro y no puede instanciarse directamente, solo a través de herencia). Respetaremos la forma canónica ortodoxa.
+```cpp
+class AMateria{
+	protected://para que sea accesible por las subclases
+		std::string _type;
+
+	public:
+		AMateria();//constructor por defecto
+		AMateria(const std::string& type);//constructor con parámetro(string)
+		AMateria(const AMateria& other);//constructor de copia const porque no se va a modificar.
+		~AMateria();//destructor
+		AMateria& operator=(const AMateria& other);//asignacion por sobrecarga de operador
+		/*el siguiente método tiene 2 const-> el 1º porque no se va a poder modificar el std::string que se devuelve y el 2ª indica que getName es una función constante y no puede modificar ningún miembro del objeto en el que se llama*/ 
+		const	std::string& getType() const;
+		void	setType(std::string type);
+		
+		/**
+		 * virtual:la función puede ser sobreescrita, 
+		 * AMateria*: devuelve un puntero a un objeto AMateria.
+		 * clone(): la función en si.
+		 * const: no podrá modificar ningun miembro de la clase.
+		 * =0: debe ser implementada por la subclase que herede de esta clase.*/
+		virtual AMateria* 	clone() const = 0;
+		virtual void		use(ICharacter& target);
+};
+```
+2. A continuación implementaremos el header de ICharacter que será simpl,emente una plantilla o **interface**, no hay que hacerle el .cpp porque serán las clases que hereden de esta la que se encarguen de este trabajo.
+```cpp
+class ICharacter {
+	public:
+		/*virtual destructor: asegura que se llame al destructor correcto cuando se destruye un objeto a través de un puntero a la clase base
+		*{}-> nos ahorramos definir el destructor (se encargará la subclase que lo herede)*/ 
+		virtual ~ICharacter() {};
+		/*El resto de funciones son virtuales puras (=0) por lo que se encargará la subclase de implementarlas*/
+		virtual const 	std::string& getName() const = 0;
+		virtual void	equip(AMateria* m) = 0;
+		virtual void	unequip(int idx) = 0;
+		virtual void	use(int idx, ICharacter& target) = 0;
+};
+```
+3. Vamos a por el siguiente header o .hpp que nos da el subject que sería **IMateriaSource** otra **interface**
+

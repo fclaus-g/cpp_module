@@ -859,6 +859,8 @@ Son útiles para:
 
 Es importante que una interface define lo que tiene que hacer una clase pero cómo debe hacerlo. La implementación de los métodos y propiedades definidos en la interfaz se deja a la clase que implementa la interfaz.
 
+Una **interface** es una clase abstracta diseñada para ser una plantilla 
+
 En C++ las interfaces no son un concepto incorporado en el lenguaje (en java o C# si por ejemplo). Sin embargo se puede hacer algo similar usando clases abstractas puras. Ejemplo:
 ```cpp
 class IMyInterface
