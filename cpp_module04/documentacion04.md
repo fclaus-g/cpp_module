@@ -258,7 +258,7 @@ class IMateriaSource
 };
 ```
 
-* • aprenderMateria(AMateria*)
+* • learnMateria(AMateria*)
 	Copia la Materia pasada como parámetro y la almacena en la memoria para poder clonarla más tarde. Al igual que el personaje, MateriaSource puede conocer como máximo 4 Materias. Ellos
 	no son necesariamente únicos.
 * • createMateria(std::string const &)
@@ -313,5 +313,13 @@ class ICharacter {
 		virtual void	use(int idx, ICharacter& target) = 0;
 };
 ```
-3. Vamos a por el siguiente header o .hpp que nos da el subject que sería **IMateriaSource** otra **interface**
+3. Vamos a por el siguiente header o .hpp que nos da el subject que sería **IMateriaSource** otra **interface** que será heredada por **MateriaSource** una subclase que crearemos en el siguiente paso.
+```cpp
+class IMateriaSource {
+	public:
+		virtual ~IMateriaSource() {};
+		virtual void learnMateria(AMateria*) = 0;
+		virtual AMateria* createMateria( std::string& type) = 0;
+};
+
 
