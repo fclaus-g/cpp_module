@@ -6,18 +6,18 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:22:05 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/22 13:52:02 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:31:55 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog(void) : Animal("Dog") {
+Dog::Dog(void) : AAnimal("Dog") {
 	std::cout << CYN "Dog constructor called" RST << std::endl;
 	this->_brain = new Brain();
 }
 
-Dog::Dog(const Dog& copy) : Animal(copy) {
+Dog::Dog(const Dog& copy) : AAnimal(copy) {
 	std::cout << CYN "Dog copy constructor called" RST << std::endl;
 	this->_brain = new Brain(*copy._brain);
 }

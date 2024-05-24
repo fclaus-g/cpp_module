@@ -6,18 +6,18 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:33:08 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/22 13:51:17 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:32:31 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat(void) : Animal("Cat") {
+Cat::Cat(void) : AAnimal("Cat") {
 	std::cout << GRN "Cat constructor called" RST << std::endl;
 	this->_brain = new Brain();
 }
 
-Cat::Cat(const Cat& copy) : Animal(copy) {
+Cat::Cat(const Cat& copy) : AAnimal(copy) {
 	std::cout << GRN "Cat copy constructor called" RST << std::endl;
 	this->_brain = new Brain(*copy._brain);//copia profunda de la clase Brain
 }
@@ -39,4 +39,3 @@ Cat::~Cat() {
 void Cat::makeSound() const {
 	std::cout << GRN "Meow! Meow!" RST << std::endl;
 }
-

@@ -6,13 +6,13 @@
 #    By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 17:47:40 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/05/08 12:21:13 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/05/24 13:17:50 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ClapTrap
 
-CC = g++
+CC = clang++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 

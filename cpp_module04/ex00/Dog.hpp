@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:21:52 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/21 12:44:47 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:25:37 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Dog : public Animal{
 		Dog();
 		Dog(const Dog& copy);
 		~Dog();
-		Dog::Dog& operator=(const Dog& copy);
+		Dog& operator=(const Dog& copy);
 		
 		void makeSound() const;
 };

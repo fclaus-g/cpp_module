@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+         #
+#    By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 20:13:07 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/05/14 19:42:31 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/05/24 12:23:55 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = polymorphism
 
-CC = g++
+CC = clang++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 

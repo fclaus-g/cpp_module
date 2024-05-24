@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:25:00 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/16 17:04:25 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:31:16 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Si lo desea, puede actualizar el nombre de la clase agregando un prefijo A a
 Animal.*/
 
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "WrongAnimal.hpp"
@@ -26,7 +26,7 @@ Animal.*/
 
 int main()
 {
-	Animal *animals[4];
+	AAnimal *animals[4];
 
 	animals[0] = new Dog();
 	animals[1] = new Cat();
