@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:49:21 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/21 12:55:56 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:19:21 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Animal {
 		virtual ~Animal();//virtual destructor para que se llame al destructor de las clases hijas
 		Animal(const Animal& other);//copy constructor
 		Animal&	operator=(const Animal &other);//asignacion por sobrecarga de operador
-		
+
 		std::string		getType() const;
 		virtual void	makeSound() const;//funcion virtual pura que se implementara en las clases hijas
 };

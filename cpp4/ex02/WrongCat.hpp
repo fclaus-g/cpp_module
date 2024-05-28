@@ -1,12 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ICharacter.cpp                                     :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 17:26:40 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/23 20:50:18 by fclaus-g         ###   ########.fr       */
+/*   Created: 2024/05/14 19:35:29 by fclaus-g          #+#    #+#             */
+/*   Updated: 2024/05/22 13:53:08 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
+
+# include "WrongAnimal.hpp"
+
+class WrongCat : public WrongAnimal {
+	public:
+		WrongCat();
+		WrongCat(const WrongCat &wc);
+		~WrongCat();
+		WrongCat&	operator=(const WrongCat &wc);
+		void	makeSound() const;
+};
+
+#endif

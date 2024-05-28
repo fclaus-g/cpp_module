@@ -67,6 +67,23 @@ class Animal {
 ```
 Tenemos tambien que crear una clase equivocada para trabajar con errores y muestre mensajes equivocados.
 
+```cpp
+class WrongAnimal {
+	protected:
+		std::string type;
+	public:
+		WrongAnimal();
+		WrongAnimal(std::string type);
+		virtual ~WrongAnimal();
+		WrongAnimal(const WrongAnimal& other);
+		WrongAnimal&	operator=(const WrongAnimal& other);
+
+		std::string	getType() const;
+		void		makeSound() const; 
+		/*al no declarar el método como virtual a la hora de llamar al método de la subclase
+		se ejecutará el de la clase madre por defecto*/
+};
+```
 
 ## Ex01-> I don’t want to set the world on fire
 
@@ -321,5 +338,209 @@ class IMateriaSource {
 		virtual void learnMateria(AMateria*) = 0;
 		virtual AMateria* createMateria( std::string& type) = 0;
 };
+/*como podemos observar de nuevo, al ser IMateriaSource una interface contiene funciones virtuales puras para que sean heredadas e implementadas por las subclases*/ 
+```
+4. A continuación vamos a crear una clase **MateriaSource** que será la que heredará de la plantilla o interface **IMateriaSource**. Haciendo caso de lo que nos pide el subject esta subclase vba a tener una capacidad de materia de 4 puestos. De momento le voy a añadir un int indice, quizá nos sirva mas adelante.
+```cpp
+/*En la declaración de MateriaSource podemos ver como hereda de la clase madre IMateriaSource a través de los ':'*/
+class MateriaSource : public IMateriaSource {
+	private:
+		AMateria*	_materias[4];
+		int			_index;
+	public:
+		MateriaSource();
+		MateriaSource(const MateriaSource& other);
+		~MateriaSource();
 
+		MateriaSource&	operator=(const MateriaSource& other);
 
+		void		learnMateria(AMateria* materia);
+		AMateria*	createMateria(const std::string& type);
+};
+```
+4. Vamos a crear el header de nuetro personaje o character que heredará de la interface **ICharacter** y su .cpp para desarrollar sus métodos y asinar sus atributos.
+```cpp
+/*----------[HEADER]------------*/
+class Character {
+	private:
+		std::string _name;
+		AMateria*	_inventory[4];//invenario de materias
+		int			_index;//indice para el inventario
+	public:
+		Character();//constructor por defecto
+		Character(std::string name);//constructor con nombre
+		Character (const Character& copy);//constructor de copia
+		~Character();//destructor
+
+		Character& operator=(const Character& copy);//sobrecarga de =
+
+		const std::string& getName() const;//getter del nombre
+		void equip(AMateria* m);//función que añade una materia al inventario
+		void unequip(int idx);//funcion que elimina una materia del inventario
+		void use(int idx, ICharacter& target);//funcion que usa la materia contra un objetivo pasado por parametros.
+};
+
+/*------------------[.cpp]-------------------------*/
+Character::Character() {
+	this->_name = "Default";
+	this->_index = 0;
+	for (int i = 0; i < 4; i++)
+		this->_inventory[i] = NULL;
+}
+
+Character::Character(std::string name) {
+	this->_name = name;
+	this->_index = 0;
+	for (int i = 0; i < 4; i++)
+		this->_inventory[i] = NULL;
+}
+
+Character::Character(const Character& copy) {
+	this->_name = copy._name;
+	this->_index = copy._index;
+	for (int i = 0; i < 4; i++)
+		this->_inventory[i] = copy._inventory[i];
+}
+
+Character::~Character() {
+	for (int i = 0; i < 4; i++)
+		if (this->_inventory[i] != NULL)
+			delete this->_inventory[i];
+}
+
+Character& Character::operator=(const Character& rhs) {
+	if (this != &rhs)
+	{
+		this->_name = rhs._name;
+		this->_index = rhs._index;
+		for (int i = 0; i < 4; i++)
+			this->_inventory[i] = rhs._inventory[i];
+	}
+	return (*this);
+}
+
+const std::string& Character::getName() const {
+	return (this->_name);
+}
+
+void Character::equip(AMateria* m) {
+	if (this->_index < 4 && m == NULL)
+	{
+		this->_inventory[this->_index] = m;
+		this->_index++;
+		std::cout << this->_name << " has equipped " << m->getType() << std::endl;
+	}
+	else
+		std::cout << "Inventory is full" << std::endl;
+}
+
+void Character::unequip(int idx) {
+	if (idx >= 0 && idx < 4 && this->_inventory[idx] != NULL)
+	{
+		std::cout << this->_name << " has unequipped " << this->_inventory[idx]->getType() << std::endl;
+		this->_inventory[idx] = NULL;
+		this->_index--;
+	}
+	else
+		std::cout << "Invalid index" << std::endl;
+}
+
+void Character::use(int idx, ICharacter& target) {
+	if (idx >= 0 && idx < 4 && this->_inventory[idx] != NULL)
+	{
+		std::cout << this->_name << " uses " << this->_inventory[idx]->getType() << " on " << target.getName() << std::endl;
+		this->_inventory[idx]->use(target);
+	}
+	else
+		std::cout << "Invalid index" << std::endl;
+}
+```
+
+5. Ahora crearemos nuestra primera materia "ice" que heredará de **AMateria** e implementaremos los métodos que llevará.
+```cpp
+/*--------------[HEADER]----------------*/
+class Ice : public AMateria {
+	public:
+		Ice();
+		Ice(const Ice& other);
+		~Ice();
+
+		Ice&	operator=(const Ice& other);
+
+		AMateria*	clone() const;
+		void		use(ICharacter& target);
+};
+/*--------------[.cpp]-----------------*/
+Ice::Ice() : AMateria("ice") {
+	std::cout << "Ice default constructor called" << std::endl;
+};
+
+Ice::Ice(const Ice& other) : AMateria(other) {
+	std::cout << "Ice copy constructor called" << std::endl;
+};
+
+Ice::~Ice() {
+	std::cout << "Ice destructor called" << std::endl;
+};
+
+Ice&	Ice::operator=(const Ice& other) {
+	if (this != &other)
+		this->_type = other._type;
+	return (*this);
+}
+
+AMateria*	Ice::clone() const {
+	Ice* clone;
+	clone = new Ice(*this);
+	return (clone);
+}
+
+void Ice::use(ICharacter& target) {
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+}
+```
+6. Repetimos el ultimo paso para crear nuestra materia cure
+
+* En nuestro main hay algunas cosas a tener en cuenta:
+```cpp
+#include "Ice.hpp"
+#include "Cure.hpp"
+#include "Character.hpp"
+#include "MateriaSource.hpp"
+
+int main()
+{
+   	/*cuando vamos a usar una clase ejemplo MateriaSource y esta tiene una Interfaz debemos
+	declarar la interface debido al principio de "Programar para la Interface, no para la 
+	implementación. La ventaja de hacer esto es que permite cambiar implementaciones completas 
+	sin tener que cambiar el código que utilizan estas abstracciones.*/
+	IMateriaSource* src = new MateriaSource();//declaración de la interfaz
+    src->learnMateria(new Ice());
+    src->learnMateria(new Cure());
+
+	ICharacter* Wizard = new Character("Wizard");
+	Wizard->equip(src->createMateria("ice"));
+	Wizard->equip(src->createMateria("cure"));
+	
+	ICharacter* Warrior = new Character("Warrior");
+	Warrior->equip(src->createMateria("cure"));
+	Warrior->equip(src->createMateria("cure"));
+	Warrior->equip(src->createMateria("cure"));
+	Warrior->equip(src->createMateria("cure"));//llenamos el inventory y nos dá el input inventory is full
+	Warrior->equip(src->createMateria("cure"));
+	Warrior->unequip(3);
+	Warrior->unequip(2);
+	Wizard->use(0, *Warrior);
+	Wizard->use(1, *Warrior);
+	Wizard->use(2, *Warrior);//usamos un indice que aun no existe, nos imprime index invalid
+	ICharacter* Loco = new Character("Loco");
+	Loco = Warrior;//usamos el operador para comprobar que funciona.
+	Warrior->use(0, *Loco);
+
+	delete Loco;
+	delete Warrior;
+	delete Wizard;
+	
+    return 0;
+}
+```

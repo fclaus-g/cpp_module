@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 19:33:57 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/14 19:55:02 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:01:08 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ WrongAnimal&	WrongAnimal::operator=(const WrongAnimal &other) {
 	return *this;
 }
 
-std::string		WrongAnimal::getType() const {
+std::string	WrongAnimal::getType() const {
 	return this->type;
 }
 
