@@ -849,36 +849,63 @@ int main() {
 La clase Dog hereda de la clase Animal y proporciona una implementación para el método makeSound()*/
 ```
 
-## Interfaces
+## Excepciones
 
-Una interfaz es un contrato que define un conjunto de métodos y propiedades de una clase de implementar. Es una forma de garantizar que una clase cumpla un cierto estándar o se comporte de una cierta manera.
-Son útiles para:
-* Proporcionar una forma de asegurar que una clase cumpla con un cierto contrato.
-* Permitir que diferentes clases sean utilizadas de manera intercambiable si implementan la misma interfaz.
-* Proporcionar una forma de separar la definición de métodos y propiedades de su implementación, lo que puede hacer que el código sea mas modular y fácil de mantener.
+Son una forma de manejar errores y condiciones excepcionales en nuestro programa. Permiten separar el código de manejo de errores del código principal, lo que permite que nuestro código sea más limpio y facil de mantener. Así funcionan las excepciones en c++:
+1. **Lanzar una excepción** : Utilizariamos la palabra clave **throw**.
+2. **Capturar una excepción**: Utilizaremos un bloque **try** para envolver el código que puede lanzar una excepción y un bloque **catch** para manejarla.
+Ejemplo:
+```c++
+#include <iostream>
+#include <stdexcept> //para std::runtime_error
 
-Es importante que una interface define lo que tiene que hacer una clase pero cómo debe hacerlo. La implementación de los métodos y propiedades definidos en la interfaz se deja a la clase que implementa la interfaz.
-
-Una **interface** es una clase abstracta diseñada para ser una plantilla 
-
-En C++ las interfaces no son un concepto incorporado en el lenguaje (en java o C# si por ejemplo). Sin embargo se puede hacer algo similar usando clases abstractas puras. Ejemplo:
-```cpp
-class IMyInterface
+void    funcionQuePuedeFallar(int valor)
 {
-public:
-    virtual ~IMyInterface() {}
-    virtual void MyMethod() = 0; // Método virtual puro
-};
-/* En este código, IMyInterface es una clase abstracta pura que actúa como una interfaz. Tiene un método virtual puro (MyMethod), que cualquier clase que herede IMyInterface deberá implementar.
-
-Una clase que implemente esta interfaz debe verse algo así:*/
-
-class MyClass : public IMyInterface
-{
-public:
-    void MyMethod() override
+    if (valor < 0)
     {
-        // Implementación del método
+        throw std::runtime_error("Valor negativo no permitido");
     }
-};
+    std::cout << "valor: " << valor << std::endl; 
+}
+/*
+ *const std::runtime_error& e -> Significa que el bloque catch esta diseñado para capturar excepciones de tipo std::runtime_error.(se captura como referencia constante para evitar copias innecesarias y que la excepción original no se modifique). La excepción std::runtime_error en si es una clase con sus métodos y atributos y hereda de la clase std::exception.
+ *e.what()-> es un método de std::exception que devuelve un mensaje de error en forma de string (const char*). Este mensaje se establece cuando se lanza la excepción y puede ser utilizado para dar info sobre el error ocurrido.
+*/
+int main()
+{
+    try
+    {
+        funcionQuePuedeFallar(10);
+        funcionQuePuedeFallar(-1);//aqui fallaría la función y saltaría el catch
+    }
+    catch (const std::runtime_error& e)
+    {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+    std::cout << "El programa continua..." << std::endl;
+    return 0;
+}
 ```
+### Tipos de excepciones
+
+En c++, existen varios tipos de escepciones estándar que se encuentran en la biblioteca **\<stdexcept\>**.
+Estas serian algunas de las mas comunes:
+
+* **Excepciones estándar en C++**:
+1. **std::exception**
+    * La clase base para todas las excepciones estándar de c++.
+    * El método **what()** devuelve un mensaje de error genérico.
+2. **std::runtime_error**
+    * Hereda de **std::exception**.
+    * Se usa para errores que solo pueden ser detectados en tiempo de ejecución.
+    * Ej: std::runtime_error("Error en tiempo de ejecución");
+3. **std::logic_error**
+    * Hereda de **std::exception**.
+    * Se utiliza para errores lógicos en el programa, que podrian ser detectados en tiempo de compilación.
+    * Ej: std::logic_error("Error en tiempo de compilación");
+4. **std::out_of_range**:
+    * Hereda de **std::logic_error**.
+    * Se utiliza cuando se accede a un elemento fuera del rango válido.
+    * Ej: std::out_of_range("Índice fuera de rango");
+5. **std::invalid_argument**:
+    
