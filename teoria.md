@@ -908,4 +908,24 @@ Estas serian algunas de las mas comunes:
     * Se utiliza cuando se accede a un elemento fuera del rango válido.
     * Ej: std::out_of_range("Índice fuera de rango");
 5. **std::invalid_argument**:
-    
+    * Hereda de **std::logic_error**.
+    * Se utiliza cuando se pasa un argumento inválido a una función.
+    * Ej: std::invalid_argument("Argumento inválido");
+6. **std::length_error**:
+    * Hereda de **std::logic_error**.
+    * Se utiliza cuando se intenta crear un objeto con una longitud que excede la max permitida.
+    * Ej: std::length_error("Longitud excedida").
+7. **std::domain_error**:
+    * Hereda de **std::runtime_error**.
+    * Se usa cuando un argumento está fuera del dominio válido de una función matemática.
+    * Ej: std::domain_error("Error de dominio").
+8. **std::overflow_error**:
+    * Hereda de std::runtime_error.
+    * Se utiliza cuando una operación aritmética produce un desbordamiento.
+    * Ej: std::overflow_error("Desbordamiento aritmético");
+9. **std::underflow_error**:
+    * Hereda de std::runtime_error.
+    * Se utiliza cuando una operación aritmética produce un subdesbordamiento.
+    * Ej: std::underflow_error("Subdesbordamiento aritmético");
+
+Estas excepciones permiten manejar errores de manera más específica y controlada en los programas C++.
