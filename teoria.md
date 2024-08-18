@@ -852,7 +852,7 @@ La clase Dog hereda de la clase Animal y proporciona una implementación para el
 ## Excepciones
 
 Son una forma de manejar errores y condiciones excepcionales en nuestro programa. Permiten separar el código de manejo de errores del código principal, lo que permite que nuestro código sea más limpio y facil de mantener. Así funcionan las excepciones en c++:
-1. **Lanzar una excepción** : Utilizariamos la palabra clave **throw**.
+1. **Lanzar una excepción** : Utilizariamos la palabra clave **throw**. Implica generar una señal de que ha ocurrido un error o una condición excepcional en el programa. Cuando se lanza una excepción el flujo de ejecución del programa se interrumpe y se transfiere el control a la parte del código que está preparada para manejar esa excepción.
 2. **Capturar una excepción**: Utilizaremos un bloque **try** para envolver el código que puede lanzar una excepción y un bloque **catch** para manejarla.
 Ejemplo:
 ```c++
