@@ -3,42 +3,52 @@
 // /*Constructor*/
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150) 
 {
-	std::cout << "Default constructor called" << std::endl;
-	std::cout << "Name: " << _name << std::endl;
-	std::cout << "Grade: " << _grade << std::endl;
-
+	std::cout <<this->_name << " constructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade)
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-	std::cout << "Parametric constructor called" << std::endl;
-	this->_name = "paapagallido";
-	this->_grade = 150;
-	
-	if (grade < 1)
-		throw Bureaucrat::GradeTooHighException();
-	else if (grade > 150)
-		throw Bureaucrat::GradeTooLowException();
+	std::cout << this->_name << " Parametric constructor called" << std::endl;
+	try
+	{
+		if (grade < 1)
+			throw Bureaucrat::GradeTooHighException();
+		else if (grade > 150)
+			throw Bureaucrat::GradeTooLowException();
+		else
+			_grade = grade;
+	}
+	catch(const Bureaucrat::GradeTooHighException& e)
+	{
+		std::cerr << e.what() << std::endl;
+		_grade = 1;
+	}
+	catch(const Bureaucrat::GradeTooLowException& e)
+	{
+		std::cerr << e.what() << std::endl;
+		_grade = 150;
+	}
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& copy)
+/*Copy constructor*/
+/*Init the _name on the constructor because _name is const and its the only method for it
+Add the string "copy" for clean and clear correction*/
+Bureaucrat::Bureaucrat(const Bureaucrat& copy) : _name(copy._name + "copy")
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << this->_name << " Copy constructor called" << std::endl;
 	*this = copy;
 }
 
 /*Destructor*/
 Bureaucrat::~Bureaucrat() 
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << this->_name << " Destructor called" << std::endl;
 }
 
 /*Operator*/
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
 {
-	std::cout << "Assignation operator called" << std::endl;
-	//No se porque no se puede igualar _name = rhs._name
-	//al rhs._name ser const  no se puede igualar a _name
+	std::cout << this->_name << " Assignation operator called" << std::endl;
 	if (this != &rhs)
 	{
 		_grade = rhs._grade;
@@ -62,15 +72,33 @@ int Bureaucrat::getGrade() const
 
 void Bureaucrat::incrementGrade()
 {
-	if (_grade <= 1)
-		throw Bureaucrat::GradeTooHighException();
+	try 
+	{
+		if (_grade <= 1)
+			throw Bureaucrat::GradeTooHighException();
+	}
+	catch(const Bureaucrat::GradeTooHighException& e)
+	{
+		std::cerr << e.what() << std::endl;
+		_grade = 1;
+		return ;
+	}
 	_grade--;
 }
 
 void Bureaucrat::decrementGrade()
 {
-	if (_grade >= 150)
+	try
+	{
+		if  (_grade >= 150)
 		throw Bureaucrat::GradeTooLowException();
+	}
+	catch(const Bureaucrat::GradeTooLowException& e)
+	{
+		std::cerr << e.what() << '\n';
+		_grade = 150;
+		return ;
+	}
 	_grade++;
 }
 
