@@ -139,3 +139,94 @@ Bureaucrat::Bureaucrat(const Bureaucrat& copy) : _name(copy._name + "copy")
 
 ```
 
+## Ex 01 -> Forms
+
+### Subject
+
+Ahora que tienes burócratas, démosles algo que hacer. ¿Qué mejor actividad
+que la de llenar una pila de formularios?
+Entonces, hagamos una clase Form. Tiene:
+• Un nombre constante.
+• Un booleano que indica si está firmado (en la construcción, no lo está).
+• Una calificación constante requerida para firmarlo.
+• Y una calificación constante requerida para ejecutarlo.
+Todos estos atributos son privados, no protegidos.
+Las calificaciones del Form siguen las mismas reglas que se aplican al Bureaucrat. Por lo tanto,
+se lanzarán las siguientes excepciones si una calificación de formulario está fuera de los límites:
+Form::GradeTooHighException y Form::GradeTooLowException.
+Al igual que antes, escriba captadores para todos los atributos y una sobrecarga del operador de inserción («) que imprima toda la información del formulario.
+7C++ - Módulo 05
+Repetición y excepciones
+Agregue también una función miembro beSigned() al formulario que tome un burócrata como
+parámetro. Cambia el estado del formulario a firmado si la calificación del burócrata es lo suficientemente alta
+(superior o igual a la requerida). Recuerde, la calificación 1 es superior a la calificación 2.
+Si la calificación es demasiado baja, genere una Form::GradeTooLowException.
+Por último, agregue una función miembro signForm() al burócrata. Si el formulario se firmó,
+imprimirá algo como:
+<burócrata> firmó <formulario>
+De lo contrario, imprimirá algo como:
+<burócrata> no pudo firmar <formulario> porque <razón>.
+Implemente y entregue algunas pruebas para asegurarse de que todo funcione como se espera.
+
+## Ex 02 -> No, you need form 28B, not 28C...
+
+### Subject
+
+Dado que ahora tiene formularios básicos, es hora de crear algunos más que realmente hagan algo.
+En todos los casos, la clase base Form debe ser una clase abstracta y, por lo tanto, debe
+renombrarse AForm. Tenga en cuenta que los atributos del formulario deben permanecer privados y que
+están en la clase base.
+Agregue las siguientes clases concretas:
+• ShrubberyCreationForm: Required grades: sign 145, exec 137
+Crea un archivo <target>_shrubbery en el directorio de trabajo y escribe árboles ASCII
+dentro de él.
+• RobotomyRequestForm: Required grades: sign 72, exec 45
+Hace algunos ruidos de perforación. Luego, informa que <target> se ha robotizado
+con éxito el 50 % de las veces. De lo contrario, informa que la robotomización falló.
+• PresidentialPardonForm: Required grades: sign 25, exec 5
+Informa que <target> ha sido indultado por Zaphod Beeblebrox.
+Todos ellos toman solo un parámetro en su constructor: el objetivo del formulario. Por
+ejemplo, "home" si desea plantar arbustos en su hogar.
+9C++ - Módulo 05
+Repetición y excepciones
+Ahora, agregue la función miembro constexecute(Bureaucrat const & executor) al formulario base e implemente una función para ejecutar la acción del formulario de las clases
+concretas. Debe verificar que el formulario esté firmado y que la calificación del burócrata
+que intenta ejecutar el formulario sea lo suficientemente alta. De lo contrario, lance una excepción apropiada.
+
+Depende de usted si desea verificar los requisitos en cada clase concreta o en la clase base (luego llamar a otra función para ejecutar el formulario). Sin embargo, una forma es
+más bonita que la otra.
+Por último, agregue la función miembroexecuteForm(AForm const & form) al burócrata. Debe intentar ejecutar el formulario. Si tiene éxito, imprima algo como:
+<bureaucrat> performed <form>
+Si no, imprima un mensaje de error explícito.
+Implemente y entregue algunas pruebas para asegurarse de que todo funcione como se espera.
+
+## Ex 03 -> At least this beats coffee-making
+
+### Subject
+
+Como llenar formularios es bastante molesto, sería cruel pedirle a nuestros burócratas
+que hagan esto todo el día. Afortunadamente, los pasantes existen. En este ejercicio, tienes que implementar
+la clase Intern. El pasante no tiene nombre, grado ni características únicas. Lo único
+que les importa a los burócratas es que hagan su trabajo.
+Sin embargo, el pasante tiene una capacidad importante: la función makeForm(). Toma
+dos cadenas. La primera es el nombre de un formulario y la segunda es el destino del
+formulario. Devuelve un puntero a un objeto Form (cuyo nombre es el que se pasa como parámetro)
+cuyo destino se inicializará con el segundo parámetro.
+Imprimirá algo como:
+Intern crea <form>
+Si el nombre del formulario pasado como parámetro no existe, imprime un mensaje de error explícito.
+11C++ - Módulo 05
+Repetición y excepciones
+Debes evitar soluciones ilegibles y feas como usar un bosque if/elseif/else. Este
+tipo de cosas no se aceptarán durante el proceso de evaluación. Ya no estás en Piscine
+(pool). Como siempre, tienes que probar que todo funciona como se espera.
+Por ejemplo, el código siguiente crea un RobotomyRequestForm dirigido a "Bender":
+```cpp
+{
+Intern
+Form*
+someRandomIntern;
+rrf;
+rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+}
+```
