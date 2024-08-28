@@ -929,3 +929,41 @@ Estas serian algunas de las mas comunes:
     * Ej: std::underflow_error("Subdesbordamiento aritmético");
 
 Estas excepciones permiten manejar errores de manera más específica y controlada en los programas C++.
+
+En nuestra excepciones también podemos modificar la salida de la función miembro what() presente en la clase std::exception que nos devuelve un mensaje de error que describe la excepción. Veamos un ejemplo de como implementarlo completa y correctamente en una clase:
+
+```cpp
+/*--------------[.hpp]--------------*/
+#include <exception>
+
+class nuestraClase
+{
+    private:
+        int nuestraVariable;
+        /*atributos varios*/
+    public:
+        /*setters, getters y métodos*/
+    	class nuestraException : public std::exception //hereda de std::exception
+		{
+			public:
+			const char* what() const throw();//sobreescribe el método what() de la clase std::exception
+		};
+}
+/*---------------[.cpp]--------------*/
+
+void    nuestraClase::nuestroMetodo(int limite)
+{
+    try
+    {
+        if(nuestraVariable > limite)//si nuestra variable supera el limite
+            throw nuestraExcepcion()//lanzamos la excepcion
+    }
+    catch (const nuestraExcepcion& exc)
+        std::cerr << exc.what() << '\n';//imprimimos el error con la función miembro what()
+}
+
+const char* nuestraClase::nuestraExcepcion::what() const throw() //sobreescribimos el mensaje del método What()
+{
+    return "nuestro mensaje personalizado";
+}
+
