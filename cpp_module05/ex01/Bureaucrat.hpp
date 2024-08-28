@@ -3,8 +3,17 @@
 
 #include <iostream>
 #include <exception>
-#include <string>//quiza no sea necesario
-// Metería una función que imprima el nombre y el grado del burócrata
+#include <string>
+
+#define RED "\033[0;31m"
+#define GRN "\033[0;32m"
+#define YEL "\033[0;33m"
+#define BLU "\033[0;34m"
+#define MAG "\033[0;35m"
+#define RES "\033[0m"
+
+class Form;
+
 class Bureaucrat
 {
 	private:
@@ -22,6 +31,7 @@ class Bureaucrat
 	
 		void		incrementGrade();
 		void		decrementGrade();
+		void		signForm(Form& form);
 		/*Declaramos la clase GradeToHighExcepcion que hereda de std::exception*/
 		class GradeTooHighException : public std::exception
 		{
