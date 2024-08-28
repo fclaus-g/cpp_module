@@ -168,6 +168,139 @@ De lo contrario, imprimirá algo como:
 <burócrata> no pudo firmar <formulario> porque <razón>.
 Implemente y entregue algunas pruebas para asegurarse de que todo funcione como se espera.
 
+### Objetivo
+
+Seguir familiarizandonos con el manejo de excepciones, el uso de clases y la implementacion de métodos que hacen uso de otras clases.
+
+### Desarrollo
+
+En este ejercicio debemos crear una nueva clase Form, la cual tendrá unos grados para poder (o no) ser firmada y ejecutada por un burócrata, además haremos que en los métodos de nuestra clase Form se utilice la clase Bureaucrat y viceversa, cosa que hará que nos preocupemos por tener bien declarados nuestros includes. A continuación muestro como he desarrollado mi código con algún comentario.
+```cpp
+/*----------------[Form.hpp]------------------*/
+#ifndef FORM_HPP
+#define FORM_HPP
+
+#include "Bureaucrat.hpp" 
+/*incluimos este header porque además de usar la class Bureaucrat 
+tenemos declaradas aquí el resto de librerias que usaremos*/
+
+class Form
+{
+	private:
+		const std::string _name;
+		bool _signed;
+		const int _gradeToSign;
+		const int _gradeToExe;
+	public:
+	Form();
+	Form(std::string name, int gradeToSign, int gradeToExe);
+	Form(const Form& copy);
+	~Form();
+	Form& operator=(const Form& copy);
+
+	std::string getName() const;
+	bool getSigned() const;
+	int getGradeToSign() const;
+	int getGradeToExe() const;
+
+	void beSigned(Bureaucrat& bureaucrat);
+	/*Declaramos la clase GradeToHighExcepcion que hereda de std::exception*/
+	class GradeTooHighException : public std::exception
+	{
+		public:
+		const char* what() const throw();//sobreescribe el método what() de la clase std::exception
+	};
+	class GradeTooLowException : public std::exception
+	{
+		public:
+		const char* what() const throw();
+	};
+};
+
+std::ostream& operator<<(std::ostream& out, const Form& form);
+
+/*-----------------[Form.cpp]---------------------*/
+
+/*Además de los métodos de la forma canónica ortodoxa y los setters añadimos 
+el método beSigned(), definición del método what() como hicimos en el ejercicio anterior
+y la sobrecarga del operador "<<"*/
+void Form::beSigned(Bureaucrat& bureaucrat)
+{
+	try
+	{
+		if (bureaucrat.getGrade() <= this->_gradeToSign)
+			this->_signed = true;
+		else
+			throw Form::GradeTooLowException();
+
+	}
+	catch(const Form::GradeTooLowException& e)
+	{
+		std::cerr << e.what() << '\n';
+		this->_signed = false;
+	}
+}
+
+const char* Form::GradeTooHighException::what() const throw()
+{
+	return "Form:Grade is too high";
+}
+
+const char* Form::GradeTooLowException::what() const throw()
+{
+	return "Form:Grade is too low";
+}
+
+std::ostream& operator<<(std::ostream& out, const Form& form)
+{
+	std::string signedStr;
+	if (form.getSigned())
+		signedStr = "true";
+	else
+		signedStr = "false";
+	out << "Form name: " << form.getName() << std::endl;
+	out << "Form signed: " << signedStr << std::endl;
+	out << "Form grade to sign: " << form.getGradeToSign() << std::endl;
+	out << "Form grade to execute: " << form.getGradeToExe() << std::endl;
+	return out;
+}
+
+/*Además de lo anterior deberemos de declarar y definir el método en signForm() Bureucrat,hpp y .cpp respectivamente
+teniendo en cuenta que debemos declarar la clase Form en el .hpp y definir Form.hpp en Bureaucrat.cpp*/
+
+/*----------------[Bureaucrat.hpp]---------------*/
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
+
+#include <iostream>
+#include <exception>
+#include <string>
+
+class Form;
+
+class Bureaucrat
+{
+	/*Atributos y metodos*/
+};
+
+/*-----------------[Bureaucrat.cpp]---------------*/
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
+
+void Bureaucrat::signForm(Form& form)
+{
+	if (form.getSigned())
+		std::cout << MAG << this->_name << " cannot sign " << form.getName() << " because " << this->_name << " has already signed" << RES << std::endl;
+	else
+	{
+		if (this->_grade <= form.getGradeToSign())
+			form.beSigned(*this);
+		else
+			std::cout << MAG << this->_name << " cannot sign " << form.getName() << " because " << this->_name << " grade is too low" << RES << std::endl;
+	}
+}
+```
+
 ## Ex 02 -> No, you need form 28B, not 28C...
 
 ### Subject
