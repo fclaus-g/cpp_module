@@ -9,10 +9,10 @@ class Form
 		const std::string _name;
 		bool _signed;
 		const int _gradeToSign;
-		const int _gradeToExecute;
+		const int _gradeToExe;
 	public:
 	Form();
-	Form(std::string name, int gradeToSign, int gradeToExecute);
+	Form(std::string name, int gradeToSign, int gradeToExe);
 	Form(const Form& copy);
 	~Form();
 	Form& operator=(const Form& copy);
@@ -20,7 +20,7 @@ class Form
 	std::string getName() const;
 	bool getSigned() const;
 	int getGradeToSign() const;
-	int getGradeToExecute() const;
+	int getGradeToExe() const;
 
 	void beSigned(Bureaucrat& bureaucrat);
 	/*Declaramos la clase GradeToHighExcepcion que hereda de std::exception*/
@@ -35,5 +35,7 @@ class Form
 		const char* what() const throw();
 	};
 };
+
+std::ostream& operator<<(std::ostream& out, const Form& form);
 
 #endif
