@@ -886,6 +886,13 @@ int main()
     return 0;
 }
 ```
+* **try->** Encierra una sección de código que puede lanzar una excepción. Si se lanza la excepción en el **try**, el programa saltará directamente al bloque **catch** donde se manejará la excepción.
+* **catch->** Es el bloque que usamos para manejar la excepción. Necesita un argumento, la excepción que va a manejar.
+* **throw->** Es la declaración que usamos para lanzar la excepción. Cuando se ejecuta el programa sale de la función actual y continuará hasta que encuentre el **catch** que maneje la excepción, si no la encuentra, el programa llamará al **std::terminate()** que terminará el programa y conducirá a una terminación anormal del programa.
+
+La principal ventaja de usar try-catch es que el programa puede manejar las excepciones de una manera estructurada y predecible, en lugar de depender de un comportamiento indefinido o devolver códigos de error.
+
+
 ### Tipos de excepciones
 
 En c++, existen varios tipos de escepciones estándar que se encuentran en la biblioteca **\<stdexcept\>**.
@@ -966,4 +973,16 @@ const char* nuestraClase::nuestraExcepcion::what() const throw() //sobreescribim
 {
     return "nuestro mensaje personalizado";
 }
+```
 
+### Funcion What()
+```cpp
+const char* what() const noexcept { return message_.c_str(); }
+```
+
+Es una función miembro de la clase std::exception devuelve una string de estilo C que describe la excepción que ocurrió.
+
+### Declaración anticipada
+
+Para realizar una declaraciń anticipada *(forward declaration)* de una clase en C++, simplemente declaramos la clase antes de su uso sin definirla completamente. Esto es útil cuando tenemos dependencias cíclicas o queremos reducir el tiempo de compilación.
+Es una forma de informar al compilador que se utilizará un determinado identificador en el futuro, pero su definición no está disponible en este momento. Es importante asegurarse que la definición real del identificador esté disponible antes que se utilice.
