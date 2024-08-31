@@ -3,7 +3,7 @@
 
 #include "Bureaucrat.hpp"
 
-class Form
+class AForm
 {
 	private:
 		const std::string _name;
@@ -11,11 +11,12 @@ class Form
 		const int _gradeToSign;
 		const int _gradeToExe;
 	public:
-	Form();
-	Form(std::string name, int gradeToSign, int gradeToExe);
-	Form(const Form& copy);
-	~Form();
-	Form& operator=(const Form& copy);
+	AForm();
+	AForm(std::string name, int gradeToSign, int gradeToExe);
+	AForm(const AForm& copy);
+	/*Declaramos el destructor como virtual para que se llame al destructor de las clases hijas*/
+	virtual ~AForm();
+	AForm& operator=(const AForm& copy);
 
 	std::string getName() const;
 	bool getSigned() const;
@@ -23,6 +24,9 @@ class Form
 	int getGradeToExe() const;
 
 	void beSigned(Bureaucrat& bureaucrat);
+	/*Añadimos la función virtual que nos hará la clase abstracta, esto hará que tengamos que definir
+	esta funcion en cada subclase dandole el comportamiento que necesitemos segun clase*/
+	virtual void execute(Bureaucrat const& executor) const = 0;
 	/*Declaramos la clase GradeToHighExcepcion que hereda de std::exception*/
 	class GradeTooHighException : public std::exception
 	{
@@ -36,6 +40,6 @@ class Form
 	};
 };
 
-std::ostream& operator<<(std::ostream& out, const Form& form);
+std::ostream& operator<<(std::ostream& out, const AForm& form);
 
 #endif
