@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 /*Dado que ahora tiene formularios básicos, es hora de crear algunos más que realmente hagan algo.
