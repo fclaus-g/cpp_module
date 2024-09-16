@@ -139,6 +139,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& copy) : _name(copy._name + "copy")
 
 ```
 
+
 ## Ex 01 -> Forms
 
 ### Subject
@@ -300,6 +301,7 @@ void Bureaucrat::signForm(Form& form)
 	}
 }
 ```
+En este ejercicio me he encontrado con una peculiaridad la cual he querido resolver pero no se me ocurre una manera válida de solucionarlo. Cuando instanciamos un Bureaucrat con un _grade mayor o menor de lo permitido lo que hacemos es darle el valor mayor o menor permitido ya que _grade es un int, con el Form no sucede lo mismo, el Form tiene un const int _gradeToSign y un const int _gradeToExe, por lo que si instanciamos un Form con valores mayores o menores a los permitidos, podremos lanzar la excepción pero no tenemos una manera de modificar esos valores tras su inmediata construcción, así que si instanciamos un formulario de manera incorrecta quedará instanciado con los parámetros no permitidos.
 
 ## Ex 02 -> No, you need form 28B, not 28C...
 
