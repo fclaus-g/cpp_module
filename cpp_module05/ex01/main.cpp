@@ -30,45 +30,54 @@ Implemente y entregue algunas pruebas para asegurarse de que todo funcione como 
 int	main()
 {
 	Bureaucrat bone;
-	Bureaucrat hight("hight", 1);
-	Bureaucrat low("low", 150);
-	Bureaucrat tooLow("toolow", 151);
-
-	Form basicForm;
-	Form hightForm("hightForm", 1, 1);
-	std::cout << "este es el formulario mas alto" << std::endl;
-	Form lowForm("lowForm", 150, 150);
-	std::cout << "este es el formulario mas bajo" << std::endl;
-	Form badFormTooHight("badFormTooHight", 0, 151);
-	std::cout << "este formulario debe mostrar too hight" << std::endl;
-	Form badFormTooLow("badFormTooLow", 151, 0);
-	std::cout << "este formulario debe mostrar too hight" << std::endl;
-	Form f6(hightForm);//copia de hightForm
-	std::cout << "este es el formulario copia de hightForm" << std::endl;
-	Form f7 = lowForm;//copia de lowForm
-	std::cout << "este es el formulario copia de lowForm" << std::endl;
-
 	std::cout << bone << std::endl;
+	Bureaucrat hight("hight", 1);
 	std::cout << hight << std::endl;
+	Bureaucrat low("low", 150);
 	std::cout << low << std::endl;
+	Bureaucrat tooHight("toohight", 0);
+	std::cout << tooHight << std::endl;
+	Bureaucrat tooLow("toolow", 151);
 	std::cout << tooLow << std::endl;
 
+	Form basicForm;
+	std::cout << GRN << "El siguiente formulario es el mas alto" << RES << std::endl;
 	std::cout << basicForm << std::endl;
+	Form hightForm("hightForm", 1, 1);
+	std::cout << GRN << "El siguiente formulario es el mas bajo" << RES << std::endl;
 	std::cout << hightForm << std::endl;
+	Form lowForm("lowForm", 150, 150);
+	std::cout << GRN << "El siguiente formulario debe mostrar too hight" << RES << std::endl;
 	std::cout << lowForm << std::endl;
+	Form badFormTooHight("badFormTooHight", 0, 150);
+	std::cout << GRN << "El siguiente formulario debe mostrar too low" << RES << std::endl;
 	std::cout << badFormTooHight << std::endl;
+	Form badFormTooLow("badFormTooLow", 187, 1);
+	std::cout << GRN << "El siguiente formulario es el formulario copia de hightForm" << RES << std::endl;
 	std::cout << badFormTooLow << std::endl;
+	Form f6(hightForm);//copia de hightForm
 	std::cout << f6 << std::endl;//must be hightFormcopy,1 ,1.
+	std::cout << GRN << "El siguiente formulario es el formulario copia de lowForm" << RES << std::endl;
+	Form f7 = lowForm;//copia de lowForm
 	std::cout << f7 << std::endl; //must be lowFormcopy, 150, 150.
 
+	std::cout << GRN << "El siguiente formulario será firmado por el bureaucrat \"hight\"" << RES << std::endl;
 	hightForm.beSigned(hight);
 	std::cout << hightForm << std::endl;
+	std::cout << GRN << "El siguiente formulario NO será firmado por el bureaucrat \"low\"" << RES << std::endl;
 	hightForm.beSigned(low);
 	std::cout << hightForm << std::endl;
 
+	std::cout << GRN << "El siguiente Bureaucrat podra firmar el formulario" << RES << std::endl;
 	hight.signForm(hightForm);
-	low.signForm(hightForm);
-	bone.signForm(f6);
+	std::cout << hightForm << std::endl;
 
+	std::cout << GRN << "El siguiente Bureaucrat NO podra firmar el formulario" << RES << std::endl;
+	low.signForm(hightForm);
+	std::cout << GRN << "El siguiente Bureaucrat NO podra firmar el formulario" << RES << std::endl;
+	bone.signForm(f6);
+	std::cout << std::endl;
+
+	std::cout << YEL << "The destruction starts" << RES << std::endl;
 	return 0;
 }

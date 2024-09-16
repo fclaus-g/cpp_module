@@ -12,16 +12,16 @@ Form::Form (std::string name, int gradeToSign, int gradeToExe): _name(name), _gr
 	{
 		if (gradeToSign < 1 || gradeToExe < 1)
 			throw Form::GradeTooHighException();
-		else if (gradeToSign > 150 || gradeToExe > 150)
-			throw Form::GradeTooLowException();
+		if (gradeToSign > 150 || gradeToExe > 150)				
+				throw Form::GradeTooLowException();
 	}
 	catch(const Form::GradeTooHighException& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << RED << e.what() << RES << '\n';
 	}
 	catch(const Form::GradeTooLowException& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << RED << e.what() << RES << '\n';
 	}
 	std::cout << this->_name << " Form parametric constructor called" << std::endl;
 }
@@ -82,7 +82,7 @@ void Form::beSigned(Bureaucrat& bureaucrat)
 	}
 	catch(const Form::GradeTooLowException& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << RED << e.what() << RES << '\n';
 		this->_signed = false;
 	}
 }
@@ -104,6 +104,7 @@ std::ostream& operator<<(std::ostream& out, const Form& form)
 		signedStr = "true";
 	else
 		signedStr = "false";
+	out << YEL << "Form info" << RES << std::endl;
 	out << "Form name: " << form.getName() << std::endl;
 	out << "Form signed: " << signedStr << std::endl;
 	out << "Form grade to sign: " << form.getGradeToSign() << std::endl;
