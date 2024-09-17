@@ -335,6 +335,75 @@ Por último, agregue la función miembroexecuteForm(AForm const & form) al buró
 Si no, imprima un mensaje de error explícito.
 Implemente y entregue algunas pruebas para asegurarse de que todo funcione como se espera.
 
+### Objetivo
+
+Trabajar con clases abstractas y subclases, manejar excepciones, metodos virtuales... 
+
+### Desarrollo
+
+Este ejercicio conlleva manejar subclases, métodos virtuales y trabajar con métodos de las clase base. Es por ello que tenemos que tener claro que es lo que tenemos que hacer (a mi me costó bastante perdiéndome entre subclases y donde definir un método u otro), para eso es muy recomendable hacer un pequeño esquema con las clases con las que trabajaremos, sus atributos y sus clases.
+
+En primer lugar tras modificar el Form del ejercicio anterior para que sea una clase abstracta AForm debemos decidir como plantear los métodos y las estructuras de control paraa ejecutarlos. En mi caso al principio decidí hacerlo en cada una de las subclases, pero claro, lógicamente es preferible que la clase abstracta se encargue de las estructuras de control y maneje las excepciones, con lo que, ahorraremos código y sería mas óptimo. Vamos a ver como implemente AForm:
+```cpp
+class AForm
+{
+	private:
+		const std::string _name;
+		bool _signed;
+		const int _gradeToSign;
+		const int _gradeToExe;
+	public:
+		AForm();
+		AForm(std::string name, int gradeToSign, int gradeToExe);
+		AForm(const AForm& copy);
+		/*Declaramos el destructor como virtual para que se llame al destructor de las clases hijas*/
+		virtual ~AForm();
+		
+		AForm& operator=(const AForm& copy);
+
+		std::string getName() const;
+		bool getSigned() const;
+		int getGradeToSign() const;
+		int getGradeToExe() const;
+
+		void setSign(bool sign);
+
+		void beSigned(Bureaucrat& bureaucrat);
+		/*Declaramos la función execute que recibe un Bureaucrat como parametro y hará las
+		comprobaciones pertinentes para la correcta ejecución*/
+		void execute(Bureaucrat const& executor) const;
+		/*Añadimos la función virtual que nos hará la clase abstracta, esto hará que tengamos que definir
+		esta funcion en cada subclase dandole el comportamiento que necesitemos segun clase*/
+		virtual void action() const = 0;
+		
+		
+		/*Declaramos la clase GradeToHighExcepcion que hereda de std::exception*/
+		class GradeTooHighException : public std::exception
+		{
+			public:
+			const char* what() const throw();//sobreescribe el método what() de la clase std::exception
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+			const char* what() const throw();
+		};
+		class FormNotSignedException : public std::exception
+		{
+			public:
+			const char* what() const throw();
+		};
+		class GradeInvalidException : public std::exception
+		{
+			public:
+			const char* what() const throw();
+		};
+};
+
+std::ostream& operator<<(std::ostream& out, const AForm& form);
+```
+De esta manera conseguiremos que a la hora de implementar el método action en las subclases sea basicamente una impresión en pantalla, porque AForm y se encarga de manejar si un bureaucrat es digno de firmar o ejecutar un formulario basandose en su grado.
+
 ## Ex 03 -> At least this beats coffee-making
 
 ### Subject
