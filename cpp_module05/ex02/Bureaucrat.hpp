@@ -4,6 +4,7 @@
 #include <iostream>
 #include <exception>
 #include <string>
+#include <iomanip>
 
 #define RED "\033[0;31m"
 #define GRN "\033[0;32m"
@@ -12,7 +13,7 @@
 #define MAG "\033[0;35m"
 #define RES "\033[0m"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -31,7 +32,7 @@ class Bureaucrat
 	
 		void		incrementGrade();
 		void		decrementGrade();
-		void		signForm(Form& form);
+		void		signForm(AForm& form);
 		/*Declaramos la clase GradeToHighExcepcion que hereda de std::exception*/
 		class GradeTooHighException : public std::exception
 		{
@@ -43,8 +44,12 @@ class Bureaucrat
 			public:
 			const char* what() const throw();
 		};
+		class FormNotSignedException : public std::exception
+		{
+			public:
+			const char* what() const throw();
+		};
 };
-
 std::ostream&	operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
 
 #endif 

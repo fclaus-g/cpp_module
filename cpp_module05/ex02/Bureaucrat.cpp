@@ -104,7 +104,7 @@ void Bureaucrat::decrementGrade()
 }
 
 
-void Bureaucrat::signForm(Form& form)
+void Bureaucrat::signForm(AForm& form)
 {
 	if (form.getSigned())
 		std::cout << MAG << this->_name << " cannot sign " << form.getName() << " because " << this->_name << " has already signed" << RES << std::endl;
@@ -131,6 +131,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
 {
-	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << std::endl;
+	os << YEL << "Bureaucrat info:" << RES << std::endl;
+	os << GRN << bureaucrat.getName() << RES << " bureaucrat grade: " << bureaucrat.getGrade() << std::endl;
 	return os;
 }
