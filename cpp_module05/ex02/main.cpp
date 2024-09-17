@@ -1,6 +1,7 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 /*Dado que ahora tiene formularios básicos, es hora de crear algunos más que realmente hagan algo.
 En todos los casos, 
@@ -10,12 +11,12 @@ Agregue las siguientes clases concretas:
 
 • [ ] ShrubberyCreationForm: Required grades: sign 145, exec 137
 		* [ ] Crea un archivo <target>_shrubbery en el directorio de trabajo y escribe árboles ASCII dentro de él.
-• [ ] RobotomyRequestForm: Required grades: sign 72, exec 45
-		* [ ] Hace algunos ruidos de perforación. 
-		* [ ] Luego, informa que <target> se ha robotizado con éxito el 50 % de las veces.
+• [x] RobotomyRequestForm: Required grades: sign 72, exec 45
+		* [x] Hace algunos ruidos de perforación. 
+		* [x] Luego, informa que <target> se ha robotizado con éxito el 50 % de las veces.
 			De lo contrario, informa que la robotomización falló.
-• [ ] PresidentialPardonForm: Required grades: sign 25, exec 5
-		* [ ]Informa que <target> ha sido indultado por Zaphod Beeblebrox.
+• [x] PresidentialPardonForm: Required grades: sign 25, exec 5
+		* [x]Informa que <target> ha sido indultado por Zaphod Beeblebrox.
 * [ ]Todos ellos toman solo un parámetro en su constructor: el objetivo del formulario. Por
 			ejemplo, "home" si desea plantar arbustos en su hogar.
 9C++ - Módulo 05
@@ -40,7 +41,7 @@ int	main()
 	Bureaucrat low("low", 150);
 	std::cout << low << std::endl;
 
-
+	//Test PresidentialPardonForm
 	PresidentialPardonForm form("home");
 	std::cout << form << std::endl;
 
@@ -65,6 +66,26 @@ int	main()
 	std::cout << low << std::endl;
 	form.execute(low);
 
+	//Test RobotomyRequestForm
+	Bureaucrat lowRobot("lowRobot", 150);
+	std::cout << lowRobot << std::endl;
+	Bureaucrat hightRobot("hightRobot", 1);
+	std::cout << hightRobot << std::endl;
+	RobotomyRequestForm robot("C3PO");
+	std::cout << robot << std::endl;
+
+	robot.beSigned(lowRobot);//grade too low
+	robot.execute(lowRobot);//not signed
+
+	robot.execute(hightRobot);//not signed
+	robot.beSigned(hightRobot);
+	robot.execute(hightRobot);
+	robot.execute(lowRobot);
+	robot.execute(hightRobot);
+
+
+
+	//Test ShrubberyCreationForm
 
 	return 0;
 }
