@@ -4,7 +4,7 @@
 			ejemplo, "home" si desea plantar arbustos en su hogar.*/
 #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
-
+/* Canonical Ortodox*/
 PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", 25, 5)
 {
 	std::cout << "PresidentialPardonForm default constructor called" << std::endl;
@@ -33,18 +33,31 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 	std::cout << "PresidentialPardonForm assignation operator called" << std::endl;
 	if (this != &rhs){
 		this->_target = rhs._target;
-		this->setSigned(rhs.getSigned());//pte añadir un setSigned a AForm
+		//this->setSigned(rhs.getSigned());//pte añadir un setSigned a AForm
 	}
 	return (*this);
 }
 
-void PresidentialPardonForm::execute(Bureaucrat const& executor) const
+/*Get*/
+std::string PresidentialPardonForm::getTarget() const
 {
-	if (this->getSigned() == false)
-		throw AForm::FormNotSignedException();
-	if (executor.getGrade() > this->getGradeToExe())
-		throw AForm::GradeTooLowException();
-	std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+	return this->_target;
 }
 
+/*Method*/
+void PresidentialPardonForm::action() const
+{
+	//std::cout << GRN << executor.getName() << RES << " has executed " << this->getName() << std::endl;
+	std::cout << BLU << this->_target << " has been pardoned by Zaphod Beeblebrox" << RES << std::endl;
+}
 
+/*Operator*/
+std::ostream& operator<<(std::ostream& out, const PresidentialPardonForm& form)
+{
+	out << GRN <<  "PresidentialPardonForm"<< RES << std::endl;
+	out << "Signed: " << form.getSigned() << std::endl;
+	out << "Grade to sign: " << form.getGradeToSign() << std::endl;
+	out << "Grade to exe: " << form.getGradeToExe() << std::endl;
+	out << "Target: " << form.getTarget() << std::endl;
+	return (out);
+}
