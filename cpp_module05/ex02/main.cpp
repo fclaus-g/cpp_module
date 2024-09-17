@@ -2,6 +2,7 @@
 #include "Bureaucrat.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 /*Dado que ahora tiene formularios básicos, es hora de crear algunos más que realmente hagan algo.
 En todos los casos, 
@@ -21,9 +22,9 @@ Agregue las siguientes clases concretas:
 			ejemplo, "home" si desea plantar arbustos en su hogar.
 9C++ - Módulo 05
 Repetición y excepciones
-* [ ] Ahora, agregue la función miembro const execute(Bureaucrat const & executor) al formulario base 
-	[ ] e implemente una función para ejecutar la acción del formulario de las clases concretas. 
-	[ ] Debe verificar que el formulario esté firmado y que la calificación del burócrata que intenta ejecutar 
+* [x] Ahora, agregue la función miembro const execute(Bureaucrat const & executor) al formulario base 
+	[x] e implemente una función para ejecutar la acción del formulario de las clases concretas. 
+	[x] Debe verificar que el formulario esté firmado y que la calificación del burócrata que intenta ejecutar 
 		el formulario sea lo suficientemente alta. De lo contrario, lance una excepción apropiada.
 
 Depende de usted si desea verificar los requisitos en cada clase concreta o en la clase base
@@ -83,9 +84,15 @@ int	main()
 	robot.execute(lowRobot);
 	robot.execute(hightRobot);
 
-
-
 	//Test ShrubberyCreationForm
+	ShrubberyCreationForm shrubbery("home");
+
+	shrubbery.beSigned(lowRobot);//grade too low
+	shrubbery.execute(lowRobot);//not signed
+
+	shrubbery.execute(hightRobot);//not signed
+	shrubbery.beSigned(hightRobot);
+	shrubbery.execute(hightRobot);
 
 	return 0;
 }
