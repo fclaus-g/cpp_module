@@ -402,7 +402,156 @@ class AForm
 
 std::ostream& operator<<(std::ostream& out, const AForm& form);
 ```
-De esta manera conseguiremos que a la hora de implementar el método action en las subclases sea basicamente una impresión en pantalla, porque AForm y se encarga de manejar si un bureaucrat es digno de firmar o ejecutar un formulario basandose en su grado.
+De esta manera conseguiremos que a la hora de implementar el método action en las subclases sea basicamente una impresión en pantalla, porque AForm ya se encarga de manejar si un bureaucrat es digno de firmar o ejecutar un formulario basandose en su grado.
+Con las siguientes subclases trabajaremos usando la forma Canónica Ortodoxa:
+```cpp
+#ifndef SHRUBBERYCREATIONFORM_HPP
+#define SHRUBBERYCREATIONFORM_HPP
+
+#include "AForm.hpp"
+#include <fstream>
+
+class ShrubberyCreationForm : public AForm
+{
+	private:
+		std::string _target;
+	public:
+		ShrubberyCreationForm();
+		ShrubberyCreationForm(std::string target);
+		ShrubberyCreationForm(const ShrubberyCreationForm& copy);
+		virtual ~ShrubberyCreationForm();
+		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& copy);
+
+		std::string getTarget() const;
+		void action() const;
+};
+
+std::ostream& operator<<(std::ostream& out, const ShrubberyCreationForm& form);
+
+#endif
+```
+Una vez implementado de manera correcta AForm, implementaremos el método action en cada una de ellas. A tener en cuenta en cada uno de los métodos:
+* **ShrubberyCreationForm->** Tiene que crear un archivo con el nombre [target]_Shrubbery y escribir en el un arbol ascii(un dibujo con caracteres ascii), para ello utilizaremos la biblioteca **fstream** que recordaremos que se utiliza para la manipulación de archivos, proporcionando clases para crear, leer y escribir archivos. Usando std::ofstream, si el archivo ya existe se borrará su contenido y se escribirá desde el principio. Si quisieramos agregar gcontenido en lugar de borrar habria que abrir el archivo en modo adición con **std::ios::app**.
+```cpp
+void ShrubberyCreationForm::action() const
+{
+	std::ofstream file;//declara un objeto file que se utilizará para escribir en el.
+	std::string filename = this->_target + "_shrubbery";
+	file.open(filename.c_str());//abre el archivo con el nombre indicado convirtiendo std::string en una cadena de caracteres de tipo C
+	if (file.is_open())
+	{
+		//usaremos el operador << para escribir en el archivo
+		file << "       _-_\n";
+		file << "    /~~   ~~\\\n";
+		file << " /~~         ~~\\\n";
+		file << "{               }\n";
+		file << " \\  _-     -_  /\n";
+		file << "   ~  \\\\ //  ~\n";
+		file << "_- -   | | _- _\n";
+		file << "   _-  | |   -_\n";
+		file << "  _-   | | __-_\n";
+		file << "      // \\\\\n";
+		file << this->_target << std::endl;
+		file.close();
+	}
+	else
+		std::cerr << "Error: could not open file" << std::endl;
+}
+```
+* **RobotomyRequestForm_>** Debe imprimir un mensaje (Drilling noises...) y dar por válida la acción el 50% de las veces. Para ello tenemos que hacer uso de las bibliotecas **cstlib** y **ctime**, y las funciones **srand()** y **rand()**.
+```cpp
+#include <cstdlib> //Funciones generales de uso común como (la stdlib para c++), srand() y rand()
+#include <ctime> //Funciones para manipular y obtener info sobre el tiempo y la fecha, time().
+
+void RobotomyRequestForm::action() const
+{
+	std::cout << YEL << "Drilling noises..." << RES << std::endl;
+	std::srand(std::time(NULL));//Establece la semilla del generador de números aleatorios
+	if (rand() % 2)//generador de núm aleatorios
+		std::cout << BLU << this->_target << " has been robotomized successfully" << RES << std::endl;
+	else
+		std::cout << RED << this->_target << " robotomization failed" << RES << std::endl;
+}
+```
+
+* **PresidentialPardonForm->** Este método al haber implementado las estructuras de control en AForm solo mostrará un mensaje por pantalla.
+```cpp
+void PresidentialPardonForm::action() const
+{
+	std::cout << BLU << this->_target << " has been pardoned by Zaphod Beeblebrox" << RES << std::endl;
+}
+```
+
+Veamos como hemos implementado las estructuras de control en el método execute() y beSigned() de nuestro AForm:
+```cpp
+void AForm::beSigned(Bureaucrat& bureaucrat)
+{
+	try
+	{
+		if (this->_signed)
+			throw AForm::FormSignedException();
+		else if (this->_gradeToSign < 1 || this->_gradeToExe < 1)
+			throw AForm::GradeInvalidException();
+		else if (this->_gradeToSign > 150|| this->_gradeToExe > 150)
+			throw AForm::GradeInvalidException();
+		else if (this->_gradeToSign < bureaucrat.getGrade())
+			throw AForm::GradeTooHighException();
+		this->_signed = true;
+		std::cout << GRN << bureaucrat.getName() << RES << " has signed " << this->_name << std::endl;
+	}
+	catch(const AForm::FormSignedException& e)
+	{
+		std::cout << RED << bureaucrat.getName() << " cannot sign " << this->_name << RES << std::endl;
+		std::cerr << RED << e.what() << RES << std::endl;
+	}
+	catch(const AForm::GradeInvalidException& e)
+	{
+		std::cout << RED << bureaucrat.getName() << " cannot sign " << this->_name << RES << std::endl;
+		std::cerr << RED << e.what() << RES << std::endl;
+	}
+	catch(const AForm::GradeTooHighException& e)
+	{
+		std::cout << RED << bureaucrat.getName() << " cannot sign " << this->_name << RES << std::endl;
+		std::cerr << RED << e.what() << RES << std::endl;
+		this->_signed = false;
+	}
+}
+
+void AForm::execute(Bureaucrat const& executor) const
+{
+	try
+	{
+		if (!this->_signed)
+			throw AForm::FormNotSignedException();
+		else if (executor.getGrade() > this->_gradeToExe)
+			throw AForm::GradeTooHighException();
+		action();
+		std::cout << GRN << executor.getName() << RES << " has executed " << this->_name << std::endl;
+	}
+	catch(const AForm::FormNotSignedException& e)
+	{
+		std::cerr << RED << e.what() << RES << std::endl;
+	}
+	catch(const AForm::GradeTooHighException& e)
+	{
+		std::cerr << RED << e.what() << RES << std::endl;
+	}
+}
+```
+
+Tras tener completada la implementación de nuestras clases toca modificar a nuestro Bureaucrat para ejecutar el formulario desde el mismo burócrata. Una vez puesto manos a la obra de primeras intento que el bureaucrat en su método executeForm() haga un try and catch, pero al llamar a otro método que lanza una excepción el catch no saltaba y además era una solución con mas código a mi entender innecesario, así que decidí hacerlo de la siguiente manera, mas sencilla, ya que no queria duplicar excepciones y creo que es la manera correcta de hacerlo.
+
+```cpp
+void Bureaucrat::executeForm(const AForm& form)
+{
+	if (form.execute(*this))
+		std::cout << "Bureaucrat: " << this->_name << " performed " << form.getName() << std::endl;
+	else
+		std::cout << RED << "Bureaucrat: " << this->_name << " cannot execute " << form.getName() << RED << std::endl;		
+}
+```
+Para poder implementarlo simplemente hice que el método execute() del AForm retornara un bool para lanzar un mensaje u otro.
+
 
 ## Ex 03 -> At least this beats coffee-making
 
