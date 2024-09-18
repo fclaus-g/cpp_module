@@ -84,28 +84,32 @@ void AForm::setSign(bool sign)
 
 void AForm::beSigned(Bureaucrat& bureaucrat)
 {
-	if (this->_signed)
-	{
-		std::cout << RED << this->_name << " is already signed" << RES << std::endl;
-		return ;
-	}
 	try
 	{
-		if (this->_gradeToSign < 1 || this->_gradeToExe < 1)
+		if (this->_signed)
+			throw AForm::FormSignedException();
+		else if (this->_gradeToSign < 1 || this->_gradeToExe < 1)
 			throw AForm::GradeInvalidException();
 		else if (this->_gradeToSign > 150|| this->_gradeToExe > 150)
 			throw AForm::GradeInvalidException();
 		else if (this->_gradeToSign < bureaucrat.getGrade())
 			throw AForm::GradeTooHighException();
 		this->_signed = true;
+		std::cout << GRN << bureaucrat.getName() << RES << " has signed " << this->_name << std::endl;
+	}
+	catch(const AForm::FormSignedException& e)
+	{
+		std::cout << RED << bureaucrat.getName() << " cannot sign " << this->_name << RES << std::endl;
+		std::cerr << RED << e.what() << RES << std::endl;
 	}
 	catch(const AForm::GradeInvalidException& e)
 	{
+		std::cout << RED << bureaucrat.getName() << " cannot sign " << this->_name << RES << std::endl;
 		std::cerr << RED << e.what() << RES << std::endl;
 	}
 	catch(const AForm::GradeTooHighException& e)
 	{
-		//std::cout << RED << bureaucrat.getName() << " cannot sign " << this->_name << RES << std::endl;
+		std::cout << RED << bureaucrat.getName() << " cannot sign " << this->_name << RES << std::endl;
 		std::cerr << RED << e.what() << RES << std::endl;
 		this->_signed = false;
 	}
@@ -124,10 +128,12 @@ void AForm::execute(Bureaucrat const& executor) const
 	}
 	catch(const AForm::FormNotSignedException& e)
 	{
+		std::cout << RED << executor.getName() << " cannot execute " << this->_name << RES << std::endl;
 		std::cerr << RED << e.what() << RES << std::endl;
 	}
 	catch(const AForm::GradeTooHighException& e)
 	{
+		std::cout << RED << executor.getName() << " cannot execute " << this->_name << RES << std::endl;
 		std::cerr << RED << e.what() << RES << std::endl;
 	}
 }
@@ -142,6 +148,11 @@ const char* AForm::GradeTooHighException::what() const throw()
 const char* AForm::GradeTooLowException::what() const throw()
 {
 	return "AForm: Grade is too low";
+}
+
+const char* AForm::FormSignedException::what() const throw()
+{
+	return "AForm: Form is already signed";
 }
 
 const char* AForm::FormNotSignedException::what() const throw()
