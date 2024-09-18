@@ -47,7 +47,6 @@ std::string PresidentialPardonForm::getTarget() const
 /*Method*/
 void PresidentialPardonForm::action() const
 {
-	//std::cout << GRN << executor.getName() << RES << " has executed " << this->getName() << std::endl;
 	std::cout << BLU << this->_target << " has been pardoned by Zaphod Beeblebrox" << RES << std::endl;
 }
 
