@@ -51,6 +51,7 @@ std::string RobotomyRequestForm::getTarget() const
 void RobotomyRequestForm::action() const
 {
 	std::cout << YEL << "Drilling noises..." << RES << std::endl;
+	std::srand(std::time(NULL));
 	if (rand() % 2)
 		std::cout << BLU << this->_target << " has been robotomized successfully" << RES << std::endl;
 	else
