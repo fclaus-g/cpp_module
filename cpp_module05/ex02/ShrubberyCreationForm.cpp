@@ -74,7 +74,10 @@ void ShrubberyCreationForm::action() const
 
 std::ostream& operator<<(std::ostream& out, const ShrubberyCreationForm& form)
 {
-	out << "ShrubberyCreationForm" << std::endl;
+	out << GRN << "ShrubberyCreationForm" << RES << std::endl;
+	out << "Name: " << form.getName() << std::endl;
+	out << "Grade to sign: " << form.getGradeToSign() << std::endl;
+	out << "Grade to exe: " << form.getGradeToExe() << std::endl;
 	out << "Signed: " << form.getSigned() << std::endl;
 	out << "Target: " << form.getTarget() << std::endl;
 	return out;
