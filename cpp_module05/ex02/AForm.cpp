@@ -115,7 +115,7 @@ void AForm::beSigned(Bureaucrat& bureaucrat)
 	}
 }
 
-void AForm::execute(Bureaucrat const& executor) const
+bool AForm::execute(Bureaucrat const& executor) const
 {
 	try
 	{
@@ -125,6 +125,7 @@ void AForm::execute(Bureaucrat const& executor) const
 			throw AForm::GradeTooHighException();
 		action();
 		std::cout << GRN << executor.getName() << RES << " has executed " << this->_name << std::endl;
+		return true;
 	}
 	catch(const AForm::FormNotSignedException& e)
 	{
@@ -136,6 +137,7 @@ void AForm::execute(Bureaucrat const& executor) const
 		std::cout << RED << executor.getName() << " cannot execute " << this->_name << RES << std::endl;
 		std::cerr << RED << e.what() << RES << std::endl;
 	}
+	return false;
 }
 
 /*---------------------[Excepction Methods]----------------------*/

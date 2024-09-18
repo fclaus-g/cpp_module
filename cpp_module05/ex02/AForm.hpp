@@ -29,7 +29,7 @@ class AForm
 		void beSigned(Bureaucrat& bureaucrat);
 			/*Declaramos la función execute que recibe un Bureaucrat como parametro y hará las
 		comprobaciones pertinentes para la correcta ejecución*/
-		void execute(Bureaucrat const& executor) const;
+		bool execute(Bureaucrat const& executor) const;
 		/*Añadimos la función virtual que nos hará la clase abstracta, esto hará que tengamos que definir
 		esta funcion en cada subclase dandole el comportamiento que necesitemos segun clase*/
 		virtual void action() const = 0;
