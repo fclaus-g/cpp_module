@@ -10,15 +10,15 @@ En todos los casos,
 	Tenga en cuenta que los atributos del formulario deben permanecer privados y que están en la clase base.
 Agregue las siguientes clases concretas:
 
-• [ ] ShrubberyCreationForm: Required grades: sign 145, exec 137
-		* [ ] Crea un archivo <target>_shrubbery en el directorio de trabajo y escribe árboles ASCII dentro de él.
+• [x] ShrubberyCreationForm: Required grades: sign 145, exec 137
+		* [x] Crea un archivo <target>_shrubbery en el directorio de trabajo y escribe árboles ASCII dentro de él.
 • [x] RobotomyRequestForm: Required grades: sign 72, exec 45
 		* [x] Hace algunos ruidos de perforación. 
 		* [x] Luego, informa que <target> se ha robotizado con éxito el 50 % de las veces.
 			De lo contrario, informa que la robotomización falló.
 • [x] PresidentialPardonForm: Required grades: sign 25, exec 5
 		* [x]Informa que <target> ha sido indultado por Zaphod Beeblebrox.
-* [ ]Todos ellos toman solo un parámetro en su constructor: el objetivo del formulario. Por
+* [x]Todos ellos toman solo un parámetro en su constructor: el objetivo del formulario. Por
 			ejemplo, "home" si desea plantar arbustos en su hogar.
 9C++ - Módulo 05
 Repetición y excepciones
@@ -85,14 +85,30 @@ int	main()
 	robot.execute(hightRobot);
 
 	//Test ShrubberyCreationForm
+	std::cout << "Test ShrubberyCreationForm" << std::endl;
 	ShrubberyCreationForm shrubbery("home");
+	std::cout << shrubbery << std::endl;
+	std::cout << "Test copy constructor" << std::endl;
+	ShrubberyCreationForm shrubbery_copy(shrubbery);
+	std::cout << shrubbery_copy << std::endl;
+	std::cout << "Test assignation operator" << std::endl;
+	ShrubberyCreationForm shrubbery_assign = shrubbery;
+	std::cout << shrubbery_assign << std::endl;
 
 	shrubbery.beSigned(lowRobot);//grade too low
 	shrubbery.execute(lowRobot);//not signed
-
+	std::cout << shrubbery << std::endl;
 	shrubbery.execute(hightRobot);//not signed
 	shrubbery.beSigned(hightRobot);
+	std::cout << shrubbery << std::endl;
 	shrubbery.execute(hightRobot);
+
+	//Bad Form test
+	//std::cout << YEL << "Bad Form test" << RES << std::endl;
+	//AForm *badForm = new AForm("badForm", 0, 0);
+
+
+	std::cout << GRN << "\n Starts Destruction" << RES << std::endl;
 
 	return 0;
 }
