@@ -1,8 +1,5 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
 
 /*Dado que ahora tiene formularios básicos, es hora de crear algunos más que realmente hagan algo.
 En todos los casos, 
@@ -29,11 +26,11 @@ Repetición y excepciones
 
 Depende de usted si desea verificar los requisitos en cada clase concreta o en la clase base
 (luego llamar a otra función para ejecutar el formulario). Sin embargo, una forma es más bonita que la otra.
-* [ ] Por último, agregue la función miembro executeForm(AForm const & form) al burócrata. Debe intentar ejecutar el formulario.
+* [x] Por último, agregue la función miembro executeForm(AForm const & form) al burócrata. Debe intentar ejecutar el formulario.
 	Si tiene éxito, imprima algo como:
 	<bureaucrat> performed <form> 
 	Si no, imprima un mensaje de error explícito.
-* [ ] Implemente y entregue algunas pruebas para asegurarse de que todo funcione como se espera.
+* [x] Implemente y entregue algunas pruebas para asegurarse de que todo funcione como se espera.
 */
 int	main()
 {
