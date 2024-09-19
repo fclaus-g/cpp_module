@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#include "Form.hpp"
 
 // /*Constructor*/
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150) 
@@ -104,7 +104,7 @@ void Bureaucrat::decrementGrade()
 }
 
 
-void Bureaucrat::signForm(AForm& form)
+void Bureaucrat::signForm(Form& form)
 {
 	if (form.getSigned())
 		std::cout << MAG << this->_name << " cannot sign " << form.getName() << " because " << this->_name << " has already signed" << RES << std::endl;
@@ -117,7 +117,7 @@ void Bureaucrat::signForm(AForm& form)
 	}
 }
 
-void Bureaucrat::executeForm(const AForm& form)
+void Bureaucrat::executeForm(const Form& form)
 {
 	if (form.execute(*this))
 		std::cout << "Bureaucrat: " << this->_name << " performed " << form.getName() << std::endl;

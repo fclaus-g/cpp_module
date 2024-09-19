@@ -3,7 +3,7 @@
 
 #include "Bureaucrat.hpp"
 
-class AForm
+class Form
 {
 	private:
 		const std::string _name;
@@ -11,13 +11,13 @@ class AForm
 		const int _gradeToSign;
 		const int _gradeToExe;
 	public:
-		AForm();
-		AForm(std::string name, int gradeToSign, int gradeToExe);
-		AForm(const AForm& copy);
+		Form();
+		Form(std::string name, int gradeToSign, int gradeToExe);
+		Form(const Form& copy);
 		/*Declaramos el destructor como virtual para que se llame al destructor de las clases hijas*/
-		virtual ~AForm();
+		virtual ~Form();
 		
-		AForm& operator=(const AForm& copy);
+		Form& operator=(const Form& copy);
 
 		std::string getName() const;
 		bool getSigned() const;
@@ -61,6 +61,6 @@ class AForm
 		};
 };
 
-std::ostream& operator<<(std::ostream& out, const AForm& form);
+std::ostream& operator<<(std::ostream& out, const Form& form);
 
 #endif

@@ -3,19 +3,19 @@
 
 /*----------------------------[Canonical Ortodox]------------------------------*/
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm() : Form("RobotomyRequestForm", 72, 45)
 {
 	std::cout << "RobotomyRequestForm default constructor called" << std::endl;
 	this->_target = "noTarget";
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("RobotomyRequestForm", 72, 45)
 {
 	std::cout << "RobotomyRequestForm constructor called" << std::endl;
 	this->_target = target;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& rhs) : AForm(rhs.getName(), rhs.getGradeToSign(), rhs.getGradeToExe())
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& rhs) : Form(rhs.getName(), rhs.getGradeToSign(), rhs.getGradeToExe())
 {
 	std::cout << "RobotomyRequestForm copy constructor called" << std::endl;
 	this->_target = rhs._target;

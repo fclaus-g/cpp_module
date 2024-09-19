@@ -2,19 +2,19 @@
 #include "ShrubberyCreationForm.hpp"
 
 /*Canonical Ortodox*/
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm() : Form("ShrubberyCreationForm", 145, 137)
 {
 	this->_target = "default";
 	std::cout << "ShrubberyCreationForm default constructor" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("ShrubberyCreationForm", 145, 137)
 {
 	this->_target = target;
 	std::cout << "ShrubberyCreationForm constructor" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& rhs) : AForm(rhs.getName(), rhs.getGradeToSign(), rhs.getGradeToExe())
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& rhs) : Form(rhs.getName(), rhs.getGradeToSign(), rhs.getGradeToExe())
 {
 	std::cout << "ShrubberyCreationForm copy constructor" << std::endl;
 	this->_target = rhs._target;

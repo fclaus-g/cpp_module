@@ -13,7 +13,7 @@
 #define MAG "\033[0;35m"
 #define RES "\033[0m"
 
-class AForm;
+class Form;
 
 class Bureaucrat
 {
@@ -32,8 +32,8 @@ class Bureaucrat
 	
 		void		incrementGrade();
 		void		decrementGrade();
-		void		signForm(AForm& form);
-		void		executeForm(AForm const& form);
+		void		signForm(Form& form);
+		void		executeForm(Form const& form);
 		/*Declaramos la clase GradeToHighExcepcion que hereda de std::exception*/
 		class GradeTooHighException : public std::exception
 		{

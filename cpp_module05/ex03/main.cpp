@@ -1,4 +1,4 @@
-#include "AForm.hpp"
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -101,7 +101,7 @@ int	main()
 
 	//Bad Form test
 	//std::cout << YEL << "Bad Form test" << RES << std::endl;
-	//AForm *badForm = new AForm("badForm", 0, 0);
+	//Form *badForm = new Form("badForm", 0, 0);
 
 	//Bureacrat executeForm test
 	std::cout << YEL << "Bureacrat executeForm test" << RES << std::endl;
