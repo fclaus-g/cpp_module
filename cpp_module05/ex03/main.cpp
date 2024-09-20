@@ -3,6 +3,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 /*
 	Como llenar formularios es bastante molesto, sería cruel pedirle a nuestros burócratas
@@ -33,82 +34,24 @@ rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 */
 int	main()
 {
-	Bureaucrat hight("hight", 1);
-	std::cout << hight << std::endl;
-	Bureaucrat low("low", 150);
-	std::cout << low << std::endl;
+	Bureaucrat officer("officer", 1);
+	Intern intern;
+	Form* form;
+	Form* form2;
+	Form* nonExistingForm;
 
-	//Test PresidentialPardonForm
-	PresidentialPardonForm form("home");
-	std::cout << form << std::endl;
-
-	form.beSigned(low);//grade too low
-	form.execute(low);//grade too low
-	std::cout << low << std::endl;
-
-	std::cout << form << std::endl;
-	form.beSigned(low);
-	std::cout << form << std::endl;
-	form.beSigned(hight);
-
-	std::cout << hight << std::endl;
-	std::cout << form << std::endl;
-	form.execute(hight);
-	std::cout << form << std::endl;
-
-
-	form.execute(low);//deberia dar grade too low
-	while (low.getGrade() > 6)//up the grade to 6
-		low.incrementGrade();
-	std::cout << low << std::endl;
-	form.execute(low);
-
-	//Test RobotomyRequestForm
-	Bureaucrat lowRobot("lowRobot", 150);
-	std::cout << lowRobot << std::endl;
-	Bureaucrat hightRobot("hightRobot", 1);
-	std::cout << hightRobot << std::endl;
-	RobotomyRequestForm robot("C3PO");
-	std::cout << robot << std::endl;
-
-	robot.beSigned(lowRobot);//grade too low
-	robot.execute(lowRobot);//not signed
-
-	robot.execute(hightRobot);//not signed
-	robot.beSigned(hightRobot);
-	robot.execute(hightRobot);
-	robot.execute(lowRobot);
-	robot.execute(hightRobot);
-
-	//Test ShrubberyCreationForm
-	std::cout << "Test ShrubberyCreationForm" << std::endl;
-	ShrubberyCreationForm shrubbery("home");
-	std::cout << shrubbery << std::endl;
-	std::cout << "Test copy constructor" << std::endl;
-	ShrubberyCreationForm shrubbery_copy(shrubbery);
-	std::cout << shrubbery_copy << std::endl;
-	std::cout << "Test assignation operator" << std::endl;
-	ShrubberyCreationForm shrubbery_assign = shrubbery;
-	std::cout << shrubbery_assign << std::endl;
-
-	shrubbery.beSigned(lowRobot);//grade too low
-	shrubbery.execute(lowRobot);//not signed
-	std::cout << shrubbery << std::endl;
-	shrubbery.execute(hightRobot);//not signed
-	shrubbery.beSigned(hightRobot);
-	std::cout << shrubbery << std::endl;
-	shrubbery.execute(hightRobot);
-
-	//Bad Form test
-	//std::cout << YEL << "Bad Form test" << RES << std::endl;
-	//Form *badForm = new Form("badForm", 0, 0);
-
-	//Bureacrat executeForm test
-	std::cout << YEL << "Bureacrat executeForm test" << RES << std::endl;
-	hight.executeForm(form);
-	lowRobot.executeForm(robot);
-
-
+	form = intern.makeForm("shrubbery creation", "home");
+	form2 = intern.makeForm("robotomy request", "home");
+	nonExistingForm = intern.makeForm("non existing form", "home");
+	std::cout << *form << std::endl;
+	std::cout << *form2 << std::endl;
+	officer.signForm(*form);
+	officer.signForm(*form2);
+	officer.executeForm(*form2);
+	if (nonExistingForm)
+		std::cout << *nonExistingForm << std::endl;
+	delete form;
+	delete form2;
 	std::cout << GRN << "\n Starts Destruction" << RES << std::endl;
 
 	return 0;
