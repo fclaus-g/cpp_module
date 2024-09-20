@@ -576,10 +576,52 @@ tipo de cosas no se aceptarán durante el proceso de evaluación. Ya no estás e
 Por ejemplo, el código siguiente crea un RobotomyRequestForm dirigido a "Bender":
 ```cpp
 {
-Intern
-Form*
-someRandomIntern;
-rrf;
-rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	Intern someRandomIntern;
+	Form* rrf;
+
+	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+}
+```
+### Objetivo
+
+### Desarrollo
+
+En este ejercicio vamos a implementar una clase nueva llamada Intern que se encargará de asignar valor a punteros *AForm(en el subject en el ejemplo declara el formulario como Form pero dado que Form no va a dejar de ser una clase abstracta he decidido dejarlo como AForm). Para esto Intern recibirá como parámetro el tipo de formulario que tiene que crear y el valor que le asignaremos a target. He decidido haciendo uso de lo que arendimos en anteriores ejercicios implementar en el método makeForm() un switch que creará uno u otro formulario a razón de lo que reciba. Veamos como lo he implementado:
+```cpp
+Form* Intern::makeForm(std::string name, std::string target)
+{
+	std::string forms[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+	int i = 0;
+
+	while (i < 3 && forms[i] != name)
+		i++;
+	try
+	{
+		switch (i)
+		{
+			case 0:
+			{
+				std::cout << GRN  << "Intern creates " << BLU << name << RES << std::endl;
+				return new ShrubberyCreationForm(target);
+			}
+			case 1:
+			{
+				std::cout << GRN << "Intern creates " << BLU << name << RES << std::endl;
+				return new RobotomyRequestForm(target);
+			}
+			case 2:
+			{
+				std::cout << GRN  << "Intern creates " << BLU << name << RES << std::endl;
+				return new PresidentialPardonForm(target);
+			}
+			default:
+				throw Intern::FormNotFoundException();
+		}
+	}
+	catch(const Intern::FormNotFoundException& e)
+	{
+		std::cerr << RED << e.what() << RES << std::endl;
+		return (NULL);
+	}
 }
 ```
