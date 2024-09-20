@@ -3,6 +3,8 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include <exception>
+#include <string>
 
 
 #ifndef INTERN_HPP

@@ -37,26 +37,31 @@ Form* Intern::makeForm(std::string name, std::string target)
 		{
 			case 0:
 			{
-				std::cout << "Intern creates " << name << std::endl;
+				std::cout << GRN  << "Intern creates " << BLU << name << RES << std::endl;
 				return new ShrubberyCreationForm(target);
 			}
 			case 1:
 			{
-				std::cout << "Intern creates " << name << std::endl;
+				std::cout << GRN << "Intern creates " << BLU << name << RES << std::endl;
 				return new RobotomyRequestForm(target);
 			}
 			case 2:
 			{
-				std::cout << "Intern creates " << name << std::endl;
+				std::cout << GRN  << "Intern creates " << BLU << name << RES << std::endl;
 				return new PresidentialPardonForm(target);
 			}
 			default:
 				throw Intern::FormNotFoundException();
 		}
 	}
-	catch(const std::exception& e)
+	catch(const Intern::FormNotFoundException& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << RED << e.what() << RES << std::endl;
+		return (NULL);
 	}
-	return (NULL);
+}
+
+const char* Intern::FormNotFoundException::what() const throw()
+{
+	return ("Form not found");
 }
