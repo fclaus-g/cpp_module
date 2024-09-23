@@ -38,17 +38,17 @@ class Bureaucrat
 		class GradeTooHighException : public std::exception
 		{
 			public:
-			const char* what() const throw();//sobreescribe el método what() de la clase std::exception
+				const char* what() const throw();//sobreescribe el método what() de la clase std::exception
 		};
 		class GradeTooLowException : public std::exception
 		{
 			public:
-			const char* what() const throw();
+				const char* what() const throw();
 		};
 		class FormNotSignedException : public std::exception
 		{
 			public:
-			const char* what() const throw();
+				const char* what() const throw();
 		};
 };
 std::ostream&	operator<<(std::ostream& out, const Bureaucrat& bureaucrat);

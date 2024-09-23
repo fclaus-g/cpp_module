@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <exception>
-#include <string>//quiza no sea necesario
-// Metería una función que imprima el nombre y el grado del burócrata
+#include <string>
+
 class Bureaucrat
 {
 	private:
@@ -37,4 +37,4 @@ class Bureaucrat
 
 std::ostream&	operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
 
-#endif 
+#endif

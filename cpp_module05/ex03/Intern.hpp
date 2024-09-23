@@ -16,9 +16,9 @@ class Intern
 		Intern();
 		Intern(const Intern& rhs);
 		~Intern();
-		Intern& operator=(const Intern& rhs);
+		Intern&	operator=(const Intern& rhs);
 
-		Form* makeForm(std::string name, std::string target);
+		Form*	makeForm(std::string name, std::string target);
 
 		class FormNotFoundException : public std::exception
 		{

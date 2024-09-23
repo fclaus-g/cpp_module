@@ -168,7 +168,7 @@ const char* Form::GradeInvalidException::what() const throw()
 
 /*---------------------[Operator]----------------------*/
 
-std::ostream& operator<<(std::ostream& out, const Form& form)
+std::ostream&	operator<<(std::ostream& out, const Form& form)
 {
 	std::string signedStr;
 	if (form.getSigned())

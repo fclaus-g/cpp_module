@@ -11,29 +11,29 @@ class Form
 		const int _gradeToSign;
 		const int _gradeToExe;
 	public:
-	Form();
-	Form(std::string name, int gradeToSign, int gradeToExe);
-	Form(const Form& copy);
-	~Form();
-	Form& operator=(const Form& copy);
+		Form();
+		Form(std::string name, int gradeToSign, int gradeToExe);
+		Form(const Form& copy);
+		~Form();
+		Form& operator=(const Form& copy);
 
-	std::string getName() const;
-	bool getSigned() const;
-	int getGradeToSign() const;
-	int getGradeToExe() const;
+		std::string getName() const;
+		bool getSigned() const;
+		int getGradeToSign() const;
+		int getGradeToExe() const;
 
-	void beSigned(Bureaucrat& bureaucrat);
-	/*Declaramos la clase GradeToHighExcepcion que hereda de std::exception*/
-	class GradeTooHighException : public std::exception
-	{
-		public:
-		const char* what() const throw();//sobreescribe el método what() de la clase std::exception
-	};
-	class GradeTooLowException : public std::exception
-	{
-		public:
-		const char* what() const throw();
-	};
+		void beSigned(Bureaucrat& bureaucrat);
+		/*Declaramos la clase GradeToHighExcepcion que hereda de std::exception*/
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char* what() const throw();//sobreescribe el método what() de la clase std::exception
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
 };
 
 std::ostream& operator<<(std::ostream& out, const Form& form);
