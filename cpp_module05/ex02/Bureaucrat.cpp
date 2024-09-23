@@ -120,7 +120,7 @@ void Bureaucrat::signForm(AForm& form)
 void Bureaucrat::executeForm(const AForm& form)
 {
 	if (form.execute(*this))
-		std::cout << "Bureaucrat: " << this->_name << " performed " << form.getName() << std::endl;
+		std::cout << "Bureaucrat: " << this->_name << " perAFormed " << form.getName() << std::endl;
 	else
 		std::cout << RED << "Bureaucrat: " << this->_name << " cannot execute " << form.getName() << RED << std::endl;		
 }

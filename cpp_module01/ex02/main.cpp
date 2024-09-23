@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 17:50:57 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/04/24 18:03:32 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:58:28 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ Por lo tanto, stringPTR apunta a str.
 
 std::string &stringREF = str;: Esta línea declara una variable
 stringREF que es una referencia a std::string. Se inicializa con str,
-por lo que stringREF es otra forma de acceder a str. Cualquier cambio
+por lo que stringREF es otra AForma de acceder a str. Cualquier cambio
 que hagas a stringREF también cambiará str, y viceversa.
 
 */

@@ -82,12 +82,12 @@ void AForm::setSign(bool sign)
 
 /*----------------------------[Method]----------------------------*/
 
-void AForm::beSigned(Bureaucrat& bureaucrat)
+void AForm::beSigned(const Bureaucrat& bureaucrat)
 {
 	try
 	{
 		if (this->_signed)
-			throw AForm::FormSignedException();
+			throw AForm::AFormSignedException();
 		else if (this->_gradeToSign < 1 || this->_gradeToExe < 1)
 			throw AForm::GradeInvalidException();
 		else if (this->_gradeToSign > 150|| this->_gradeToExe > 150)
@@ -97,7 +97,7 @@ void AForm::beSigned(Bureaucrat& bureaucrat)
 		this->_signed = true;
 		std::cout << GRN << bureaucrat.getName() << RES << " has signed " << this->_name << std::endl;
 	}
-	catch(const AForm::FormSignedException& e)
+	catch(const AForm::AFormSignedException& e)
 	{
 		std::cout << RED << bureaucrat.getName() << " cannot sign " << this->_name << RES << std::endl;
 		std::cerr << RED << e.what() << RES << std::endl;
@@ -120,14 +120,14 @@ bool AForm::execute(Bureaucrat const& executor) const
 	try
 	{
 		if (!this->_signed)
-			throw AForm::FormNotSignedException();
+			throw AForm::AFormNotSignedException();
 		else if (executor.getGrade() > this->_gradeToExe)
 			throw AForm::GradeTooHighException();
 		action();
 		std::cout << GRN << executor.getName() << RES << " has executed " << this->_name << std::endl;
 		return true;
 	}
-	catch(const AForm::FormNotSignedException& e)
+	catch(const AForm::AFormNotSignedException& e)
 	{
 		std::cout << RED << executor.getName() << " cannot execute " << this->_name << RES << std::endl;
 		std::cerr << RED << e.what() << RES << std::endl;
@@ -152,33 +152,33 @@ const char* AForm::GradeTooLowException::what() const throw()
 	return "AForm: Grade is too low";
 }
 
-const char* AForm::FormSignedException::what() const throw()
+const char* AForm::AFormSignedException::what() const throw()
 {
-	return "AForm: Form is already signed";
+	return "AForm: AForm is already signed";
 }
 
-const char* AForm::FormNotSignedException::what() const throw()
+const char* AForm::AFormNotSignedException::what() const throw()
 {
-	return "AForm: Form is not signed";
+	return "AForm: AForm is not signed";
 }
 const char* AForm::GradeInvalidException::what() const throw()
 {
-	return "AForm: Grade of this form is invalid";
+	return "AForm: Grade of this AForm is invalid";
 }
 
 /*---------------------[Operator]----------------------*/
 
-std::ostream& operator<<(std::ostream& out, const AForm& form)
+std::ostream& operator<<(std::ostream& out, const AForm& AForm)
 {
 	std::string signedStr;
-	if (form.getSigned())
+	if (AForm.getSigned())
 		signedStr = "true";
 	else
 		signedStr = "false";
 	out << YEL << "AForm info" << RES << std::endl;
-	out << "AForm name: " << form.getName() << std::endl;
+	out << "AForm name: " << AForm.getName() << std::endl;
 	out << "AForm signed: " << signedStr << std::endl;
-	out << "AForm grade to sign: " << form.getGradeToSign() << std::endl;
-	out << "AForm grade to execute: " << form.getGradeToExe() << std::endl;
+	out << "AForm grade to sign: " << AForm.getGradeToSign() << std::endl;
+	out << "AForm grade to execute: " << AForm.getGradeToExe() << std::endl;
 	return out;
 }

@@ -1,35 +1,32 @@
-/*• [ ] RobotomyRequestForm: Required grades: sign 72, exec 45
-		* [ ] Hace algunos ruidos de perforación. 
-		* [ ] Luego, informa que <target> se ha robotizado con éxito el 50 % de las veces.
-			De lo contrario, informa que la robotomización falló.*/
+
 #include "RobotomyRequestForm.hpp"
 
 /*----------------------------[Canonical Ortodox]------------------------------*/
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm () : AForm("RobotomyRequestForm ", 72, 45)
 {
 	std::cout << "RobotomyRequestForm default constructor called" << std::endl;
 	this->_target = "noTarget";
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm (std::string target) : AForm("RobotomyRequestForm ", 72, 45)
 {
 	std::cout << "RobotomyRequestForm constructor called" << std::endl;
 	this->_target = target;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& rhs) : AForm(rhs.getName(), rhs.getGradeToSign(), rhs.getGradeToExe())
+RobotomyRequestForm::RobotomyRequestForm (const RobotomyRequestForm & rhs) : AForm(rhs.getName(), rhs.getGradeToSign(), rhs.getGradeToExe())
 {
 	std::cout << "RobotomyRequestForm copy constructor called" << std::endl;
 	this->_target = rhs._target;
 }
 
-RobotomyRequestForm::~RobotomyRequestForm()
+RobotomyRequestForm::~RobotomyRequestForm ()
 {
 	std::cout << "RobotomyRequestForm destructor called" << std::endl;
 }
 
-RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& rhs)
+RobotomyRequestForm& RobotomyRequestForm ::operator=(const RobotomyRequestForm & rhs)
 {
 	std::cout << "RobotomyRequestForm assignation operator called" << std::endl;
 	if (this != &rhs){
@@ -60,12 +57,12 @@ void RobotomyRequestForm::action() const
 
 /*Operator*/
 
-std::ostream& operator<<(std::ostream& out, const RobotomyRequestForm& form)
+std::ostream& operator<<(std::ostream& out, const RobotomyRequestForm& AForm)
 {
-	out << GRN << "RobotomyRequestForm" << RES << std::endl;
-	out << "Signed: " << form.getSigned() << std::endl;
-	out << "Grade to sign: " << form.getGradeToSign() << std::endl;
-	out << "Grade to exe: " << form.getGradeToExe() << std::endl;
-	out << "Target: " << form.getTarget() << std::endl;
+	out << GRN << "RobotomyRequestForm " << RES << std::endl;
+	out << "Signed: " << AForm.getSigned() << std::endl;
+	out << "Grade to sign: " << AForm.getGradeToSign() << std::endl;
+	out << "Grade to exe: " << AForm.getGradeToExe() << std::endl;
+	out << "Target: " << AForm.getTarget() << std::endl;
 	return (out);
 }
