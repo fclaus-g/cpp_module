@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/26 10:17:20 by fclaus-g          #+#    #+#             */
+/*   Updated: 2024/09/26 10:19:01 by fclaus-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-// /*Constructor*/
+/*Constructor*/
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150) 
 {
 	std::cout <<this->_name << " constructor called" << std::endl;

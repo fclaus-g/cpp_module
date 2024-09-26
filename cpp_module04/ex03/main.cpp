@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:30:51 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/28 13:09:47 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:25:32 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main()
 	delete Loco;
 	delete Warrior;
 	delete Wizard;
-	
+	delete src;
+	delete src2;
 	return 0;
 }

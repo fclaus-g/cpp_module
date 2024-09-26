@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:25:00 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/05/24 12:31:16 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:43:40 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int main()
 	{
 		animals[i]->makeSound();
 		delete animals[i];
+		animals[i] = NULL;
 	}
+	//delete *animals;
 	return 0;
 }
