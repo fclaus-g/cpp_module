@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:21:21 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/09/26 10:21:23 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:53:40 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,82 +48,88 @@ Depende de usted si desea verificar los requisitos en cada clase concreta o en l
 */
 int	main()
 {
-	Bureaucrat hight("hight", 1);
-	std::cout << hight << std::endl;
+	Bureaucrat high("high", 1);
+	std::cout << high << std::endl;
 	Bureaucrat low("low", 150);
 	std::cout << low << std::endl;
 
 	//Test PresidentialPardonForm
 	PresidentialPardonForm ppf("home");
 	std::cout << ppf << std::endl;
-
-	ppf.beSigned(low);//grade too low
-	ppf.execute(low);//grade too low
-	std::cout << low << std::endl;
-
-	std::cout << ppf << std::endl;
-	ppf.beSigned(low);
-	std::cout << ppf << std::endl;
-	ppf.beSigned(hight);
-
-	std::cout << hight << std::endl;
-	std::cout << ppf << std::endl;
-	ppf.execute(hight);
-	std::cout << ppf << std::endl;
-
-
-	ppf.execute(low);//deberia dar grade too low
-	while (low.getGrade() > 6)//up the grade to 6
-		low.incrementGrade();
-	std::cout << low << std::endl;
-	ppf.execute(low);
+	try
+	{
+		ppf.beSigned(high);//grade too low
+		try
+		{
+			ppf.execute(low);//grade too low
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
 	//Test RobotomyRequestForm 
-	Bureaucrat lowRobot("lowRobot", 150);
-	std::cout << lowRobot << std::endl;
-	Bureaucrat hightRobot("hightRobot", 1);
-	std::cout << hightRobot << std::endl;
-	RobotomyRequestForm robot("C3PO");
+	RobotomyRequestForm robot("home");
 	std::cout << robot << std::endl;
-
-	robot.beSigned(lowRobot);//grade too low
-	robot.execute(lowRobot);//not signed
-
-	robot.execute(hightRobot);//not signed
-	robot.beSigned(hightRobot);
-	robot.execute(hightRobot);
-	robot.execute(lowRobot);
-	robot.execute(hightRobot);
+	try
+	{
+		robot.beSigned(high);//grade too low
+		try
+		{
+			robot.execute(high);//grade too low
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
 	//Test ShrubberyCreationForm
 	std::cout << "Test ShrubberyCreationForm" << std::endl;
 	ShrubberyCreationForm shrubbery("home");
 	std::cout << shrubbery << std::endl;
-	std::cout << "Test copy constructor" << std::endl;
-	ShrubberyCreationForm shrubbery_copy(shrubbery);
-	std::cout << shrubbery_copy << std::endl;
-	std::cout << "Test assignation operator" << std::endl;
-	ShrubberyCreationForm shrubbery_assign = shrubbery;
-	std::cout << shrubbery_assign << std::endl;
-
-	shrubbery.beSigned(lowRobot);//grade too low
-	shrubbery.execute(lowRobot);//not signed
-	std::cout << shrubbery << std::endl;
-	shrubbery.execute(hightRobot);//not signed
-	shrubbery.beSigned(hightRobot);
-	std::cout << shrubbery << std::endl;
-	shrubbery.execute(hightRobot);
+	try
+	{
+		shrubbery.beSigned(high);
+		try
+		{
+			shrubbery.execute(low);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
 	//Bad AForm test
-	//std::cout << YEL << "Bad AForm test" << RES << std::endl;
-	//AAForm *badAForm = new AAForm("badAForm", 0, 0);
+	//std::cout << YEL << "Bad Form test" << RES << std::endl;
+	//AForm *badAForm = new AForm("badAForm", 0, 0);
 
 	//Bureacrat executeAForm test
-	std::cout << YEL << "Bureacrat executeAForm test" << RES << std::endl;
-	hight.executeForm(ppf);
-	lowRobot.executeForm(robot);
-
-
+	std::cout << YEL << "Bureacrat executeForm test" << RES << std::endl;
+	try
+	{
+		high.executeForm(ppf);
+		high.executeForm(robot);
+		high.executeForm(shrubbery);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	std::cout << GRN << "\n Starts Destruction" << RES << std::endl;
 
 	return 0;

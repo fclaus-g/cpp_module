@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:20:33 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/09/26 10:20:34 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:49:59 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,55 +41,44 @@ Implemente y entregue algunas pruebas para asegurarse de que todo funcione como 
 */
 int	main()
 {
-	Bureaucrat bone;
-	std::cout << bone << std::endl;
-	Bureaucrat hight("hight", 1);
-	std::cout << hight << std::endl;
+	Bureaucrat high("high", 1);
+	std::cout << high << std::endl;
 	Bureaucrat low("low", 150);
 	std::cout << low << std::endl;
-	Bureaucrat tooHight("toohight", 0);
-	std::cout << tooHight << std::endl;
-	Bureaucrat tooLow("toolow", 151);
-	std::cout << tooLow << std::endl;
 
 	Form basicForm;
-	std::cout << GRN << "El siguiente formulario es el mas alto" << RES << std::endl;
 	std::cout << basicForm << std::endl;
-	Form hightForm("hightForm", 1, 1);
+	std::cout << GRN << "El siguiente formulario es el mas alto" << RES << std::endl;
+	Form highForm("highForm", 1, 1);
+	std::cout << highForm << std::endl;
 	std::cout << GRN << "El siguiente formulario es el mas bajo" << RES << std::endl;
-	std::cout << hightForm << std::endl;
 	Form lowForm("lowForm", 150, 150);
-	std::cout << GRN << "El siguiente formulario debe mostrar too hight" << RES << std::endl;
 	std::cout << lowForm << std::endl;
-	Form badFormTooHight("badFormTooHight", 0, 150);
-	std::cout << GRN << "El siguiente formulario debe mostrar too low" << RES << std::endl;
-	std::cout << badFormTooHight << std::endl;
-	Form badFormTooLow("badFormTooLow", 187, 1);
-	std::cout << GRN << "El siguiente formulario es el formulario copia de hightForm" << RES << std::endl;
-	std::cout << badFormTooLow << std::endl;
-	Form f6(hightForm);//copia de hightForm
-	std::cout << f6 << std::endl;//must be hightFormcopy,1 ,1.
-	std::cout << GRN << "El siguiente formulario es el formulario copia de lowForm" << RES << std::endl;
-	Form f7 = lowForm;//copia de lowForm
-	std::cout << f7 << std::endl; //must be lowFormcopy, 150, 150.
-
-	std::cout << GRN << "El siguiente formulario será firmado por el bureaucrat \"hight\"" << RES << std::endl;
-	hightForm.beSigned(hight);
-	std::cout << hightForm << std::endl;
-	std::cout << GRN << "El siguiente formulario NO será firmado por el bureaucrat \"low\"" << RES << std::endl;
-	hightForm.beSigned(low);
-	std::cout << hightForm << std::endl;
-
-	std::cout << GRN << "El siguiente Bureaucrat podra firmar el formulario" << RES << std::endl;
-	hight.signForm(hightForm);
-	std::cout << hightForm << std::endl;
-
-	std::cout << GRN << "El siguiente Bureaucrat NO podra firmar el formulario" << RES << std::endl;
-	low.signForm(hightForm);
-	std::cout << GRN << "El siguiente Bureaucrat NO podra firmar el formulario" << RES << std::endl;
-	bone.signForm(f6);
-	std::cout << std::endl;
-
+	try
+	{
+		std::cout << GRN << "El siguiente formulario debe mostrar la excepcion" << RES << std::endl;
+		Form badForm("badFormToohigh", 0, 150);
+		std::cout << badForm << std::endl;
+		
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	try
+	{
+		highForm.beSigned(high);
+		std::cout << highForm << std::endl;
+		high.signForm(lowForm);
+		std::cout << lowForm << std::endl;
+		Form highFormCopy(highForm);
+		low.signForm(highFormCopy);
+		high.signForm(highForm);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	std::cout << YEL << "The destruction starts" << RES << std::endl;
 	return 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:19:25 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/09/26 10:19:28 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/09/28 17:05:32 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <iostream>
 #include <exception>
 #include <string>
+
+#define GRE "\033[32m"
+#define RED "\033[31m"
+#define RES "\033[0m"
 
 class Bureaucrat
 {

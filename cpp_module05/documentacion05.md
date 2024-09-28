@@ -38,6 +38,8 @@ Primer contacto con las excepciones y como manejarlas.
 ### Desarrollo
 En este ejercicio nos encontramos por primera vez con las excepciones y su manejo, utilizaremos la std::exception para ello y sobreescribiremos el método what() de dicha clase,  que es el método con el que obtendremos info sobre el error que causó la excepción. Aqui tenemos un ejemplo de como lo implementé en el .hpp.
 Usaremos también las palabras clave **try, throw, y catch** con las que manejaremos las excepciones. Veamos nuestra implementación del ejercicio.
+Hay que tener en cuenta que cuando acaba el bloque try todo lo que se declara es destruido, o lo que es lo mismo y ya sabemos es que lo que se crea en el ámbito de las llaves no existe fuera de este.
+El bloque try y catch lo llamaremos en el main.
 ```cpp
 /*---------------------[HEADER]-------------------------*/
 #ifndef BUREAUCRAT_HPP
@@ -86,40 +88,18 @@ std::ostream&	operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
 	std::cout << this->_name << " Parametric constructor called" << std::endl;
-	try
-	{
-		if (grade < 1)
-			throw Bureaucrat::GradeTooHighException();
-		else if (grade > 150)
-			throw Bureaucrat::GradeTooLowException();
-		else
-			_grade = grade;
-	}
-	catch(const Bureaucrat::GradeTooHighException& e)
-	{
-		std::cerr << e.what() << std::endl;
-		_grade = 1;
-	}
-	catch(const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << e.what() << std::endl;
-		_grade = 150;
-	}
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else
+		_grade = grade;
 }
 
 void Bureaucrat::incrementGrade()
 {
-	try 
-	{
-		if (_grade <= 1)
-			throw Bureaucrat::GradeTooHighException();
-	}
-	catch(const Bureaucrat::GradeTooHighException& e)
-	{
-		std::cerr << e.what() << std::endl;
-		_grade = 1;
-		return ;
-	}
+	if (_grade <= 1)
+		throw Bureaucrat::GradeTooHighException();
 	_grade--;
 }
 const char* Bureaucrat::GradeTooHighException::what() const throw()

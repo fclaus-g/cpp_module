@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:27:30 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/09/26 10:27:31 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/09/28 20:03:17 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,37 +43,29 @@ Form* Intern::makeForm(std::string name, std::string target)
 
 	while (i < 3 && forms[i] != name)
 		i++;
-	try
+	switch (i)
 	{
-		switch (i)
+		case 0:
 		{
-			case 0:
-			{
-				std::cout << GRN  << "Intern creates " << BLU << name << RES << std::endl;
-				return new ShrubberyCreationForm(target);
-			}
-			case 1:
-			{
-				std::cout << GRN << "Intern creates " << BLU << name << RES << std::endl;
-				return new RobotomyRequestForm(target);
-			}
-			case 2:
-			{
-				std::cout << GRN  << "Intern creates " << BLU << name << RES << std::endl;
-				return new PresidentialPardonForm(target);
-			}
-			default:
-				throw Intern::FormNotFoundException();
+			std::cout << GRN  << "Intern creates " << BLU << name << RES << std::endl;
+			return new ShrubberyCreationForm(target);
 		}
-	}
-	catch(const Intern::FormNotFoundException& e)
-	{
-		std::cerr << RED << e.what() << RES << std::endl;
-		return (NULL);
+		case 1:
+		{
+			std::cout << GRN << "Intern creates " << BLU << name << RES << std::endl;
+			return new RobotomyRequestForm(target);
+		}
+		case 2:
+		{
+			std::cout << GRN  << "Intern creates " << BLU << name << RES << std::endl;
+			return new PresidentialPardonForm(target);
+		}
+		default:
+			throw Intern::FormNotFoundException();
 	}
 }
 
 const char* Intern::FormNotFoundException::what() const throw()
 {
-	return ("Form not found");
+	return (RED "Form not found" RES);
 }

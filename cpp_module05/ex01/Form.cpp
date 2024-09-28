@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:20:20 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/09/26 10:20:21 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:56:47 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,10 @@ Form::Form(): _name("default"), _signed(false), _gradeToSign(150), _gradeToExe(1
 Form::Form (std::string name, int gradeToSign, int gradeToExe): _name(name), _gradeToSign(gradeToSign), _gradeToExe(gradeToExe)
 {
 	this->_signed = false;
-	try
-	{
-		if (gradeToSign < 1 || gradeToExe < 1)
-			throw Form::GradeTooHighException();
-		if (gradeToSign > 150 || gradeToExe > 150)
-				throw Form::GradeTooLowException();
-	}
-	catch(const Form::GradeTooHighException& e)
-	{
-		std::cerr << RED << e.what() << RES << '\n';
-	}
-	catch(const Form::GradeTooLowException& e)
-	{
-		std::cerr << RED << e.what() << RES << '\n';
-	}
+	if (gradeToSign < 1 || gradeToExe < 1)
+		throw Form::GradeTooHighException();
+	if (gradeToSign > 150 || gradeToExe > 150)
+		throw Form::GradeTooLowException();
 	std::cout << this->_name << " Form parametric constructor called" << std::endl;
 }
 
@@ -43,8 +32,6 @@ Form::Form(const Form& copy): _name(copy._name + "copy"), _gradeToSign(copy._gra
 	std::cout << this->_name << " Form copy constructor called" << std::endl;
 	if (this != &copy)
 		*this = copy;
-	/*if (copy._signed)
-		this->_signed = true;*/
 }
 
 Form::~Form()
@@ -84,29 +71,20 @@ int Form::getGradeToExe() const
 
 void Form::beSigned(Bureaucrat& bureaucrat)
 {
-	try
-	{
-		if (bureaucrat.getGrade() <= this->_gradeToSign)
-			this->_signed = true;
-		else
-			throw Form::GradeTooLowException();
-
-	}
-	catch(const Form::GradeTooLowException& e)
-	{
-		std::cerr << RED << e.what() << RES << '\n';
-		this->_signed = false;
-	}
+	if (bureaucrat.getGrade() <= this->_gradeToSign)
+		this->_signed = true;
+	else
+		throw Form::GradeTooLowException();
 }
 
 const char* Form::GradeTooHighException::what() const throw()
 {
-	return "Form:Grade is too high";
+	return RED "Form:Grade is too high" RES;
 }
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-	return "Form:Grade is too low";
+	return RED "Form:Grade is too low" RES;
 }
 
 std::ostream& operator<<(std::ostream& out, const Form& form)

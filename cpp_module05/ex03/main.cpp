@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:27:41 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/09/26 10:27:42 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/09/28 20:12:34 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,25 @@ int	main()
 	Form* form2;
 	Form* nonExistingForm;
 
-	form = intern.makeForm("shrubbery creation", "home");
-	form2 = intern.makeForm("robotomy request", "home");
-	nonExistingForm = intern.makeForm("non existing form", "home");
-	std::cout << *form << std::endl;
-	std::cout << *form2 << std::endl;
-	officer.signForm(*form);
-	officer.signForm(*form2);
-	officer.executeForm(*form2);
-	if (nonExistingForm)
-		std::cout << *nonExistingForm << std::endl;
+	try
+	{
+		form = intern.makeForm("shrubbery creation", "home");
+		form2 = intern.makeForm("robotomy request", "home");
+		nonExistingForm = intern.makeForm("non existing form", "home");
+		std::cout << *form << std::endl;
+		std::cout << *form2 << std::endl;
+		officer.signForm(*form);
+		officer.signForm(*form2);
+		officer.executeForm(*form2);
+		if (nonExistingForm)
+			std::cout << *nonExistingForm << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	delete form;
 	delete form2;
 	std::cout << GRN << "\n Starts Destruction" << RES << std::endl;
-
 	return 0;
 }
