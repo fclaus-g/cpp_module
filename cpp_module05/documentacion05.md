@@ -207,19 +207,10 @@ el método beSigned(), definición del método what() como hicimos en el ejercic
 y la sobrecarga del operador "<<"*/
 void Form::beSigned(Bureaucrat& bureaucrat)
 {
-	try
-	{
-		if (bureaucrat.getGrade() <= this->_gradeToSign)
-			this->_signed = true;
-		else
-			throw Form::GradeTooLowException();
-
-	}
-	catch(const Form::GradeTooLowException& e)
-	{
-		std::cerr << e.what() << '\n';
-		this->_signed = false;
-	}
+	if (bureaucrat.getGrade() <= this->_gradeToSign)
+		this->_signed = true;
+	else
+		throw Form::GradeTooLowException();
 }
 
 const char* Form::GradeTooHighException::what() const throw()
@@ -466,56 +457,26 @@ Veamos como hemos implementado las estructuras de control en el método execute(
 ```cpp
 void AForm::beSigned(Bureaucrat& bureaucrat)
 {
-	try
-	{
-		if (this->_signed)
-			throw AForm::FormSignedException();
-		else if (this->_gradeToSign < 1 || this->_gradeToExe < 1)
-			throw AForm::GradeInvalidException();
-		else if (this->_gradeToSign > 150|| this->_gradeToExe > 150)
-			throw AForm::GradeInvalidException();
-		else if (this->_gradeToSign < bureaucrat.getGrade())
-			throw AForm::GradeTooHighException();
-		this->_signed = true;
-		std::cout << GRN << bureaucrat.getName() << RES << " has signed " << this->_name << std::endl;
-	}
-	catch(const AForm::FormSignedException& e)
-	{
-		std::cout << RED << bureaucrat.getName() << " cannot sign " << this->_name << RES << std::endl;
-		std::cerr << RED << e.what() << RES << std::endl;
-	}
-	catch(const AForm::GradeInvalidException& e)
-	{
-		std::cout << RED << bureaucrat.getName() << " cannot sign " << this->_name << RES << std::endl;
-		std::cerr << RED << e.what() << RES << std::endl;
-	}
-	catch(const AForm::GradeTooHighException& e)
-	{
-		std::cout << RED << bureaucrat.getName() << " cannot sign " << this->_name << RES << std::endl;
-		std::cerr << RED << e.what() << RES << std::endl;
-		this->_signed = false;
-	}
+	if (this->_signed)
+		throw AForm::FormSignedException();
+	else if (this->_gradeToSign < 1 || this->_gradeToExe < 1)
+		throw AForm::GradeInvalidException();
+	else if (this->_gradeToSign > 150|| this->_gradeToExe > 150)
+		throw AForm::GradeInvalidException();
+	else if (this->_gradeToSign < bureaucrat.getGrade())
+		throw AForm::GradeTooHighException();
+	this->_signed = true;
+	std::cout << GRN << bureaucrat.getName() << RES << " has signed " << this->_name << std::endl;
 }
 
 void AForm::execute(Bureaucrat const& executor) const
 {
-	try
-	{
-		if (!this->_signed)
-			throw AForm::FormNotSignedException();
-		else if (executor.getGrade() > this->_gradeToExe)
-			throw AForm::GradeTooHighException();
-		action();
-		std::cout << GRN << executor.getName() << RES << " has executed " << this->_name << std::endl;
-	}
-	catch(const AForm::FormNotSignedException& e)
-	{
-		std::cerr << RED << e.what() << RES << std::endl;
-	}
-	catch(const AForm::GradeTooHighException& e)
-	{
-		std::cerr << RED << e.what() << RES << std::endl;
-	}
+	if (!this->_signed)
+		throw AForm::FormNotSignedException();
+	else if (executor.getGrade() > this->_gradeToExe)
+		throw AForm::GradeTooHighException();
+	action();
+	std::cout << GRN << executor.getName() << RES << " has executed " << this->_name << std::endl;
 }
 ```
 
@@ -575,33 +536,25 @@ Form* Intern::makeForm(std::string name, std::string target)
 
 	while (i < 3 && forms[i] != name)
 		i++;
-	try
+	switch (i)
 	{
-		switch (i)
+		case 0:
 		{
-			case 0:
-			{
-				std::cout << GRN  << "Intern creates " << BLU << name << RES << std::endl;
-				return new ShrubberyCreationForm(target);
-			}
-			case 1:
-			{
-				std::cout << GRN << "Intern creates " << BLU << name << RES << std::endl;
-				return new RobotomyRequestForm(target);
-			}
-			case 2:
-			{
-				std::cout << GRN  << "Intern creates " << BLU << name << RES << std::endl;
-				return new PresidentialPardonForm(target);
-			}
-			default:
-				throw Intern::FormNotFoundException();
+			std::cout << GRN  << "Intern creates " << BLU << name << RES << std::endl;
+			return new ShrubberyCreationForm(target);
 		}
-	}
-	catch(const Intern::FormNotFoundException& e)
-	{
-		std::cerr << RED << e.what() << RES << std::endl;
-		return (NULL);
+		case 1:
+		{
+			std::cout << GRN << "Intern creates " << BLU << name << RES << std::endl;
+			return new RobotomyRequestForm(target);
+		}
+		case 2:
+		{
+			std::cout << GRN  << "Intern creates " << BLU << name << RES << std::endl;
+			return new PresidentialPardonForm(target);
+		}
+		default:
+			throw Intern::FormNotFoundException();
 	}
 }
 ```
