@@ -3,9 +3,19 @@
 
 #include <iostream>
 #include <string>
-#include <iomanip>
+#include <cstdlib>
 #include <limits>
 #include <cmath>
+ 
+#define DIGITS "0123456789"
+
+typedef enum e_type
+{
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE
+} t_type;
 
 class ScalarConverter
 {
@@ -14,6 +24,10 @@ class ScalarConverter
 		~ScalarConverter();
 		ScalarConverter(ScalarConverter const &src);
 		ScalarConverter &operator=(ScalarConverter const &rhs);
+
+	public:
+		static void convert(const std::string& literal);
+
 };
 
 #endif

@@ -13,9 +13,19 @@ Para simplificar las cosas, tenga en cuenta que los caracteres no visibles no de
 entradas. Si una conversión a char no se puede mostrar, imprime un mensaje informativo.
 Ejemplos de literales int: 0, -42, 42...
 Ejemplos de literales float: 0.0f, -4.2f, 4.2f...
-También tienes que manejar estos pseudoliterales (ya sabes, por ciencia): -inff, +inff
-6
-C++ - Módulo 06 C++ casts
-y nanf.
+También tienes que manejar estos pseudoliterales (ya sabes, por ciencia): -inff, +inff y nanf.
 Ejemplos de literales double: 0.0, -4.2, 4.2...
 También tienes que manejar estos pseudoliterales (ya sabes, por diversión): -inf, +inf y nan.*/
+
+#include "ScalarConverter.hpp"
+
+int main(int argc, char **argv)
+{
+	if (argc != 2)
+	{
+		std::cerr << "Usage: ./convert [literal]" << std::endl;
+		return 1;
+	}
+	ScalarConverter::convert(argv[1]);
+	return 0;
+}
