@@ -986,3 +986,59 @@ Es una función miembro de la clase std::exception devuelve una string de estilo
 
 Para realizar una declaraciń anticipada *(forward declaration)* de una clase en C++, simplemente declaramos la clase antes de su uso sin definirla completamente. Esto es útil cuando tenemos dependencias cíclicas o queremos reducir el tiempo de compilación.
 Es una forma de informar al compilador que se utilizará un determinado identificador en el futuro, pero su definición no está disponible en este momento. Es importante asegurarse que la definición real del identificador esté disponible antes que se utilice.
+
+
+## Conversión de tipos en C
+
+Es una operación que permite el cambio de tipo de una variable a otro tipo. Existen dos tipos principales de conversicones de tipos en C:
+
+* **Conversión Implícita:** Ocurre automáticamente cuando se asigna un valor de un t ipo a una variable de otro tipo compatible. Ejemplo:
+```cpp
+int     a = 10;
+float   b = a;//conversión implícita.
+/*En este caso el valor int de a se convierte en float automáticamente cuando se asigna a b.*/
+```
+* **Conversión Explícita:** Se realiza utilizando el operador de casting. Esto es util cuando queremos convertir datos de manera controlada. Ejemplos:
+```cpp
+/*sintaxis-> (tipo)expresión;*/
+//float a int
+float   f = 9.7;
+int     i = (int)f;//se convertirá en 9
+//int a char
+int     i = 65;
+char    c = (char)i;//c será 'A' valor ASCII de 65
+//void* a otro tipo de puntero
+void*   ptr;
+int*    intPtr = (int*)ptr;//convierte de void* a int*
+```
+### Consideraciones
+* **Pérdida de datos:** Al convertir de tipos mas grande a tipos mas pequeños (ej: float a int) puede haber pérdida de datps.
+* **Compatibilidad:** No todas las conversiones son seguras o significativas. Por ejemplo, convertir a un puntero un tipo de datos a un puntero de otro tipo de datos puede llevar a comportamientos indefinidos si no se hace correctamente.
+
+## Conversiones de datos en C++
+Además de las dos conversiones en C, vistas mas arriba, C++ alberga otras conversiones a tener en cuenta_
+ * **C-Style Cast:** casting explícito al estilo C como vimos mas arriba.
+ * **static cast:** Se usa para conversiones bien definidas entre tipos relacionados. como de un tipo numérico a otro, o de un puntero base a otro derivado.
+ ```cpp
+ int    a = 10;
+ float  b = static_cast<float>(a);
+ ```
+ * **dynamic_cast:** Se usa para conversiones seguras en tiempo de ejecución entre punteros o referencias de clases polimórficas. Requiere que la clase tenga al menos una función virtual.
+    ```cpp
+    class Base{virtual void function(){}}
+    class Derived : Public Base{};
+
+    Base* basePtr = new Derived();
+    Derived* derivedPtr = dynamy_cast<Derived*>(basePtr);
+    ```
+* **const_cast:** Para agregar o eliminar la cualificación const de un tipo.
+```cpp
+const int   a = 10;
+int*        b = const_cast<int*>(&a);
+* **reinterpret_cast:** Conversiones de bajo nivel entre tipos de punteros y tipos de datos completamente diferentes. Debe usarse con precaución.
+Puede llevar a comportamientos indefinidos si se usa incorrectamente.
+```cpp
+int     a = 10;
+void*   ptr = reinterpret_cast<void*>(&a);
+int*    intPtr = reinterpret_cast<int*>(ptr);
+```
