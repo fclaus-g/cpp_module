@@ -29,3 +29,20 @@ int main(int argc, char **argv)
 	ScalarConverter::convert(argv[1]);
 	return 0;
 }
+
+/*CORRECCION
+Este ejercicio se trata de usar el static_cast.
+
+Conversión escalar
+
+¿El estudiante creó una clase con un constructor privado y métodos estáticos?
+
+¿El estudiante usó el static_cast para convertir valores?
+
+Acepte el uso de moldes implícitos solo para moldes de promoción.
+
+¿El programa funciona según sea necesario?
+
+De todos modos, no sea demasiado intransigente con los resultados del ejercicio si se respeta el espíritu del ejercicio.
+
+Incluso si este ejercicio es incorrecto, continúe el proceso de evaluación.*/
