@@ -114,68 +114,17 @@ void	ScalarConverter::convert(const std::string& literal)
 		case SPECIAL:
 			std::cout << "char: impossible" << std::endl;
 			std::cout << "int: impossible" << std::endl;
-			std::cout << "float: " << literal << std::endl;
+			if (literal == "-inf" || literal == "+inf")
+				std::cout << "float: " << literal.substr(0, literal.size() - 1) << "f" << std::endl;
+			else
+			std::cout << "float: " << literal <<  std::endl;
+			if (literal == "-inff" || literal == "+inff")
+				std::cout << "double: " << literal.substr(0, literal.size() - 1) << std::endl;
+			else
 			std::cout << "double: " << literal << std::endl;
 			break;
 		case UNDEFINED:
 			std::cout << "impossible" << std::endl;
 			break;
-	//convertToTypes
-	//handleEspecialCases
-	//printResults
 	}
 }
-
-// void ScalarConverter::convert(const std::string& literal)
-// {
-// 	std::cout << "char: ";
-// 	try
-// 	{
-// 		char c = static_cast<char>(std::stoi(literal));
-// 		if (isprint(c))
-// 			std::cout << "'" << c << "'" << std::endl;
-// 		else
-// 			std::cout << "Non displayable" << std::endl;
-// 	}
-// 	catch (std::exception &e)
-// 	{
-// 		std::cout << "impossible" << std::endl;
-// 	}
-// 	std::cout << "int: ";
-// 	try
-// 	{
-// 		int i = std::stoi(literal);
-// 		std::cout << i << std::endl;
-// 	}
-// 	catch (std::exception &e)
-// 	{
-// 		std::cout << "impossible" << std::endl;
-// 	}
-// 	std::cout << "float: ";
-// 	try
-// 	{
-// 		float f = std::stof(literal);
-// 		if (!literal.find("."))
-// 			std::cout << f << ".0f" << std::endl;
-// 		else
-// 			std::cout << f << "f" << std::endl;
-
-// 	}
-// 	catch (std::exception &e)
-// 	{
-// 		std::cout << "impossible" << std::endl;
-// 	}
-// 	std::cout << "double: ";
-// 	try
-// 	{
-// 		double d = std::stod(literal);
-// 		if (!literal.find("."))
-// 			std::cout << d << ".0" << std::endl;
-// 		else
-// 			std::cout << d << std::endl;
-// 	}
-// 	catch (std::exception &e)
-// 	{
-// 		std::cout << "impossible" << std::endl;
-// 	}
-// }
