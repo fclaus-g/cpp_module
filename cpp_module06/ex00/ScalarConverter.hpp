@@ -7,8 +7,6 @@
 #include <iomanip>
 #include <limits>
 #include <cmath>
- 
-#define DIGITS "0123456789"
 
 typedef enum e_type
 {
