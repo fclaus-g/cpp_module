@@ -17,15 +17,28 @@ Usa serialize() en la dirección del objeto Data y pasa su valor de retorno a de
 
 No olvides entregar los archivos de tu estructura de datos.*/
 
-#include "ScalarConverter.hpp"
+#include "Serializer.hpp"
 
-int main(int argc, char **argv)
+int main()
 {
-	if (argc != 2)
-	{
-		std::cerr << "Usage: ./convert [literal]" << std::endl;
-		return 1;
-	}
-	ScalarConverter::convert(argv[1]);
+	Data data;
+	data.id = 42;
+	data.value = 3.14;
+	data.name = "Hello, World!";
+
+	// Serialize data
+	uintptr_t serialized = Serializer::serialize(&data);
+	std::cout << "Serialized data: " << serialized << std::endl;
+	
+	// Deserialize data
+	Data* deserialized = Serializer::deserialize(serialized);
+	std::cout << "Deserialized data: " << deserialized << std::endl;
+
+	// Check if the deserialized data is the same as the original data
+	std::cout << "Original data: " << &data << std::endl;
+	if (deserialized == &data)
+		std::cout << "Deserialized data is the same as the original data." << std::endl;
+	else
+		std::cout << "Deserialized data is not the same as the original data." << std::endl;
 	return 0;
 }

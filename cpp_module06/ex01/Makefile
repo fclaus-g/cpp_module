@@ -1,25 +1,30 @@
-NAME = ScalarConverter
+NAME = Serializer
 
-SRCS = main.cpp ScalarConverter.cpp
+SRCS = main.cpp Serializer.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 FLAGS = -Wall -Wextra -Werror
 
+GREEN = \033[0;32m
+RED = \033[0;31m
+RESET = \033[0m
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	g++ $(FLAGS) $(OBJS) -o $(NAME)
-
+	c++ $(FLAGS) $(OBJS) -o $(NAME)
+	@echo "$(GREEN)$(NAME) created.$(RESET)"
 %.o: %.cpp
-	g++ $(FLAGS) -c $< -o $@
+	c++ $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
+	@echo "$(RED)$(NAME) object files removed.$(RESET)"
 
 fclean: clean
 	rm -f $(NAME)
-
+	@echo "$(RED)$(NAME) removed.$(RESET)"
 re: fclean all
 
 .PHONY: all clean fclean re
