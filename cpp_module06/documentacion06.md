@@ -77,6 +77,46 @@ Usa serialize() en la dirección del objeto Data y pasa su valor de retorno a de
 
 No olvides entregar los archivos de tu estructura de datos.
 
+### Teoría 
+¿Qué es Serialización?
+Serialización es el proceso de convertir un objeto en un formato que puede ser fácilmente almacenado o transmitido. Esto puede ser útil para:
+
+Guardar el estado de un objeto en un archivo o en una base de datos.
+Enviar objetos a través de redes, como cuando un servidor envía datos a un cliente.
+En C++, como en muchos lenguajes de programación, los objetos son estructuras en memoria que contienen datos y pueden ser complejas. La serialización permite que estas estructuras sean transformadas en una representación que pueda ser fácilmente guardada o enviada.
+
+¿Qué es Deserialización?
+Deserialización es el proceso inverso, donde tomamos la representación almacenada (en este caso, el número entero que representa un puntero) y lo convertimos de vuelta al objeto original.
+
+Cómo Funciona el Serializer
+La clase Serializer que implementamos en el ejercicio tiene dos métodos estáticos:
+
+serialize(Data* ptr): Este método toma un puntero a un objeto de tipo Data y lo convierte a un tipo uintptr_t. Esto nos permite obtener una representación numérica del puntero.
+
+deserialize(uintptr_t raw): Este método toma el número entero (representación del puntero) y lo convierte de nuevo en un puntero a Data.
+
+Flujo del Ejercicio
+Creación del Objeto: Se crea un objeto Data que tiene algunos miembros (como id, name, y value).
+
+Serialización:
+
+Se llama a serialize pasando el puntero al objeto Data.
+El puntero se convierte a un número entero (uintptr_t). Este número representa la dirección de memoria del objeto.
+Deserialización:
+
+Se llama a deserialize pasando el número entero.
+El número entero se convierte de nuevo a un puntero de tipo Data*, que apunta a la misma dirección de memoria que el objeto original.
+Verificación: Se comprueba que el puntero original y el puntero deserializado apuntan al mismo objeto. Esto asegura que el proceso de serialización y deserialización ha funcionado correctamente.
+
+Propósito en la Programación
+Este ejercicio tiene varios propósitos:
+
+Comprender Punteros y Direcciones de Memoria: Aprender a trabajar con punteros en C++ y cómo manipular direcciones de memoria es fundamental en programación de sistemas y aplicaciones de bajo nivel.
+
+Uso de uintptr_t: Familiarizarse con el tipo uintptr_t, que es un tipo entero sin signo capaz de almacenar la dirección de un puntero, lo que ayuda a entender cómo funcionan las direcciones de memoria.
+
+Práctica de Clases y Métodos Estáticos: Aprender a trabajar con clases en C++, en este caso con métodos que no requieren una instancia de la clase.
+
 ## Ex02
 
 ### Subject
