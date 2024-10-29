@@ -55,6 +55,46 @@ float: 42.0f
 double: 42.0
 ```
 
+### Teoría
+Propósitos del Scalar Converter
+Conversión de Tipos de Datos:
+
+Permite transformar un valor de un tipo escalar a otro. Por ejemplo, puede convertir un valor de tipo string a int, float, o double, y viceversa.
+Esto es útil en situaciones donde se requiere un tipo de dato específico para cálculos, almacenamiento o transmisión.
+Interoperabilidad:
+
+Facilita la interoperabilidad entre diferentes partes de un programa que pueden requerir tipos de datos distintos. Por ejemplo, podrías recibir un valor como cadena (texto) desde la entrada del usuario, y necesitar convertirlo a int para realizar cálculos matemáticos.
+Manejo de Errores:
+
+Proporciona un mecanismo para manejar errores durante la conversión, como intentar convertir un texto que no es numérico a un tipo numérico (por ejemplo, convertir "abc" a int), lo que puede resultar en excepciones.
+Al manejar estos errores, el programa puede ser más robusto y evitar fallos inesperados.
+Impresión de Valores:
+
+El conversor puede formatear y presentar los resultados de la conversión de manera amigable para el usuario, indicando claramente el resultado de cada conversión.
+Facilita la Comprensión de Tipos:
+
+Ayuda a entender las diferencias entre los tipos de datos escalares en C++. La conversión entre tipos primitivos a menudo es un concepto fundamental en muchos lenguajes de programación, y este ejercicio permite practicar y reforzar ese conocimiento.
+Contexto del Ejercicio en C++
+En el contexto del ejercicio del Scalar Converter que discutimos, el propósito del conversor se puede resumir en los siguientes pasos:
+
+Entrada de Datos: Se toma un valor de entrada (como argumento de línea de comandos), que puede ser en formato de texto (cadena).
+Conversión: El valor de entrada se convierte a varios tipos escalares (como int, char, float, y double).
+Salida: Los resultados de las conversiones se imprimen en la consola, mostrando cómo se ve el valor en cada tipo.
+Ejemplo Práctico
+Imagina que estás creando un programa que necesita realizar cálculos matemáticos basados en la entrada del usuario. El usuario podría ingresar un número en forma de texto (por ejemplo, "123.45"). Para poder utilizar ese número en cálculos, debes convertirlo:
+
+Desde std::string a float o double para realizar cálculos.
+Podrías querer imprimir el número como int, redondeando hacia abajo (123).
+Tal vez quieras verificar si este número puede ser representado como un char (en este caso, convertirlo podría dar un carácter específico).
+Conclusión
+El Scalar Converter es una herramienta útil en programación que:
+
+Facilita la conversión de tipos de datos.
+Ayuda a manejar la entrada del usuario de manera flexible.
+Aumenta la robustez del programa al manejar errores de conversión.
+Proporciona una comprensión más clara sobre cómo los diferentes tipos de datos pueden interactuar en un programa.
+
+
 ## Ex01
 
 ### Subject
