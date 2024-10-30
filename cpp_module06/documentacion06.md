@@ -181,3 +181,33 @@ Imprime el tipo real del objeto al que apunta p: "A", "B" o "C". Está prohibido
 Está prohibido incluir el encabezado typeinfo.
 
 Escribe un programa para probar que todo funciona como se espera.
+
+### Objetivo
+
+Este ejercicio tiene como objetivo ayudarte a entender conceptos clave de la programación orientada a objetos en C++, especialmente cuando se trabaja con polimorfismo y downcasting. Aunque puede parecer simple, te proporciona práctica en las siguientes áreas:
+
+1. Polimorfismo en Tiempo de Ejecución
+La clase base Base se utiliza como interfaz para las clases derivadas A, B y C. En muchas aplicaciones, especialmente cuando se usan punteros o referencias a la clase base (Base), no se sabe en tiempo de compilación cuál es el tipo exacto de un objeto (si es A, B, o C). Este ejercicio simula esta situación y te obliga a resolverla en tiempo de ejecución.
+
+2. Identificación de Tipos Derivados usando Downcasting
+En el ejercicio, la función identify(Base& p) o identify(Base* p) necesita detectar el tipo exacto de un objeto derivado a partir de un puntero o referencia a la clase base Base. Esto se conoce como downcasting.
+
+C++ proporciona dynamic_cast para este propósito, que es particularmente útil en sistemas donde tienes una jerarquía de clases y deseas realizar operaciones específicas para ciertos tipos de objetos en tiempo de ejecución. Este ejercicio te ayuda a trabajar con dynamic_cast, aprendiendo cómo usarlo y cuándo puede fallar (captura de std::bad_cast en dynamic_cast).
+
+3. Uso de Excepciones y Manejo de Errores
+En la versión que usa referencias (identify(Base& p)), el dynamic_cast lanza una excepción si el tipo de p no coincide con el tipo al que intentas convertirlo. Manejar esto de manera apropiada mediante bloques try-catch es una parte importante del ejercicio, enseñándote cómo lidiar con errores en tiempo de ejecución de manera efectiva y limpia.
+
+4. Comprensión de Punteros vs. Referencias
+La existencia de dos funciones identify(Base* p) y identify(Base& p) resalta la diferencia entre trabajar con punteros y referencias en C++. En identify(Base* p), puedes verificar fácilmente si el puntero es nullptr o no, y evitar excepciones. Sin embargo, en identify(Base& p), el dynamic_cast lanza excepciones para tipos no coincidentes. Así, el ejercicio también te ayuda a ver cuándo es útil una opción sobre la otra.
+
+5. Diseño y Lógica de Jerarquías de Clases
+Este ejercicio también es un recordatorio de cómo diseñar sistemas con jerarquías de clases y de los desafíos asociados con el trabajo en tiempo de ejecución. Dado que el tipo exacto del objeto Base solo se determina en ejecución, este ejercicio simula una situación común en programación orientada a objetos y te ayuda a comprender cómo manejarla.
+
+Conclusión
+En resumen, el sentido de este ejercicio es brindarte práctica en conceptos avanzados de C++ que son fundamentales para aplicaciones orientadas a objetos: polimorfismo, downcasting, manejo de excepciones, y la diferencia en el manejo de punteros y referencias. Estos temas son esenciales para aplicaciones de software a gran escala, donde puedes tener muchos tipos derivados y necesitas ejecutar comportamientos específicos para cada tipo, incluso cuando solo tienes acceso a la interfaz base.
+
+
+
+
+
+
