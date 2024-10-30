@@ -11,10 +11,4 @@ void iter(T *array, int length,F function)
 		function(array[i]);
 }
 
-template <typename T>
-void print(T const &t)
-{
-	std::cout << t << " ";
-}
-
 #endif

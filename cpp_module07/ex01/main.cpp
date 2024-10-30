@@ -11,6 +11,17 @@ puede ser una plantilla de función instanciada.*/
 #include <iostream>
 #include "iter.hpp"
 
+template <typename T>
+void print(T const &t)
+{
+	std::cout << t << " ";
+}
+template <typename T>
+void increment(T &t)
+{
+	++t;
+}
+
 int main( void ) {
 	int intArray[] = {1, 2, 3, 4, 5};
 	float floatArray[] = {1.1, 2.2, 3.3, 4.4, 5.5};
@@ -18,6 +29,23 @@ int main( void ) {
 
 	std::cout << "intArray: ";
 	iter(intArray, 5, print<int>);
+	std::cout << std::endl;
+
+	std::cout << "Increment intArray: ";
+	iter(intArray, 5, increment<int>);
+	std::cout << std::endl;
+
+	std::cout << "intArray: ";
+	iter(intArray, 5, print<int>);
+	std::cout << std::endl;
+	
+
+	std::cout << "floatArray: ";
+	iter(floatArray, 5, print<float>);
+	std::cout << std::endl;
+
+	std::cout << "Increment floatArray: ";
+	iter(floatArray, 5, increment<float>);
 	std::cout << std::endl;
 
 	std::cout << "floatArray: ";
