@@ -82,3 +82,88 @@ int main() {
     return 0;
 }
 ```
+## Ex01 
+
+### Subject
+Implementa una plantilla de función iter que tome 3 parámetros y no devuelva nada.
+* El primer parámetro es la dirección de una matriz.
+* El segundo es la longitud de la matriz.
+* El tercero es una función que se llamará en cada elemento de la matriz.
+Entregue un archivo main.cpp que contenga sus pruebas. Proporcione suficiente código para generar un
+ejecutable de prueba.
+Su plantilla de función iter debe funcionar con cualquier tipo de matriz. El tercer parámetro
+puede ser una plantilla de función instanciada.
+
+### Objetivo
+
+El proyecto tiene como objetivo implementar una plantilla de función llamada iter, que permite aplicar una función específica a cada elemento de una matriz genérica. Las plantillas en C++ son una poderosa característica que permite definir funciones y clases de manera independiente del tipo de datos, promoviendo la reutilización del código y la flexibilidad. En este contexto, iter toma tres parámetros: un puntero a una matriz, la longitud de dicha matriz y un puntero a una función que se invocará para cada elemento de la matriz. Esta implementación permite trabajar con diferentes tipos de datos (como enteros y dobles) sin necesidad de escribir código específico para cada tipo. A través de esta función, se puede demostrar la versatilidad de las plantillas en C++, ya que permite aplicar operaciones de manera uniforme y eficiente en colecciones de datos heterogéneos.
+
+### Implementación
+```cpp
+/*iter.hpp*/
+#ifndef ITER_HPP
+#define ITER_HPP
+
+#include <iostream>
+
+template <typename T, typename F>
+
+void iter(T *array, int length,F function)
+{
+	for (int i = 0; i < length; i++)
+		function(array[i]);
+}
+
+#endif
+
+/*main.cpp*/
+#include <iostream>
+#include "iter.hpp"
+
+template <typename T>
+void print(T const &t)
+{
+	std::cout << t << " ";
+}
+template <typename T>
+void increment(T &t)
+{
+	++t;
+}
+
+int main( void ) {
+	int intArray[] = {1, 2, 3, 4, 5};
+	float floatArray[] = {1.1, 2.2, 3.3, 4.4, 5.5};
+	std::string stringArray[] = {"one", "two", "three", "four", "five"};
+
+	std::cout << "intArray: ";
+	iter(intArray, 5, print<int>);
+	std::cout << std::endl;
+
+	std::cout << "Increment intArray: ";
+	iter(intArray, 5, increment<int>);
+	std::cout << std::endl;
+
+	std::cout << "intArray: ";
+	iter(intArray, 5, print<int>);
+	std::cout << std::endl;
+	
+
+	std::cout << "floatArray: ";
+	iter(floatArray, 5, print<float>);
+	std::cout << std::endl;
+
+	std::cout << "Increment floatArray: ";
+	iter(floatArray, 5, increment<float>);
+	std::cout << std::endl;
+
+	std::cout << "floatArray: ";
+	iter(floatArray, 5, print<float>);
+	std::cout << std::endl;
+
+	std::cout << "stringArray: ";
+	iter(stringArray, 5, print<std::string>);
+	std::cout << std::endl;
+
+	return 0;
+}
