@@ -106,7 +106,7 @@ El proyecto tiene como objetivo implementar una plantilla de función llamada it
 
 #include <iostream>
 
-template <typename T, typename F>
+template <typename T, typename F>//declaramos el template, vamos a tener dos uno para el elemento y otro para la función
 
 void iter(T *array, int length,F function)
 {
@@ -161,9 +161,10 @@ int main( void ) {
 	iter(floatArray, 5, print<float>);
 	std::cout << std::endl;
 
-	std::cout << "stringArray: ";
+	std::cout << "stringArray: ";//al array de string no le aplicamos la función increment porque no es posible incrementar una string en C++
 	iter(stringArray, 5, print<std::string>);
 	std::cout << std::endl;
 
 	return 0;
 }
+```
