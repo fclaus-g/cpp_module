@@ -6,12 +6,13 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:21:38 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/09/26 10:22:21 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/09/26 10:59:30 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
+
 /* Canonical Ortodox*/
 PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", 25, 5)
 {
@@ -41,7 +42,7 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 	std::cout << "PresidentialPardonForm assignation operator called" << std::endl;
 	if (this != &rhs){
 		this->_target = rhs._target;
-		//this->setSigned(rhs.getSigned());//pte añadir un setSigned a AForm
+		this->setSign(rhs.getSigned());
 	}
 	return (*this);
 }

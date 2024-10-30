@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:27:52 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/09/26 10:27:56 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/09/26 10:59:02 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ PresidentialPardonForm::~PresidentialPardonForm()
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& rhs)
 {
 	std::cout << "PresidentialPardonForm assignation operator called" << std::endl;
-	if (this != &rhs){
+	if (this != &rhs)
+	{
 		this->_target = rhs._target;
-		//this->setSigned(rhs.getSigned());//pte añadir un setSigned a Form
+		this->setSign(rhs.getSigned());
 	}
 	return (*this);
 }
