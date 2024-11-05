@@ -14,7 +14,8 @@ typedef enum e_type
 	INT,
 	FLOAT,
 	DOUBLE,
-	SPECIAL,
+	SPECIALD,
+	SPECIALF,
 	UNDEFINED
 } t_type;
 

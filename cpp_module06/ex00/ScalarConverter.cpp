@@ -18,9 +18,12 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
 
 int ScalarConverter::getType(const std::string& literal)
 {
-	if (literal == "-inff" || literal == "+inff" || literal == "nanf" ||
-		 literal == "-inf" || literal == "+inf" || literal == "nan" || literal == "inf")
-		return SPECIAL;
+	if (literal == "-inff" || literal == "+inff" || literal == "nanf" || literal == "inff" || literal == "+nanf")
+		return SPECIALF;
+	if ( literal == "-inf" || literal == "+inf" || literal == "nan" || literal == "inf" || literal == "+nan")
+		return SPECIALD;
+	if (literal == "-nan" || literal == "-nanf")
+		return UNDEFINED;
 	if (literal.size() > 11)
 	 	return UNDEFINED;
 	if (literal.size() == 1 && ((literal[0] >= 32 && literal[0] < 48) || (literal[0] > 57 && literal[0] < 126)))
@@ -29,7 +32,7 @@ int ScalarConverter::getType(const std::string& literal)
 	strtol(literal.c_str(), &endptr, 10);
 	if (*endptr == '\0')
 		return INT;
-	strtod(literal.c_str(), &endptr);
+	strtof(literal.c_str(), &endptr);
 	if (*endptr == 'f' && *(endptr + 1) == '\0')
 		return FLOAT;
 	strtod(literal.c_str(), &endptr);
@@ -158,20 +161,26 @@ void	ScalarConverter::convert(const std::string& literal)
 		case DOUBLE:
 			convertToDouble(literal);
 			break;
-		case SPECIAL:
+		case SPECIALF:
 			std::cout << "char: impossible" << std::endl;
 			std::cout << "int: impossible" << std::endl;
 			if (literal == "-inf" || literal == "+inf")
 				std::cout << "float: " << literal.substr(0, literal.size() - 1) << "f" << std::endl;
 			else
-			std::cout << "float: " << literal <<  std::endl;
-			if (literal == "-inff" || literal == "+inff" || literal == "nanf")
-				std::cout << "double: " << literal.substr(0, literal.size() - 1) << std::endl;
+				std::cout << "float: " << literal <<  std::endl;
+			std::cout << "double: " << literal.substr(0, literal.size() - 1) << std::endl;
+			break;
+		case SPECIALD:
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+			if (literal == "-inf" || literal == "+inf")
+				std::cout << "float: " << literal.substr(0, literal.size() - 1) << "f" << std::endl;
 			else
+				std::cout << "float: " << literal <<  std::endl;
 			std::cout << "double: " << literal << std::endl;
 			break;
 		case UNDEFINED:
-			std::cout << "impossible" << std::endl;
+			std::cout << "Invalid conversion" << std::endl;
 			break;
 	}
 }
