@@ -94,6 +94,10 @@ Ayuda a manejar la entrada del usuario de manera flexible.
 Aumenta la robustez del programa al manejar errores de conversión.
 Proporciona una comprensión más clara sobre cómo los diferentes tipos de datos pueden interactuar en un programa.
 
+* **Valores especiales**
+	- inf -> infinito positivo. -inf -> infinito negativo. Cuando un valor excede el calculo máximo/mínimo de float. Ej: -1.0 / 0.0 resulta en -inf.
+	- inff -> infinito positivo. -inff -> infinito negativo. Cuando un valor excede el calculo máximo/mínimo de float. En algunos compiladores y entornos se usa para diferenciar float de double. Ej: -1.0 / 0.0 resulta en -inff.
+	- nan - Not a Number Ej: 0.0 / 0.0 resulta en nan.
 
 ## Ex01
 
