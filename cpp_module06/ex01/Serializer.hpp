@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <limits>
 #include <cmath>
+#include <stdint.h>
  
 class Serializer
 {
