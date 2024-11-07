@@ -5,7 +5,7 @@
 #include <string>
 #include <cstdlib>
 #include <iomanip>
-#include <limits>
+#include <climits>
 #include <cmath>
 
 typedef enum e_type
@@ -26,14 +26,14 @@ class ScalarConverter
 		~ScalarConverter();
 		ScalarConverter(ScalarConverter const &src);
 		ScalarConverter &operator=(ScalarConverter const &rhs);
-		static int getType(const std::string& literal);
-		static void converToChar(const std::string& literal);
-		static void convertToInt(const std::string& literal);
-		static void convertToFloat(const std::string& literal);
-		static void convertToDouble(const std::string& literal);
+		static int	getType(const std::string& literal);
+		static void	converToChar(const std::string& literal);
+		static void	convertToInt(const std::string& literal);
+		static void	convertToFloat(const std::string& literal);
+		static void	convertToDouble(const std::string& literal);
 
 	public:
-		static void convert(const std::string& literal);
+		static void	convert(const std::string& literal);
 
 };
 
