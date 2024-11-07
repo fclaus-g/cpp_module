@@ -1,4 +1,175 @@
-# Cpp_modules06
+# Cpp_modules06 -Teoría general
+## Casts en C++
+En C++, las conversiones de tipo (casts) son operaciones que permiten convertir un valor de un tipo de dato a otro. Existen varios tipos de casts en C++, cada uno con su propósito y reglas específicas. Los más comunes son:
+1. static_cast
+2. dynamic_cast
+3. const_cast
+4. reinterpret_cast
+
+* **Casts de estilo C**
+
+1. **static_cast**
+static_cast se utiliza para realizar conversiones de tipos bien definidas y en tiempo de compilación. Es seguro y no realiza comprobaciones en tiempo de ejecución. Se utiliza principalmente para:
+
+Conversiones entre tipos numéricos (por ejemplo, de int a float).
+Conversiones de punteros y referencias en una jerarquía de herencia.
+Conversiones explícitas entre tipos de datos compatibles.
+
+2. dynamic_cast
+dynamic_cast se utiliza para realizar conversiones seguras en tiempo de ejecución entre punteros o referencias a clases polimórficas. Realiza comprobaciones en tiempo de ejecución y puede devolver nullptr o lanzar una excepción std::bad_cast si la conversión no es posible. Solo funciona con clases que tienen al menos una función virtual.
+
+GitHub Copilot
+Claro, aquí tienes una explicación completa sobre los diferentes tipos de conversiones de tipo (casts) en C++ y cómo funcionan:
+
+Casts en C++
+En C++, las conversiones de tipo (casts) son operaciones que permiten convertir un valor de un tipo de dato a otro. Existen varios tipos de casts en C++, cada uno con su propósito y reglas específicas. Los más comunes son:
+
+static_cast
+dynamic_cast
+const_cast
+reinterpret_cast
+Casts de estilo C
+1. static_cast
+static_cast se utiliza para realizar conversiones de tipos bien definidas y en tiempo de compilación. Es seguro y no realiza comprobaciones en tiempo de ejecución. Se utiliza principalmente para:
+
+* Conversiones entre tipos numéricos (por ejemplo, de int a float).
+* Conversiones de punteros y referencias en una jerarquía de herencia.
+* Conversiones explícitas entre tipos de datos compatibles.
+Ejemplo:
+```cpp
+int i = 42;
+float f = static_cast<float>(i); // Convertir int a float
+
+class Base {};
+class Derived : public Base {};
+
+Base* b = new Derived();
+Derived* d = static_cast<Derived*>(b); // Convertir Base* a Derived*
+```
+2. dynamic_cast
+dynamic_cast se utiliza para realizar conversiones seguras en tiempo de ejecución entre punteros o referencias a clases polimórficas. Realiza comprobaciones en tiempo de ejecución y puede devolver nullptr o lanzar una excepción std::bad_cast si la conversión no es posible. Solo funciona con clases que tienen al menos una función virtual.
+Ejemplo:
+```cpp
+class Base {
+public:
+    virtual ~Base() {}
+};
+
+class Derived : public Base {};
+
+Base* b = new Derived();
+Derived* d = dynamic_cast<Derived*>(b); // Convertir Base* a Derived*
+
+if (d) {
+    // La conversión fue exitosa
+} else {
+    // La conversión falló
+}
+```
+3. const_cast
+const_cast se utiliza para agregar o eliminar la cualificación const de un tipo de dato. No puede cambiar el tipo subyacente del objeto. Se utiliza principalmente para eliminar la cualificación const de punteros o referencias.
+```cpp
+const int i = 42;
+int* p = const_cast<int*>(&i); // Eliminar la cualificación const
+
+*p = 24; // Modificar el valor a través del puntero no const
+```
+
+4. reinterpret_cast
+reinterpret_cast se utiliza para realizar conversiones de tipos de bajo nivel y potencialmente peligrosas. No realiza comprobaciones en tiempo de ejecución y puede reinterpretar los bits de un tipo de dato como otro tipo de dato. Se utiliza principalmente para conversiones entre punteros de tipos no relacionados.
+```cpp
+int i = 42;
+void* p = reinterpret_cast<void*>(&i); // Convertir int* a void*
+
+int* ip = reinterpret_cast<int*>(p); // Convertir void* de vuelta a int*
+```
+5. Casts de estilo C
+Los casts de estilo C son la forma original de realizar conversiones de tipo en C y C++. Son menos seguros y más propensos a errores porque no especifican el tipo de conversión que se está realizando. Se recomienda evitar su uso en favor de los casts específicos de C++.
+```cpp
+int i = 42;
+float f = (float)i; // Cast de estilo C
+
+class Base {};
+class Derived : public Base {};
+
+Base* b = new Derived();
+Derived* d = (Derived*)b; // Cast de estilo C
+```
+### Comparación de Casts
+|--------------------|----------------------------------|-----------------------------------------------------------|
+| Tipo de Cast       | Seguridad en Tiempo de Ejecución | Uso Principal                                      		|
+|--------------------|----------------------------------|-----------------------------------------------------------|
+| `static_cast`      | No                               | Conversiones bien definidas y en tiempo de compilación	|
+|--------------------|----------------------------------|-----------------------------------------------------------|
+| `dynamic_cast`     | Sí                               | Conversiones seguras en jerarquías de herencia polimórfica|
+|--------------------|----------------------------------|-----------------------------------------------------------|
+| `const_cast`       | No                               | Agregar o eliminar la cualificación `const`        		|
+|--------------------|----------------------------------|-----------------------------------------------------------|
+| `reinterpret_cast` | No                               | Conversiones de bajo nivel y potencialmente peligrosas 	|
+|--------------------|----------------------------------|-----------------------------------------------------------|
+| Cast de estilo C   | No                               | Conversiones de tipo originales de C               		|
+|--------------------|----------------------------------|-----------------------------------------------------------|
+```cpp
+#include <iostream>
+#include <typeinfo>
+
+class Base {
+public:
+    virtual ~Base() {}
+};
+
+class Derived : public Base {};
+
+void exampleStaticCast() {
+    int i = 42;
+    float f = static_cast<float>(i); // Convertir int a float
+    std::cout << "static_cast<float>(i): " << f << std::endl;
+    // Salida esperada: static_cast<float>(i): 42.0
+
+    Base* b = new Derived();
+    Derived* d = static_cast<Derived*>(b); // Convertir Base* a Derived*
+    std::cout << "static_cast<Derived*>(b): " << typeid(d).name() << std::endl;
+    // Salida esperada: static_cast<Derived*>(b): P7Derived
+    delete b;
+}
+
+void exampleDynamicCast() {
+    Base* b = new Derived();
+    Derived* d = dynamic_cast<Derived*>(b); // Convertir Base* a Derived*
+
+    if (d) {
+        std::cout << "dynamic_cast<Derived*>(b) succeeded: " << typeid(d).name() << std::endl;
+        // Salida esperada: dynamic_cast<Derived*>(b) succeeded: P7Derived
+    } else {
+        std::cout << "dynamic_cast<Derived*>(b) failed" << std::endl;
+    }
+    delete b;
+}
+
+void exampleConstCast() {
+    const int i = 42;
+    int* p = const_cast<int*>(&i); // Eliminar la cualificación const
+    *p = 24; // Modificar el valor a través del puntero no const
+    std::cout << "const_cast<int*>(&i): " << *p << std::endl;
+    // Salida esperada: const_cast<int*>(&i): 24
+}
+
+void exampleReinterpretCast() {
+    int i = 42;
+    void* p = reinterpret_cast<void*>(&i); // Convertir int* a void*
+    int* ip = reinterpret_cast<int*>(p); // Convertir void* de vuelta a int*
+    std::cout << "reinterpret_cast<int*>(p): " << *ip << std::endl;
+    // Salida esperada: reinterpret_cast<int*>(p): 42
+}
+
+int main() {
+    exampleStaticCast();
+    exampleDynamicCast();
+    exampleConstCast();
+    exampleReinterpretCast();
+    return 0;
+}
+```
 
 ## Ex00
 
