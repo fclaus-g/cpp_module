@@ -21,17 +21,18 @@ No olvides entregar los archivos de tu estructura de datos.*/
 
 int main()
 {
-	Data data;
+	Data	data;
+
 	data.id = 42;
 	data.value = 3.14;
 	data.name = "Hello, World!";
 
 	// Serialize data
-	uintptr_t serialized = Serializer::serialize(&data);
+	uintptr_t	serialized = Serializer::serialize(&data);
 	std::cout << "Serialized data: " << serialized << std::endl;
 	
 	// Deserialize data
-	Data* deserialized = Serializer::deserialize(serialized);
+	Data*	deserialized = Serializer::deserialize(serialized);
 	std::cout << "Deserialized data: " << deserialized << std::endl;
 
 	// Check if the deserialized data is the same as the original data

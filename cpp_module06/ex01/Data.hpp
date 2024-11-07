@@ -10,4 +10,4 @@ struct Data
 	std::string	name;
 };
 
-#endif 
+#endif
