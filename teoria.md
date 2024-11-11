@@ -1316,3 +1316,38 @@ int main() {
 
 **Conclusión**
 Los contenedores en C++ proporcionan una forma flexible y eficiente de almacenar y manipular colecciones de datos. Cada contenedor tiene sus propias características y usos específicos, y elegir el contenedor adecuado depende de los requisitos de la aplicación. La STL de C++ ofrece una amplia gama de contenedores que cubren la mayoría de las necesidades comunes de almacenamiento y manipulación de datos.
+
+### Tipos de contenedores
+La Biblioteca Estándar de Plantillas (STL) de C++ proporciona una variedad de contenedores que se pueden utilizar para almacenar y organizar colecciones de elementos. Los contenedores se pueden clasificar en tres categorías principales:
+
+1. Contenedores Secuenciales
+
+Estructura de datos que almacena elementos en una secuencia lineal, manteniendo el orden de inserción, y permite el acceso a los elementos en el orden en que fueron añadidos. 
+* std::vector: Un array dinámico que permite acceso aleatorio rápido y redimensionamiento automático.
+* std::deque: Una cola de doble extremo que permite inserción y eliminación eficientes tanto al principio como al final.
+* std::list: Una lista doblemente enlazada que permite inserción y eliminación eficientes en cualquier posición.
+* std::forward_list: Una lista simplemente enlazada que permite inserción y eliminación eficientes en cualquier posición.
+* std::array: Un array de tamaño fijo que proporciona acceso aleatorio rápido.
+
+2. Contenedores Asociativos
+
+Los contenedores asociativos en C++ son estructuras de datos que almacenan elementos en una estructura de árbol balanceado, lo que permite la búsqueda, inserción y eliminación eficientes. Los elementos se ordenan automáticamente según sus claves.
+* std::set: Un conjunto que almacena elementos únicos en orden específico.
+* std::multiset: Un conjunto que permite elementos duplicados en orden específico.
+* std::map: Un mapa que almacena pares clave-valor con claves únicas en orden específico.
+* std::multimap: Un mapa que permite claves duplicadas en orden específico.
+
+3. Contenedores No Ordenados
+
+Los contenedores no ordenados en C++ proporcionan una forma eficiente de almacenar y buscar elementos utilizando tablas hash. La STL de C++ ofrece varios tipos de contenedores no ordenados, cada uno con sus propias características y usos específicos, lo que permite elegir el contenedor adecuado según los requisitos de la aplicación.
+* std::unordered_set: Un conjunto que almacena elementos únicos sin un orden específico.
+* std::unordered_multiset: Un conjunto que permite elementos duplicados sin un orden específico.
+* std::unordered_map: Un mapa que almacena pares clave-valor con claves únicas sin un orden específico.
+* std::unordered_multimap: Un mapa que permite claves duplicadas sin un orden específico.
+
+4. Contenedores Adaptadores
+
+Los contenedores adaptadores en C++ son contenedores que proporcionan una interfaz específica sobre otros contenedores subyacentes. No son contenedores por sí mismos, sino que actúan como envoltorios que restringen o modifican la interfaz del contenedor subyacente para proporcionar una funcionalidad específica.
+* std::stack: Un contenedor que sigue el principio LIFO (Last In, First Out).
+* std::queue: Un contenedor que sigue el principio FIFO (First In, First Out).
+* std::priority_queue: Un contenedor que almacena elementos en orden de prioridad.
