@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/11 09:43:31 by fclaus-g          #+#    #+#             */
+/*   Updated: 2024/11/11 09:43:57 by fclaus-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 /*Escriba una clase ScalarConverter que contenga solo un método estático "convert"
 que tome como parámetro una representación en cadena de un literal de C++ en su forma más común y muestre su valor en la siguiente serie de tipos escalares:

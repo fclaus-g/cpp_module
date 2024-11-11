@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/11 09:45:29 by fclaus-g          #+#    #+#             */
+/*   Updated: 2024/11/11 09:45:33 by fclaus-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 /*Implementa una clase Base que tenga solo un destructor virtual público. Crea tres clases vacías A, B y C, que hereden públicamente de Base.
 Estas cuatro clases no tienen que estar diseñadas en la forma canónica ortodoxa.

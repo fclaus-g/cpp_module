@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/11 09:44:26 by fclaus-g          #+#    #+#             */
+/*   Updated: 2024/11/11 09:44:29 by fclaus-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 /*Implementa una clase Serializer, que no será inicializable por el usuario de ninguna manera, con los siguientes métodos estáticos:
 ```cpp
@@ -30,15 +42,17 @@ int main()
 	// Serialize data
 	uintptr_t	serialized = Serializer::serialize(&data);
 	std::cout << "Serialized data: " << serialized << std::endl;
-	
+	std::cout << "Original data: " << &data << std::endl;
 	// Deserialize data
 	Data*	deserialized = Serializer::deserialize(serialized);
 	std::cout << "Deserialized data: " << deserialized << std::endl;
-
+	std::cout << "Deserialized data->id: " << deserialized->id << std::endl;
 	// Check if the deserialized data is the same as the original data
 	std::cout << "Original data: " << &data << std::endl;
 	if (deserialized == &data)
+	{
 		std::cout << "Deserialized data is the same as the original data." << std::endl;
+	}
 	else
 		std::cout << "Deserialized data is not the same as the original data." << std::endl;
 	return 0;
