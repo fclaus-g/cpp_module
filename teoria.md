@@ -1042,3 +1042,277 @@ int     a = 10;
 void*   ptr = reinterpret_cast<void*>(&a);
 int*    intPtr = reinterpret_cast<int*>(ptr);
 ```
+
+## Contenedores en C++
+
+Los contenedores en C++ son estructuras de datos que permiten almacenar y organizar colecciones de elementos. La Biblioteca Estándar de Plantillas (STL) de C++ proporciona una variedad de contenedores que se pueden utilizar para diferentes propósitos. Los contenedores más comunes en la STL incluyen:
+
+1. vector
+2. list
+3. deque
+4. set y multiset
+5. map y multimap
+6. unordered_set y unordered_multiset
+7. unordered_map y unordered_multimap
+8. stack
+9. queue
+10. priority_queue
+
+1. vector
+Un vector es un contenedor que proporciona acceso aleatorio a sus elementos y permite la inserción y eliminación de elementos al final. Es similar a un array dinámico y se redimensiona automáticamente cuando se añaden elementos.
+
+Características:
+
+* Acceso aleatorio rápido.
+* Inserción y eliminación eficientes al final.
+* Redimensionamiento automático.
+```cpp
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> vec;
+    vec.push_back(1);
+    vec.push_back(2);
+    vec.push_back(3);
+
+    for (int i : vec) {
+        std::cout << i << " ";
+    }
+    return 0;
+}
+//output:1 2 3
+```
+2. list
+Una list es un contenedor que proporciona una lista doblemente enlazada. Permite la inserción y eliminación de elementos en cualquier posición de manera eficiente.
+
+Características:
+
+* Inserción y eliminación eficientes en cualquier posición.
+* No proporciona acceso aleatorio rápido.
+```cpp
+#include <list>
+#include <iostream>
+
+int main() {
+    std::list<int> lst;
+    lst.push_back(1);
+    lst.push_back(2);
+    lst.push_back(3);
+
+    for (int i : lst) {
+        std::cout << i << " ";
+    }
+    return 0;
+}
+//output 1 2 3 
+```
+3. deque
+Un deque (double-ended queue) es un contenedor que permite la inserción y eliminación de elementos tanto al principio como al final. Proporciona acceso aleatorio a sus elementos.
+
+Características:
+
+* Inserción y eliminación eficientes al principio y al final.
+* Acceso aleatorio rápido.
+```cpp
+#include <deque>
+#include <iostream>
+
+int main() {
+    std::deque<int> deq;
+    deq.push_back(1);
+    deq.push_back(2);
+    deq.push_back(3);
+    deq.push_front(0);
+
+    for (int i : deq) {
+        std::cout << i << " ";
+    }
+    return 0;
+}
+// Salida esperada: 0 1 2 3 
+```
+4. set y multiset
+Un set es un contenedor que almacena elementos únicos en orden específico. Un multiset permite elementos duplicados.
+
+Características:
+
+* Almacena elementos únicos (set) o duplicados (multiset).
+* Ordena los elementos automáticamente.
+* Inserción, eliminación y búsqueda eficientes.
+```cpp
+#include <set>
+#include <iostream>
+
+int main() {
+    std::set<int> s;
+    s.insert(1);
+    s.insert(2);
+    s.insert(2); // No se insertará porque 2 ya está presente
+
+    for (int i : s) {
+        std::cout << i << " ";
+    }
+    return 0;
+}
+// Salida esperada: 1 2 
+```
+5. map y multimap
+Un map es un contenedor que almacena pares clave-valor con claves únicas. Un multimap permite claves duplicadas.
+
+Características:
+
+* Almacena pares clave-valor.
+* Ordena los elementos por clave.
+* Inserción, eliminación y búsqueda eficientes.
+```cpp
+#include <map>
+#include <iostream>
+
+int main() {
+    std::map<int, std::string> m;
+    m[1] = "one";
+    m[2] = "two";
+    m[3] = "three";
+
+    for (const auto& pair : m) {
+        std::cout << pair.first << ": " << pair.second << std::endl;
+    }
+    return 0;
+}
+// Salida esperada:
+// 1: one
+// 2: two
+// 3: three
+```
+6. unordered_set y unordered_multiset
+Un unordered_set es un contenedor que almacena elementos únicos sin un orden específico. Un unordered_multiset permite elementos duplicados.
+
+Características:
+
+* Almacena elementos únicos (unordered_set) o duplicados (unordered_multiset).
+* No ordena los elementos.
+* Inserción, eliminación y búsqueda eficientes.
+```cpp
+#include <unordered_set>
+#include <iostream>
+
+int main() {
+    std::unordered_set<int> us;
+    us.insert(1);
+    us.insert(2);
+    us.insert(2); // No se insertará porque 2 ya está presente
+
+    for (int i : us) {
+        std::cout << i << " ";
+    }
+    return 0;
+}
+// Salida esperada: 1 2 (el orden puede variar)
+```
+7. unordered_map y unordered_multimap
+Un unordered_map es un contenedor que almacena pares clave-valor sin un orden específico. Un unordered_multimap permite claves duplicadas.
+
+Características:
+
+* Almacena pares clave-valor.
+* No ordena los elementos por clave.
+* Inserción, eliminación y búsqueda eficientes.
+```cpp
+#include <unordered_map>
+#include <iostream>
+
+int main() {
+    std::unordered_map<int, std::string> um;
+    um[1] = "one";
+    um[2] = "two";
+    um[3] = "three";
+
+    for (const auto& pair : um) {
+        std::cout << pair.first << ": " << pair.second << std::endl;
+    }
+    return 0;
+}
+// Salida esperada (el orden puede variar):
+// 1: one
+// 2: two
+// 3: three
+```
+8. stack
+Un stack es un contenedor que sigue el principio LIFO (Last In, First Out). Permite la inserción y eliminación de elementos solo en el extremo superior.
+
+Características:
+
+* Inserción y eliminación en el extremo superior.
+* No permite acceso aleatorio.
+```cpp
+#include <stack>
+#include <iostream>
+
+int main() {
+    std::stack<int> stk;
+    stk.push(1);
+    stk.push(2);
+    stk.push(3);
+
+    while (!stk.empty()) {
+        std::cout << stk.top() << " ";
+        stk.pop();
+    }
+    return 0;
+}
+// Salida esperada: 3 2 1 
+```
+9. queue
+Un queue es un contenedor que sigue el principio FIFO (First In, First Out). Permite la inserción de elementos al final y la eliminación de elementos al principio.
+
+Características:
+
+* Inserción al final y eliminación al principio.
+* No permite acceso aleatorio.
+```cpp
+#include <queue>
+#include <iostream>
+
+int main() {
+    std::queue<int> q;
+    q.push(1);
+    q.push(2);
+    q.push(3);
+
+    while (!q.empty()) {
+        std::cout << q.front() << " ";
+        q.pop();
+    }
+    return 0;
+}
+// Salida esperada: 1 2 3 
+```
+10. priority_queue
+Una priority_queue es un contenedor que almacena elementos en orden de prioridad. El elemento con la mayor prioridad se encuentra en la parte superior.
+
+Características:
+
+* Inserción y eliminación basadas en prioridad.
+* No permite acceso aleatorio.
+```cpp
+#include <queue>
+#include <iostream>
+
+int main() {
+    std::priority_queue<int> pq;
+    pq.push(3);
+    pq.push(1);
+    pq.push(2);
+
+    while (!pq.empty()) {
+        std::cout << pq.top() << " ";
+        pq.pop();
+    }
+    return 0;
+}
+// Salida esperada: 3 2 1 
+```
+
+**Conclusión**
+Los contenedores en C++ proporcionan una forma flexible y eficiente de almacenar y manipular colecciones de datos. Cada contenedor tiene sus propias características y usos específicos, y elegir el contenedor adecuado depende de los requisitos de la aplicación. La STL de C++ ofrece una amplia gama de contenedores que cubren la mayoría de las necesidades comunes de almacenamiento y manipulación de datos.
