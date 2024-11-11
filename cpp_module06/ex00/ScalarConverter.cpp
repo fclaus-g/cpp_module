@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/11 09:43:52 by fclaus-g          #+#    #+#             */
+/*   Updated: 2024/11/11 09:43:56 by fclaus-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScalarConverter.hpp"
 #include <cfloat>
 
@@ -98,10 +110,11 @@ void ScalarConverter::convertToFloat(const std::string& literal)
 	else
 		std::cout << "Non displayable" << std::endl;
 	std::cout << "int: ";
-	if (f >= INT_MIN && f <= INT_MAX)
+	if (f >= FLT_MIN && f <= FLT_MAX)
 		std::cout << static_cast<int>(f) << std::endl;
 	else
 		std::cout << "impossible" << std::endl;
+	std::cout << "float: ";
 	if (f >= FLT_MIN && f <= FLT_MAX)
 		std::cout << std::fixed << std::setprecision(1) << "float: " << f << "f" << std::endl;
 	else
@@ -133,6 +146,7 @@ void ScalarConverter::convertToDouble(const std::string& literal)
 		std::cout << static_cast<int>(d) << std::endl;
 	else
 		std::cout << "impossible" << std::endl;
+	std::cout << "float: ";
 	if (d >= FLT_MIN && d <= FLT_MAX)
 		std::cout << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(d) << "f" << std::endl;
 	else
