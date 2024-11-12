@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/12 10:37:43 by fclaus-g          #+#    #+#             */
+/*   Updated: 2024/11/12 10:37:45 by fclaus-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*Un primer ejercicio sencillo es la forma de empezar con el pie derecho.
 Escribe una plantilla de función easyfind que acepte un tipo T. Toma dos parámetros.
 El primero tiene el tipo T y el segundo es un entero.
