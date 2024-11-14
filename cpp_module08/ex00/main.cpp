@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:37:43 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/11/12 10:37:45 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:51:55 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,6 @@ int main ()
 	{
 		std::cout << easyfind(lst, 3) << std::endl;
 		std::cout << easyfind(lst, 6) << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << RED << e.what() << RES << std::endl;
-	}
-	
-	std::cout << GRE << "Testing with Map" << RES << std::endl;
-	std::map<int, int> map;
-	map[1] = 1;
-	map[2] = 2;
-	map[3] = 3;
-	map[4] = 4;
-	map[5] = 5;
-	try
-	{
-		std::cout << easyfind(map, 3) << std::endl;
-		std::cout << easyfind(map, 6) << std::endl;
 	}
 	catch (std::exception &e)
 	{

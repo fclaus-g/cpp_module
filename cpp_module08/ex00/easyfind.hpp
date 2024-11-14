@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:37:35 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/11/12 10:43:29 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:51:26 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@ int easyfind(T& container, V value)
 	if (it == container.end())
 		throw NotFoundException();
 	return *it;
-}
-template <typename Key, typename V>
-int easyfind(std::map<Key, V>& container, Key value)
-{
-	typename std::map<Key, V>::iterator it = container.find(value);
-	if (it == container.end())
-		throw NotFoundException();
-	return it->second;
 }
 
 #endif
