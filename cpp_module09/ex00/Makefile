@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+         #
+#    By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/12 10:37:51 by fclaus-g          #+#    #+#              #
-#    Updated: 2024/11/12 10:37:55 by fclaus-g         ###   ########.fr        #
+#    Updated: 2024/11/14 18:45:34 by fclaus-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = easyfind
+NAME = btc
 
 SRCS = main.cpp
 

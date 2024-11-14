@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:37:43 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/11/14 18:39:13 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:04:20 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,17 @@ $>
 [!CAUTION]
 Advertencia: Los contenedores que utilice para validar este ejercicio
 ya no podrán utilizarse para el resto de este módulo.[]*/
+
+#include "BitcoinExchange.hpp"
+
+int main(int ac, char **av)
+{
+	if (ac != 2)
+	{
+		std::cerr << "Error: Usage: ./btc <file.txt>" << std::endl;
+		return (1);
+	}
+	BitcoinExchange exchange(av[1]);
+	exchange.run();
+	return (0);
+}
