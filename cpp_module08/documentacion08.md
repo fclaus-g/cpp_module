@@ -14,6 +14,31 @@ de tu elección. Si necesitas algo de inspiración, analiza cómo se comportan l
 Por supuesto, implementa y entrega tus propias pruebas para asegurarte de que todo funciona como se espera.
 No tienes que manejar contenedores asociativos.
 
+### Explicación
+
+El objetivo principal del ejercicio es implementar una función plantilla (template) en C++ llamada easyfind. Esta función debe aceptar un contenedor (como std::vector, std::list, etc.) y buscar un valor entero dentro de este contenedor.
+
+* **Explicación de la Función easyfind** 
+
+Plantilla de función: easyfind es una función plantilla, lo que significa que puede adaptarse para trabajar con diferentes tipos de contenedores, siempre que contengan enteros. La plantilla utiliza un parámetro de tipo T para hacer que la función sea genérica.
+
+* Parámetros de la función:
+
+El primer parámetro es un contenedor del tipo T (por ejemplo, std::vector<int>, std::list<int>, etc.).
+
+El segundo parámetro es un entero, que representa el valor que queremos encontrar dentro del contenedor.
+
+
+* **Uso de Algoritmos Estándar:**
+
+La función easyfind puede utilizar algoritmos de la biblioteca estándar de C++, como std::find, que permite buscar en un rango de elementos.
+std::find retorna un iterador apuntando al elemento si lo encuentra, o un iterador al final del contenedor (container.end()) si no encuentra el valor.
+
+* **Manejo de Excepciones:**
+
+Si el valor no se encuentra, easyfind debería lanzar una excepción o retornar un valor de error. Usualmente, en C++, lanzar una excepción personalizada (std::runtime_error o una clase propia) es una buena práctica en estos casos, para notificar al usuario de que el valor no fue encontrado.
+
+
 ## Ex01
 ### Subject
 Desarrolla una clase Span que pueda almacenar un máximo de N números enteros. N es una variable int
@@ -49,6 +74,31 @@ para agregar muchos números a tu Span en una sola llamada.
 Si no tienes idea, estudia los Contenedores. Algunas funciones miembro
 toman un rango de iteradores para agregar una secuencia de
 elementos al contenedor.
+
+## Explicación
+
+El objetivo es crear una clase en C++ llamada Span que permite almacenar un conjunto de números enteros y calcular la distancia entre ellos. A continuación, se explica en detalle cada uno de los requerimientos de esta clase.
+
+* **Descripción de la Clase Span**
+
+	+ **Atributo de Almacenamiento:**
+
+	La clase debe almacenar un máximo de N números enteros, donde N es un entero sin signo (unsigned int) que se pasa como parámetro al constructor.
+	Puedes usar un contenedor de la STL como std::vector<int> para almacenar estos números.
+	
+	+ **Constructor:**
+
+	Span(unsigned int N): El constructor recibe un solo parámetro N, que representa el límite máximo de números enteros que se pueden almacenar en la instancia de Span.
+
+	+ **Función addNumber:**
+
+	addNumber(int number): Esta función permite agregar un número entero al contenedor.
+	Si la cantidad de elementos en el contenedor ya alcanzó N, la función debe lanzar una excepción (por ejemplo, usando std::runtime_error) para evitar sobrepasar el límite.
+
+	+ **Funciones shortestSpan y longestSpan:**
+
+		- **shortestSpan():** Calcula la distancia mínima entre cualquier par de números en el contenedor. Para esto, puedes ordenar los números almacenados y luego encontrar la diferencia mínima entre elementos adyacentes. Si hay menos de dos números almacenados, se lanza una excepción.
+		- **longestSpan():** Calcula la distancia máxima entre el valor más pequeño y el valor más grande en el contenedor. Similarmente, si hay menos de dos números, lanza una excepción.
 
 ## Ex02
 ### Subject
@@ -88,3 +138,29 @@ int main()
 }
 ```
 Si lo ejecutas por primera vez con MutantStack y una segunda vez reemplazas MutantStack con, por ejemplo, un std::list, las dos salidas deberían ser las mismas. Por supuesto, cuando pruebes otro contenedor, actualiza el código a continuación con las funciones miembro correspondientes (push() puede convertirse en push_back()).
+
+## Explicación
+
+El objetivo es crear una clase llamada MutantStack que herede de std::stack y que sea iterable. Esto significa que se le deben agregar iteradores, algo que std::stack no tiene de forma nativa en la STL de C++.
+
+* Descripción de la Clase MutantStack
+	Herencia de std::stack:
+
+	MutantStack debe heredar de std::stack y mantener toda la funcionalidad de una pila normal (push, pop, top, size, etc.).
+
+* Iteradores:
+
+	La funcionalidad clave que debe agregar MutantStack es la capacidad de iterar sobre sus elementos.
+	Para esto, se deben definir iteradores que apunten al comienzo y al final de la pila. Se pueden implementar utilizando los iteradores del contenedor subyacente de std::stack, que típicamente es std::deque.
+
+* Uso en main():
+
+	En el ejemplo de main, se demuestra el uso de MutantStack al realizar operaciones de pila (como push y pop), y luego se muestra la iteración sobre los elementos.
+	La salida de MutantStack debería ser la misma que la de otros contenedores iterables (como std::list), demostrando que se comporta como una estructura iterable.
+
+**Resumen**
+
+-MutantStack es una pila basada en std::stack que añade soporte para iteradores.
+Los iteradores se logran accediendo al contenedor subyacente de std::stack (por defecto std::deque).
+MutantStack permite recorrer los elementos almacenados de manera similar a otros contenedores iterables de la STL, solucionando la limitación original de std::stack.
+Este diseño hace que MutantStack sea completamente compatible con std::stack, añadiendo al mismo tiempo la flexibilidad de ser iterable.
