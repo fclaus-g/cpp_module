@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:42:19 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/11/12 15:07:08 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:27:34 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Span &Span::operator=(const Span &copy)
 void Span::addNumber(int n)
 {
 	if (this->_container.size() >= this->_size)
-		throw std::exception();
+		throw NotEnoughSpace();
 	this->_container.push_back(n);
 }
 
@@ -53,7 +53,7 @@ std::vector<int> Span::getContainer() const
 int Span::shortestSpan()
 {
 	if (this->_container.size() <= 1)
-		throw std::exception();
+		throw NotEnoughElementsException();
 	std::sort(this->_container.begin(), this->_container.end());
 	int min = this->_container[1] - this->_container[0];
 	for (std::vector<int>::iterator i = this->_container.begin() + 1; i != this->_container.end(); i++) {
@@ -66,7 +66,7 @@ int Span::shortestSpan()
 int Span::longestSpan()
 {
 	if (this->_container.size() <= 1)
-		throw std::exception();
+		throw NotEnoughElementsException();
 	std::sort(this->_container.begin(), this->_container.end());
 	int max = this->_container[this->_container.size() - 1] - this->_container[0];
 	return max;
@@ -79,14 +79,14 @@ void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterat
 	this->_container.insert(this->_container.end(), begin, end);
 }
 
-const char *Span::SpanException::what() const throw()
+const char *Span::NotEnoughElementsException::what() const throw()
 {
-	return "Span exception: ";
+	return "Span: Not Enough Elements Exception ";
 }
 
-const char *Span::SpanFullException::what() const throw()
+const char *Span::NotEnoughSpace::what() const throw()
 {
-	return "Span is full";
+	return "Span: Not Enough Space Exception ";
 }
 
 std::ostream &operator<<(std::ostream &out, const Span &span)
@@ -96,4 +96,3 @@ std::ostream &operator<<(std::ostream &out, const Span &span)
 		out << *i << " ";
 	return out;
 }
-
