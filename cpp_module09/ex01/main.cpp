@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:37:43 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/11/14 18:40:44 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/11/17 18:44:58 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,16 @@ prohibidos aquí. Los contenedores que utilizó para validar este ejercicio
 no se podrán utilizar en el resto de este módulo.
 */
 
+#include "RPN.hpp"
+
+int main(int ac, char **av)
+{
+	if (ac != 2)
+	{
+		std::cerr << "Error" << std::endl;
+		return 1;
+	}
+	RPN rpn(av[1]);
+	rpn.calculate();
+	return 0;
+}
