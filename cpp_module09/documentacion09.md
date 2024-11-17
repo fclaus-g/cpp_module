@@ -123,6 +123,58 @@ Advertencia: Los contenedores que utilizó en el ejercicio anterior están
 prohibidos aquí. Los contenedores que utilizó para validar este ejercicio
 no se podrán utilizar en el resto de este módulo.
 
+### Explicación
+
+* **Notación polaca inversa**
+
+La Notación Polaca Inversa (RPN, por sus siglas en inglés) es una forma de escribir expresiones matemáticas en la que los operandos van primero y los operadores después. También se conoce como postfija, ya que los operadores "se posponen".
+
+* **Características principales de RPN**
+
+1. Orden de operadores y operandos:
+
+* En lugar de escribir A + B, se escribe A B +.
+* No requiere paréntesis porque el orden de evaluación está determinado por la posición de los operadores y operandos.
+
+2. Ventajas:
+
+* Fácil de evaluar: Se utiliza una pila para procesar la expresión.
+* Menos ambigüedad: No necesita reglas de precedencia ni paréntesis.
+
+* **Como evaluar una expresión en RPN**
+
+La evaluación sigue estos pasos:
+
+1. Lee la expresión de izquierda a derecha.
+2. Si es un número, lo empujas a la pila.
+3. Si es un operador, sacas los dos últimos números de la pila, aplicas el operador y empujas el resultado de nuevo a la pila.
+4. Al final, el resultado estará en la cima de la pila.
+
+Ejemplo:
+Expresión en RPN: 3 4 + 2 * 7 /
+
+1. Empuja 3 y 4 a la pila.
+2. Encuentras +, sumas 3 + 4 = 7. Empuja 7.
+3. Empuja 2.
+4. Encuentras *, multiplicas 7 * 2 = 14. Empuja 14.
+5. Empuja 7.
+6. Encuentras /, divides 14 / 7 = 2. Empuja 2.
+7. Resultado: 2
+
+* **Ventajas de RPN**
+
++ Simple para computadoras: Las calculadoras y programas pueden evaluarla fácilmente usando una pila.
++ Sin ambigüedades: No necesitas preocuparte por la precedencia de operadores ni paréntesis.
++ Compacta: Menos símbolos que las expresiones tradicionales.
+
+* **Ejemplo de comparación**
+
+Expresión infija: (5 + 3) * (8 - 2)
+
+Expresión en RPN: 5 3 + 8 2 - *
+
+En resumen, RPN es una forma eficiente y lógica de expresar operaciones matemáticas, ampliamente utilizada en aplicaciones computacionales como lenguajes de programación, compiladores, y calculadoras.
+
 ## Ex02
 
 Debe crear un programa con estas restricciones:
