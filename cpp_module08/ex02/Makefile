@@ -1,4 +1,4 @@
-NAME =Array
+NAME = MutantStack
 
 SRCS = main.cpp
 

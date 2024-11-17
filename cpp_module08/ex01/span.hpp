@@ -32,12 +32,12 @@ class Span
 		int					longestSpan();
 		void				addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 
-		class SpanException : public std::exception
+		class NotEnoughElementsException : public std::exception
 		{
 			public:
 				virtual const char *what() const throw();
 		};
-		class SpanFullException : public SpanException
+		class NotEnoughSpace : public std::exception
 		{
 			public:
 				virtual const char *what() const throw();
