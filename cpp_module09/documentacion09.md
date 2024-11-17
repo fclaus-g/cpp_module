@@ -62,6 +62,37 @@ $>
 Advertencia: Los contenedores que utilice para validar este ejercicio
 ya no podrán utilizarse para el resto de este módulo.[]
 
+### Explicación
+
+Este programa toma como entrada un archivo llamado data.csv, que contiene datos sobre el valor de Bitcoin en fechas específicas, y otro archivo de entrada proporcionado por el usuario que incluye una lista de fechas y cantidades de Bitcoin.
+
+Nuestro programa debe calcular y mostrar el valor de las transacciones dadas las fechas y los valores de Bitcoin.
+ * **Requisitos específicos:**
+
+ 1. **Entrada**
+
+	* El archivo data.csv (historial de precios del bitcoin) contiene las líneas en formato:
+		
+		YYYY-MM-DD,value
+	
+	* El archivo .txt que proporciona el usuario contiene el format:
+
+		YYYY-MM-DD | amount
+
+ 2. **Salida**
+
+	* Por cada linea del archivo del usuario, el programa debe calcular el valor total de la cantidad de Bitcoin en la fecha dada.
+	* Por ejemplo, si el precio del bitcoin en 2022-01-01 es 47600.23 y la cantidad es 2 el resultado sería: 
+
+		2022-01-01 => 2 = 95200.46
+
+ 3. **Validaciones**
+
+	* Validar que el formato de la fecha sea correcto(YYYY-MM-DD)
+	* validar que la cantidad de Bitcoin sea un número positivo.
+	* Manejar errores con fechas fuera de rango o lineas mal formateadas
+	
+
 ## Ex01
 Debe crear un programa con estas restricciones:
 * El nombre del programa es RPN.
