@@ -1,13 +1,18 @@
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define RESET "\033[0m"
+
 #include <iostream>//para cerr
 #include <fstream>//para ifstream
 #include <string>//para string
+#include <cctype>//para isdigit
 #include <map>//
-#include <vector>
 #include <sstream>//para istringstream
 #include <iomanip>//para setprecision
+#include <cstdlib>//para atoi
 
 class BitcoinExchange
 {
@@ -20,8 +25,10 @@ class BitcoinExchange
 		BitcoinExchange &operator=(const BitcoinExchange &other);
 		~BitcoinExchange();
 
-		void parseFile();//aqui parseamos el archivo
 		void run();//aqui corremos el programa
+		void parseDatabase();//aqui parseamos la base de datos
+		void parseInput();//aqui parseamos el archivo
+		bool checkDate(std::string date) const;//aqui comprobamos si la fecha es valido
 };
 
 #endif

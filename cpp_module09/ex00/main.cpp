@@ -6,7 +6,7 @@
 /*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:37:43 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/11/14 19:04:20 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:04:12 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,14 @@ int main(int ac, char **av)
 		std::cerr << "Error: Usage: ./btc <file.txt>" << std::endl;
 		return (1);
 	}
-	BitcoinExchange exchange(av[1]);
-	exchange.run();
+	try
+	{
+		BitcoinExchange exchange(av[1]);
+		exchange.run();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	return (0);
 }
