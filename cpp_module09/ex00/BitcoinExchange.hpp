@@ -13,6 +13,7 @@
 #include <sstream>//para istringstream
 #include <iomanip>//para setprecision
 #include <cstdlib>//para atoi
+#include <ctime>//para time
 
 class BitcoinExchange
 {

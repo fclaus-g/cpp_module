@@ -98,7 +98,15 @@ bool BitcoinExchange::checkDate(std::string date) const
 		bool isLeapYear = (yearInt % 4 == 0 && yearInt % 100 != 0) || (yearInt % 400 == 0);
 		if (dayInt > (isLeapYear ? 29 : 28))
 			return false;
-	}	
+	}
+	std::time_t t = std::time(0);
+	std::tm *now = std::localtime(&t);
+	//chequeamos que la fecha no sea futura
+	if (yearInt > now->tm_year + 1900 || (yearInt == now->tm_year + 1900 && monthInt > now->tm_mon + 1) || (yearInt == now->tm_year + 1900 && monthInt == now->tm_mon + 1 && dayInt > now->tm_mday))
+	{
+		std::cerr << "Error: no data available for this date => " << date << std::endl;
+		return false;
+	}
 	return(true);
 }
 
