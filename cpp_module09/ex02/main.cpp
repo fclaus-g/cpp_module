@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:37:43 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/11/14 18:41:22 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/11/18 09:45:12 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,3 +73,17 @@ prohibidos aquí.
 La gestión de errores relacionados con duplicados queda a su
 discreción.
 */
+
+#include "PmergeMe.hpp"
+
+int main(int ac, char **av)
+{
+	if (ac < 2)
+	{
+		std::cerr << "Error: Usage " << av[0] << " <set of numbers>" << std::endl;
+		return 1;
+	}
+	PmergeMe pmm(av);
+	pmm.print();
+	return 0;
+}
