@@ -239,3 +239,139 @@ Atención: Los contenedores que utilizó en los ejercicios anteriores están
 prohibidos aquí.
 La gestión de errores relacionados con duplicados queda a su
 discreción.
+
+### Algoritmo de Ford-Johnson
+
+El algoritmo de Ford-Johnson, también conocido como Merge-Insertion Sort, es un algoritmo de ordenamiento que combina las técnicas de ordenamiento por inserción y ordenamiento por mezcla para lograr una eficiencia mejorada. Fue descrito por Donald Knuth en "The Art of Computer Programming, Vol. 3: Sorting and Searching".
+
+### Descripción del Algoritmo
+
+El algoritmo de Ford-Johnson se basa en la idea de dividir la secuencia de entrada en subsecuencias más pequeñas, ordenarlas y luego combinarlas de manera eficiente. Aquí hay un resumen de los pasos principales del algoritmo:
+
+1. **División en Pares:**
+   - Divide la secuencia de entrada en pares de elementos consecutivos.
+   - Ordena cada par de elementos.
+
+2. **Ordenamiento de los Pares:**
+   - Ordena los pares de elementos utilizando un algoritmo de ordenamiento por mezcla (Merge Sort).
+
+3. **Inserción de Elementos Restantes:**
+   - Inserta los elementos restantes (si la secuencia tiene un número impar de elementos) en la secuencia ordenada de pares utilizando el algoritmo de ordenamiento por inserción (Insertion Sort).
+
+4. **Mezcla Final:**
+   - Combina las subsecuencias ordenadas utilizando el algoritmo de ordenamiento por mezcla (Merge Sort).
+
+### Ejemplo de Implementación
+
+Aquí hay un ejemplo de cómo podrías implementar el algoritmo de Ford-Johnson en C++ utilizando dos contenedores diferentes (vector y list):
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <list>
+#include <algorithm>
+#include <chrono>
+
+// Función para imprimir una secuencia
+template <typename Container>
+void printContainer(const Container& container) {
+    for (typename Container::const_iterator it = container.begin(); it != container.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+}
+
+// Función para ordenar utilizando Merge-Insertion Sort
+template <typename Container>
+void mergeInsertionSort(Container& container) {
+    if (container.size() <= 1) return;
+
+    // Divide la secuencia en pares
+    Container pairs;
+    for (typename Container::iterator it = container.begin(); it != container.end(); ++it) {
+        typename Container::iterator next = it;
+        ++next;
+        if (next != container.end()) {
+            if (*it > *next) std::swap(*it, *next);
+            pairs.push_back(*it);
+            pairs.push_back(*next);
+            ++it;
+        } else {
+            pairs.push_back(*it);
+        }
+    }
+
+    // Ordena los pares utilizando Merge Sort
+    pairs.sort();
+
+    // Inserta los elementos restantes utilizando Insertion Sort
+    for (typename Container::iterator it = container.begin(); it != container.end(); ++it) {
+        typename Container::iterator pos = std::lower_bound(pairs.begin(), pairs.end(), *it);
+        pairs.insert(pos, *it);
+    }
+
+    // Copia la secuencia ordenada de vuelta al contenedor original
+    container = pairs;
+}
+
+int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        std::cerr << "Usage: " << argv[0] << " <numbers>" << std::endl;
+        return 1;
+    }
+
+    // Leer los números de la línea de comandos
+    std::vector<int> numbers;
+    for (int i = 1; i < argc; ++i) {
+        numbers.push_back(std::stoi(argv[i]));
+    }
+
+    // Imprimir la secuencia sin ordenar
+    std::cout << "Before: ";
+    printContainer(numbers);
+
+    // Ordenar utilizando std::vector
+    std::vector<int> vec(numbers);
+    auto start = std::chrono::high_resolution_clock::now();
+    mergeInsertionSort(vec);
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration = end - start;
+    std::cout << "After (vector): ";
+    printContainer(vec);
+    std::cout << "Time (vector): " << duration.count() << " seconds" << std::endl;
+
+    // Ordenar utilizando std::list
+    std::list<int> lst(numbers.begin(), numbers.end());
+    start = std::chrono::high_resolution_clock::now();
+    mergeInsertionSort(lst);
+    end = std::chrono::high_resolution_clock::now();
+    duration = end - start;
+    std::cout << "After (list): ";
+    printContainer(lst);
+    std::cout << "Time (list): " << duration.count() << " seconds" << std::endl;
+
+    return 0;
+}
+```
+
+### Explicación del Código
+
+1. **Lectura de Entrada:**
+   - Los números se leen de la línea de comandos y se almacenan en un vector.
+
+2. **Impresión de la Secuencia sin Ordenar:**
+   - La secuencia sin ordenar se imprime utilizando la función `printContainer`.
+
+3. **Ordenamiento con `std::vector`:**
+   - Se crea una copia del vector original.
+   - Se ordena utilizando `mergeInsertionSort`.
+   - Se mide y se imprime el tiempo de ejecución.
+
+4. **Ordenamiento con `std::list`:**
+   - Se crea una lista a partir del vector original.
+   - Se ordena utilizando `mergeInsertionSort`.
+   - Se mide y se imprime el tiempo de ejecución.
+
+Este ejemplo muestra cómo implementar y probar el algoritmo de Ford-Johnson utilizando dos contenedores diferentes (`std::vector` y `std::list`).
+
+Similar code found with 1 license type
