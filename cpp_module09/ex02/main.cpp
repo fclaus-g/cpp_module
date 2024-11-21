@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fclaus-g <fclaus-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fclaus-g <fclaus-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:37:43 by fclaus-g          #+#    #+#             */
-/*   Updated: 2024/11/18 09:45:12 by fclaus-g         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:49:04 by fclaus-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,12 @@ int main(int ac, char **av)
 		std::cerr << "Error: Usage " << av[0] << " <set of numbers>" << std::endl;
 		return 1;
 	}
-	PmergeMe pmm(av);
-	pmm.print();
+	try {
+		PmergeMe p(av);
+		p.run();
+		
+	} catch (std::exception &e) {
+		std::cerr << "Error: " << e.what() << std::endl;
 	return 0;
+	}
 }
