@@ -91,7 +91,24 @@ Nuestro programa debe calcular y mostrar el valor de las transacciones dadas las
 	* Validar que el formato de la fecha sea correcto(YYYY-MM-DD)
 	* validar que la cantidad de Bitcoin sea un número positivo.
 	* Manejar errores con fechas fuera de rango o lineas mal formateadas
-	
+
+4. **Razones para usar std::map**
+
+	* **Asociación Clave-Valor:**
+
+	Un std::map permite almacenar pares clave-valor, donde la clave es la fecha (std::string) y el valor es el precio del Bitcoin (float). Esto facilita la búsqueda y recuperación del precio del Bitcoin para una fecha específica.
+
+	* **Ordenación Automática:**
+
+	std::map mantiene los elementos ordenados automáticamente según las claves. Esto es útil para realizar búsquedas eficientes y para iterar sobre las fechas en orden cronológico.
+
+	* **Búsqueda Eficiente:**
+
+	std::map proporciona una búsqueda eficiente con una complejidad de tiempo de O(log n). Esto es importante cuando necesitas buscar rápidamente el precio del Bitcoin para una fecha específica o la fecha más cercana anterior.
+
+	* **Funcionalidades Adicionales:**
+
+	std::map ofrece funciones útiles como lower_bound, que permite encontrar el primer elemento que no es menor que una clave específica. Esto es útil para encontrar la fecha más cercana anterior si la fecha exacta no está presente en el mapa.
 
 ## Ex01
 Debe crear un programa con estas restricciones:
@@ -174,6 +191,24 @@ Expresión infija: (5 + 3) * (8 - 2)
 Expresión en RPN: 5 3 + 8 2 - *
 
 En resumen, RPN es una forma eficiente y lógica de expresar operaciones matemáticas, ampliamente utilizada en aplicaciones computacionales como lenguajes de programación, compiladores, y calculadoras.
+
+* **Razones para Usar std::stack**
+
+1. LIFO (Last In, First Out):
+
+std::stack sigue el principio LIFO, lo que significa que el último elemento en entrar es el primero en salir. Esto es ideal para evaluar expresiones en RPN, donde los operadores actúan sobre los operandos más recientes.
+
+2. Operaciones de Inserción y Eliminación Eficientes:
+
+std::stack proporciona operaciones eficientes para insertar (push) y eliminar (pop) elementos desde la parte superior de la pila. Estas operaciones tienen una complejidad de tiempo constante O(1).
+
+3. Simplicidad y Claridad:
+
+std::stack ofrece una interfaz simple y clara para manejar pilas, lo que facilita la implementación y el mantenimiento del código.
+
+4. Adecuado para Evaluar Expresiones RPN:
+
+En RPN, los números se empujan a la pila y los operadores sacan los dos últimos números de la pila, aplican la operación y empujan el resultado de nuevo a la pila. std::stack es perfecto para este patrón de uso.
 
 ## Ex02
 
@@ -372,6 +407,32 @@ int main(int argc, char* argv[]) {
    - Se ordena utilizando `mergeInsertionSort`.
    - Se mide y se imprime el tiempo de ejecución.
 
-Este ejemplo muestra cómo implementar y probar el algoritmo de Ford-Johnson utilizando dos contenedores diferentes (`std::vector` y `std::list`).
+### Explicaciones 
 
-Similar code found with 1 license type
+1. **Método de Ford Johnson**
+
+El método de Ford-Johnson, también conocido como el algoritmo de Ford-Johnson o el algoritmo de Merge-Insertion Sort, es un algoritmo de ordenamiento que combina las ideas de la ordenación por inserción y la ordenación por mezcla para mejorar la eficiencia del proceso de ordenamiento. Este algoritmo es particularmente útil para ordenar pequeñas secuencias de datos de manera eficiente.
+
+* **Descripción del Método de Ford-Johnson**
+El método de Ford-Johnson se basa en los siguientes pasos:
+
+1. División de la Secuencia:
+
+La secuencia de entrada se divide en dos partes: una parte que se ordena utilizando la ordenación por inserción y otra parte que se ordena utilizando la ordenación por mezcla.
+
+2. Ordenación por Inserción:
+
+La primera parte de la secuencia se ordena utilizando la ordenación por inserción. Este método es eficiente para secuencias pequeñas y parcialmente ordenadas.
+
+3. Ordenación por Mezcla:
+
+La segunda parte de la secuencia se ordena utilizando la ordenación por mezcla. Este método es eficiente para secuencias más grandes y desordenadas.
+
+4. Mezcla de las Partes Ordenadas:
+
+Las dos partes ordenadas se combinan utilizando la ordenación por mezcla para obtener la secuencia final ordenada.
+
+* Ventajas del Método de Ford-Johnson
+	+ Eficiencia: Combina la eficiencia de la ordenación por inserción para secuencias pequeñas y parcialmente ordenadas con la eficiencia de la ordenación por mezcla para secuencias más grandes y desordenadas.
+	+ Simplicidad: Es relativamente fácil de implementar y entender.
+	+ Versatilidad: Puede ser utilizado para ordenar secuencias de diferentes tamaños y características.
