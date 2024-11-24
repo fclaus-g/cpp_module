@@ -34,9 +34,16 @@ PmergeMe::~PmergeMe()
  */
 void PmergeMe::validateArgs(char **matriz)
 {
+	_vector.clear();
+	_deque.clear();
+	_list.clear();
+
 	std::string str;
 	std::stringstream ss;
 	int num;
+
+	if (!matriz[2])
+		throw std::invalid_argument("Not enough arguments");
 
 	for (int i = 1; matriz[i]; i++)
 	{
@@ -48,7 +55,8 @@ void PmergeMe::validateArgs(char **matriz)
 		if (ss.fail() || num < 0 )
 			throw std::invalid_argument("Invalid argument");
 		_vector.push_back(num);
-		_deque.insert(_deque.end(), num);
+		_deque.push_back(num);
+		_list.push_back(num);
 		ss.clear();
 	}
 }
@@ -60,23 +68,38 @@ void PmergeMe::validateArgs(char **matriz)
  */
 void PmergeMe::run()
 {
-	std::clock_t start = std::clock(); 
-	double duration;
-	std::cout << "[VECTOR]" << std::endl;
+	std::cout << GREEN << "[VECTOR]" << RESET << std::endl;
 	std::cout << "Before: " << std::endl;
 	print(_vector);
-	mergeInsertionSort(_vector, 0, _vector.size());
+	std::clock_t startVector = std::clock(); 
+	mergeInsertionSort(_vector);
+	std::clock_t endVector = std::clock();
 	std::cout << "After: " << std::endl;
 	print(_vector);
-	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-	std::cout << "Time to process a range of " << _vector.size() << " elements with insertionSort : " << duration << " us" << std::endl;
-	start = std::clock();
-	std::cout << "[DEQUE]" << std::endl;
-	std::cout << "Before: " << std::endl;
-	mergeInsertionSort(_deque, 0, _deque.size());
+	
+	std::cout << GREEN << "[DEQUE]" << RESET << std::endl;
+	//std::cout << "Before: " << std::endl;
+	std::clock_t startDeque = std::clock();
+	mergeInsertionSort(_deque);
+	std::clock_t endDeque = std::clock();
 	print(_deque);
-	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-	std::cout << "Time to process a range of " << _deque.size() << " elements with insertionSort : " << duration << " us" << std::endl;
+
+	//std::cout << GREEN << "[LIST]" << RESET << std::endl;
+	std::cout << "Before: " << std::endl;
+	print(_list);
+	std::clock_t startList = std::clock();
+	mergeInsertionSortList(_list);
+	std::clock_t endList = std::clock();
+	std::cout << "After: " << std::endl;
+	print(_list);
+
+
+	std::cout << std::fixed << std::setprecision(6) << YELLOW << "Time to process a range of " << _vector.size();
+	std::cout << " elements with insertionSort : " << (static_cast<double>(endVector - startVector) / CLOCKS_PER_SEC) << " us" << RESET << std::endl;
+	std::cout << std::fixed << std::setprecision(6) << YELLOW << "Time to process a range of " << _deque.size();
+	std::cout << " elements with insertionSort : " << (static_cast<double>(endDeque - startDeque) / CLOCKS_PER_SEC) << " us" <<  RESET << std::endl;
+	std::cout << std::fixed << std::setprecision(6) << YELLOW << "Time to process a range of " << _list.size();
+	std::cout << " elements with insertionSort : " << (static_cast<double>(endList - startList) / CLOCKS_PER_SEC) << " us" << RESET << std::endl;
 }
 
 /**
@@ -101,6 +124,7 @@ void PmergeMe::print(T &container)
 	std::cout << std::endl;
 }
 
+
 /**
  * @brief Algoritmo de ordenamiento merge con inserción, en primer lugar se comprueba si el tamaño
  * del contenedor es menor a 10, si es así se ordena con el algoritmo de inserción, si no se divide
@@ -113,98 +137,138 @@ void PmergeMe::print(T &container)
  * @param end 
  */
 template <typename T>
-void PmergeMe::mergeInsertionSort(T &container, int start, int end)
+void PmergeMe::mergeInsertionSort(T &container)
 {
+	if (container.size() < 2)
+		return;
 
-	if (start < end)
-	{
-		if (end - start < 10)
-		{
-			insertionSort(container);
-			return;
-		}
-		else
-		{
- 			int middle = start + (end - start) / 2;
-			mergeInsertionSort(container, start, middle);
-			mergeInsertionSort(container, middle + 1, end);
-			merge(container, start, middle, end);
-		}
-	}
+	T large; //para los mayores de los pares
+	T small; //para los menores de los pares
+
+	//1º crear y ordenar pares
+	createPairs(container, large, small);
+
+	//2º ordenar los pares mayores
+	std::sort(large.begin(), large.end());
+
+	//3º Insertar la lista de los pares menores en la lista de los pares mayores
+	insertSmallInLarge(large, small);
+
+	//4º copiar la lista ordenada en la lista original
+	container = large;
 }
 
 /**
- * @brief Crea dos contenedores auxiliares donde se almacenarán los valores de las dos
- * mitades que forman el container, luego se comparan los valores de los contenedores
- * auxiliares y se van ordenando en el container original
- *  
- * @tparam T 
- * @param container 
- * @param start 
- * @param middle 
- * @param end 
- */
-template <typename T>
-void PmergeMe::merge(T &container, int start, int middle, int end)
-{
-	int auxSize = middle - start + 1;
-	int auxSize2 = end - middle;
-	T aux1;
-	T aux2;
-
-	for (int i = 0; i < auxSize; i++)
-		aux1.push_back(container[start + i]);
-	for (int i = 0; i < auxSize2; i++)
-		aux2.push_back(container[middle + 1 + i]);
-	int i = 0, j = 0, k = start;
-	while (i < auxSize && j < auxSize2)
-	{
-		if (aux1[i] <= aux2[j])
-		{
-			container[k] = aux1[i];
-			i++;
-		}
-		else
-		{
-			container[k] = aux2[j];
-			j++;
-		}
-		k++;
-	}
-	while (i < auxSize)
-	{
-		container[k] = aux1[i];
-		i++;
-		k++;
-	}
-}
-
-/**
- * @brief toma un contenedor y lo ordena con el algoritmo de inserción comprobando
- * a pares si el valor de la derecha es menor que el de la izquierda, si es así
- * hace un swap de los valores
+ * @brief función que crea pares de elementos de un contenedor y los guarda en dos contenedores separando
+ * los mayores de los menores si el tamaño del contenedor es impar el último elemento se guarda en el contenedor
+ * de los mayores
  * 
  * @tparam T 
- * @param container 
+ * @param container contenedor a ordenar
+ * @param large contenedor en el que guardaremos los mayores de los pares
+ * @param small contenedor en el que guardaremos los menores de los pares
  */
 template <typename T>
-void PmergeMe::insertionSort(T &container)
+void PmergeMe::createPairs(T &container, T &large, T&small)
 {
-	typename T::iterator it = container.begin();
-	typename T::iterator ite = container.end();
-	typename T::iterator it2;
-	int tmp;
+	for (size_t i = 0; i + 1 < container.size(); i += 2)
+	{
+		if (container[i] > container[i + 1])
+		{
+			large.push_back(container[i]);
+			small.push_back(container[i + 1]);
+		}
+		else
+		{
+			large.push_back(container[i + 1]);
+			small.push_back(container[i]);
+		}
+	}
+	if (container.size() % 2 != 0)
+	{
+		large.push_back(container.back());
+	}
+}
+
+/**
+ * @brief Inserta los elementos de un contenedor pequeño en un contenedor grande buscando la posición del elemento 
+ * en el contenedor grande con la función lower_bound y luego inserta el elemento en esa posición
+ * 
+ * @tparam T 
+ * @param large contenedor grande
+ * @param small contenedor pequeño
+ */
+template <typename T>
+void PmergeMe::insertSmallInLarge(T &large, T &small)
+{
+	typename T::iterator it = small.begin();
+	typename T::iterator ite = small.end();
+
+	for (;it != ite; it++)
+	{
+		typename T::iterator pos = std::lower_bound(large.begin(), large.end(), *it);
+		large.insert(pos, *it);
+	}
+}
+
+void PmergeMe::mergeInsertionSortList(std::list<int> &container)
+{
+	if (container.size() < 2)
+		return;
+
+	std::list<int> large;
+	std::list<int> small;
+
+	createPairsList(container, large, small);
+	large.sort();
+	insertSmallInLargeList(large, small);
+	container = large;
+}	
+
+void PmergeMe::createPairsList(std::list<int> &container, std::list<int> &large, std::list<int> &small)
+{
+	std::list<int>::iterator it = container.begin();
+	std::list<int>::iterator ite = container.end();
 
 	while (it != ite)
 	{
-		it2 = it;
-		while (it2 != container.begin() && *it2 < *(it2 - 1))
+		std::list<int>::iterator next = it;
+		++next;
+		if (next != ite)
 		{
-			tmp = *it2;
-			*it2 = *(it2 - 1);
-			*(it2 - 1) = tmp;
-			it2--;
+			if (*it > *next)
+			{
+				large.push_back(*it);
+				small.push_back(*next);
+			}
+			else
+			{
+				large.push_back(*next);
+				small.push_back(*it);
+			}
+			it = ++next;
 		}
-		it++;
+		else
+		{
+			large.push_back(*it);
+			++it;
+		}
+	}
+}
+
+void PmergeMe::insertSmallInLargeList(std::list<int> &large, std::list<int> &small)
+{
+	std::list<int>::iterator it = small.begin();
+
+	while (it != small.end())
+	{
+		std::list<int>::iterator pos = large.begin();
+		for (; pos != large.end(); ++pos)
+		{
+			if (*it < *pos)
+				break;
+		}
+		large.insert(pos, *it);
+		++it;
 	}
 }
