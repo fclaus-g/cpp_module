@@ -1,32 +1,93 @@
-# C++ Module Series
+# ⚙️ C++ Modules — 42 School OOP Series
 
-This repository contains a series of C++ modules created to strengthen understanding of core and advanced C++ concepts through practical exercises.
+A progressive, hands-on journey through **Object-Oriented Programming in C++**, built module by module as part of the 42 school curriculum. Each module introduces new concepts through isolated exercises — no frameworks, no magic, just C++ the way the language was designed.
 
-## 📁 Module Overview
+---
 
-- **cpp_module00** – Basics of C++: namespaces, `std::cout`, `std::cin`, basic input/output, and data types.
-- **cpp_module01** – Memory allocation, pointers, references, and dynamic memory management.
-- **cpp_module02** – Classes and objects, constructors, destructors, and encapsulation.
-- **cpp_module03** – Inheritance, polymorphism, and method overriding.
-- **cpp_module04** – Abstract classes, interfaces, and more complex polymorphic behavior.
-- **cpp_module05** – Operator overloading and deep copy versus shallow copy concepts.
-- **cpp_module06** – Casting in C++: static_cast, dynamic_cast, const_cast, reinterpret_cast.
-- **cpp_module07** – C++ templates, including class and function templates.
-- **cpp_module08** – Standard Template Library (STL): vectors, iterators, algorithms.
-- **cpp_module09** – A more complex project integrating various C++ concepts and STL.
+## 🎯 What This Is
 
-## ⚙️ Requirements
+The **C++ Modules** at 42 are a series of 9 independent projects (00–08) that progressively build mastery of C++ from first principles. The constraint: **C++98 standard only** — which forces a deep understanding of the language mechanics before relying on modern conveniences.
 
-- A C++ compiler supporting C++98/C++11 (e.g., `g++`, `clang++`)
-- `make` utility
+Think of it as learning to drive a manual transmission before touching an automatic.
 
-## 🚀 Getting Started
+---
+
+## 📚 Modules Overview
+
+| Module | Core Concepts |
+|--------|--------------|
+| **00** | Namespaces, classes, member functions, I/O streams, initialization lists |
+| **01** | Memory allocation, references, pointers to members, file streams |
+| **02** | Ad-hoc polymorphism, operator overloading, Orthodox Canonical Form |
+| **03** | Inheritance, base/derived class relationships |
+| **04** | Subtype polymorphism, abstract classes, interfaces, virtual functions |
+| **05** | Repetition and exceptions — `try/catch`, custom exception classes |
+| **06** | C++ casts: `static_cast`, `dynamic_cast`, `reinterpret_cast`, `const_cast` |
+| **07** | Templates — function templates, class templates, template specialization |
+| **08** | STL containers, iterators, algorithms — `std::vector`, `std::list`, `std::map` |
+
+---
+
+## 🧠 Key C++ Skills Demonstrated
+
+- **Orthodox Canonical Form** — Every class implements: default constructor, copy constructor, copy assignment operator, destructor
+- **Memory safety** — Manual `new`/`delete`, no leaks, RAII principles
+- **Polymorphism** — Both compile-time (templates, overloading) and runtime (virtual functions, abstract classes)
+- **Exception handling** — Custom exception hierarchies, stack unwinding
+- **STL fluency** — Containers, iterators, `std::find`, `std::sort`, algorithm library
+- **Type system** — Deep understanding of C++ casting and type safety
+
+---
+
+## 🏗️ Project Structure
+
+```
+cpp_module/
+├── module00/    # Classes, namespaces, I/O
+├── module01/    # Memory, references
+├── module02/    # Operator overloading, OCF
+├── module03/    # Inheritance
+├── module04/    # Polymorphism, interfaces
+├── module05/    # Exceptions
+├── module06/    # Casts
+├── module07/    # Templates
+└── module08/    # STL containers & algorithms
+```
+
+Each module contains:
+- `ex00/`, `ex01/`, `ex02/` — Progressive exercises
+- `.cpp` + `.hpp` source files
+- `Makefile` for each exercise
+
+---
+
+## 🔧 Build & Run
 
 ```bash
-git clone https://github.com/fclaus-g/cpp_module.git
-cd cpp_module/cpp_module00
+cd module04/ex02
 make
 ./program
 ```
 
-Repeat steps in each module folder as needed.
+All modules compile cleanly with:
+```bash
+c++ -Wall -Wextra -Werror -std=c++98
+```
+
+---
+
+## 💡 Why This Matters
+
+Unlike university courses, 42's methodology is **learn by doing under pressure**. Every module is peer-reviewed by other students — meaning the code must be readable, well-structured, and defensible in a live review session.
+
+The C++98 constraint is intentional: if you understand why `std::auto_ptr` was deprecated or how virtual dispatch works under the hood, writing modern C++11/14/17 becomes trivial. This series proves I understand the *why*, not just the *how*.
+
+---
+
+## 🏫 About 42 School
+
+[42](https://42.fr) is a global network of tuition-free engineering schools with campuses in 50+ countries. The pedagogy is entirely project-based: no teachers, no lectures, no spoon-feeding. Students learn through peer review, trial and error, and RTM (Read The Manual).
+
+---
+
+*Part of my journey at [42 Málaga](https://www.42malaga.com/) · [@fclaus-g](https://github.com/fclaus-g)*
